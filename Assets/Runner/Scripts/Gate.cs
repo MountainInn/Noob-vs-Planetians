@@ -10,22 +10,18 @@ namespace HyperCasual.Runner
     /// with this object, it will trigger a fail
     /// state with the GameManager.
     /// </summary>
-    public class Gate : Spawnable
+    public class Gate : Spawnable, IHitbox
     {
         const string k_PlayerTag = "Player";
 
-        [SerializeField]
-        GateType m_GateType;
-        [SerializeField]
-        float m_Value;
-        [SerializeField]
-        RectTransform m_Text;
+        [SerializeField] GateType m_GateType;
+        [SerializeField] float m_Value;
+        [SerializeField] RectTransform m_Text;
 
         bool m_Applied;
         Vector3 m_TextInitialScale;
 
-        enum GateType
-        {
+        enum GateType {
             ChangeSpeed,
             ChangeSize,
         }
@@ -84,14 +80,19 @@ namespace HyperCasual.Runner
             {
                 case GateType.ChangeSpeed:
                     PlayerController.Instance.AdjustSpeed(m_Value);
-                break;
+                    break;
 
                 case GateType.ChangeSize:
                     PlayerController.Instance.AdjustScale(m_Value);
-                break;
+                    break;
             }
 
             m_Applied = true;
+        }
+
+        public void OnHit(Bullet bullet)
+        {
+           
         }
     }
 }

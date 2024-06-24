@@ -11,14 +11,10 @@ namespace HyperCasual.Core
     /// </summary>
     public class UIManager : AbstractSingleton<UIManager>
     {
-        [SerializeField]
-        Canvas m_Canvas;
-        [SerializeField]
-        RectTransform m_Root;
-        [SerializeField]
-        RectTransform m_BackgroundLayer;
-        [SerializeField]
-        RectTransform m_ViewLayer;
+        [SerializeField] Canvas m_Canvas;
+        [SerializeField] RectTransform m_Root;
+        [SerializeField] RectTransform m_BackgroundLayer;
+        [SerializeField] RectTransform m_ViewLayer;
 
         List<View> m_Views;
 
