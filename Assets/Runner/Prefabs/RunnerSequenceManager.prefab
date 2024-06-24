@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PreloadedAssets:
-  - {fileID: 2404344050537117820, guid: 48e60f0845bd446d1962e2da252b92ea, type: 3}
   - {fileID: 4575908568916051441, guid: 3634157dd07b141c2aaa950dd4771f81, type: 3}
-  - {fileID: 5237897444947184902, guid: a199d962ca53e4a10ba285d5d34bf335, type: 3}
   - {fileID: 8617234690931488546, guid: 24e6103122814457297dc45d1ebd9d78, type: 3}
   - {fileID: 6720992300918251345, guid: f5969163fd24f4df09df4753595040b4, type: 3}
   - {fileID: 2034186197529953695, guid: d44d1b9822199404c9f82515a188ec6a, type: 3}

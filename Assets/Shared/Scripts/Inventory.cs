@@ -39,7 +39,7 @@ namespace HyperCasual.Runner
 
         Hud m_Hud;
         LevelCompleteScreen m_LevelCompleteScreen;
-
+       
         void Start()
         {
             m_GoldEventListener.EventHandler = OnGoldPicked;
@@ -77,8 +77,8 @@ namespace HyperCasual.Runner
         {
             if (m_GoldEventListener.m_Event is ItemPickedEvent goldPickedEvent)
             {
-                m_TempGold += goldPickedEvent.Count;
-                m_Hud.GoldValue = m_TempGold;
+                // m_TempGold += goldPickedEvent.Count;
+                // m_Hud.GoldValue = m_TempGold;
             }
             else
             {

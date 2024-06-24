@@ -13,8 +13,7 @@ namespace HyperCasual.Runner
     /// </summary>
     public class Collectable : Spawnable
     {
-        [SerializeField]
-        SoundID m_Sound = SoundID.None;
+        [SerializeField] SoundID m_Sound = SoundID.None;
         
         const string k_PlayerTag = "Player";
 
@@ -61,13 +60,25 @@ namespace HyperCasual.Runner
                 m_Event.Raise();
             }
 
-            for (int i = 0; i < m_Renderers.Length; i++)
+            if (m_Event is ItemPickedEvent goldPickedEvent)
             {
-                m_Renderers[i].enabled = false;
+                GetComponents<ICollectable>()
+                    ?.Map(collectable => collectable.Collect());
             }
+
+
+            // for (int i = 0; i < m_Renderers.Length; i++)
+            // {
+            //     m_Renderers[i].enabled = false;
+            // }
 
             m_Collected = true;
             AudioManager.Instance.PlayEffect(m_Sound);
         }
     }
+}
+
+public interface ICollectable
+{
+    void Collect();
 }

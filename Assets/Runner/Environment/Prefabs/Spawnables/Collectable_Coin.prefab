@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1021949262770465885}
   - component: {fileID: 9091147660502587300}
-  - component: {fileID: 6483628337455534911}
+  - component: {fileID: 640871946269783796}
   - component: {fileID: 9108350124528120689}
+  - component: {fileID: 6483628337455534911}
   m_Layer: 0
   m_Name: Collectable_Coin
   m_TagString: Untagged
@@ -43,12 +44,12 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314387739941697089}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6483628337455534911
+--- !u!114 &640871946269783796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,13 +58,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 314387739941697089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818a287135adb43b7b2081dfbdb7b2a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 49e5a1aa8c91cd441aaa4e41f60f0c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SnapToGrid: 1
-  m_Sound: 1
-  m_Event: {fileID: 11400000, guid: a796f105604544326aea1a54797b65ba, type: 2}
-  m_Count: 1
+  amount: 1
 --- !u!114 &9108350124528120689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +81,22 @@ MonoBehaviour:
   BobHeight: 0.2
   Spin: 1
   SpinSpeed: 180
+--- !u!114 &6483628337455534911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314387739941697089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818a287135adb43b7b2081dfbdb7b2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SnapToGrid: 1
+  m_Sound: 1
+  m_Event: {fileID: 11400000, guid: a796f105604544326aea1a54797b65ba, type: 2}
+  m_Count: 1
 --- !u!1 &3044849094365238405
 GameObject:
   m_ObjectHideFlags: 0
