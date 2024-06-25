@@ -5,7 +5,7 @@ public class Coin : MonoBehaviour, ICollectable
 {
     [SerializeField] public int amount;
 
-    public void Collect()
+    public void OnCollect()
     {
         DataManager.Coins += amount;
 

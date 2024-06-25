@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Gun : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Gun : MonoBehaviour
     [SerializeField] Bullet prefabBullet;
 
     Volume attackTimer;
+    bool isShooting;
 
     void Awake()
     {
@@ -20,7 +22,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (attackTimer.Tick())
+        if (isShooting && attackTimer.Tick())
         {
             Fire();
         }
@@ -38,10 +40,18 @@ public class Gun : MonoBehaviour
 
         bullet.Initialize(gunSO.damage, gunSO.range, bulletSpeed);
     }
+
+    public void ToggleShooting(bool toggle)
+    {
+        isShooting = toggle;
+
+        if (!isShooting)
+            attackTimer.ResetToZero();
+    }
 }
 
 
-public interface IHitbox
+public interface ITarget
 {
     void OnHit(Bullet bullet);
 }

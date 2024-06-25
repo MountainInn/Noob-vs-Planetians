@@ -1,18 +1,26 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Linq;
+using HyperCasual.Core;
+using HyperCasual.Gameplay;
 
-public class Bullet : MonoBehaviour
+
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Harm))]
+public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
 {
     // Pool pool;
 
-    [HideInInspector] public int damage;
-
     Tween moveTween;
+
+    public Harm harm;
 
     public void Initialize(int damage, int range, float bulletSpeed)
     {
-        this.damage = damage;
+        harm = GetComponent<Harm>();
+
+        harm.damage = damage;
 
         moveTween =
             transform
@@ -23,14 +31,18 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        IHitbox[] hitboxes = other.GetComponents<IHitbox>();
+        var hitboxes = other.GetComponents<ITarget>();
 
-        if (hitboxes != null && hitboxes.Length > 0)
+        if (hitboxes != null)
         {
-            hitboxes.Map(hitbox => hitbox.OnHit(this));
-
-            Despawn();
+            foreach (var item in hitboxes)
+                item.OnHit(this);
         }
+    }
+
+    public void OnHarm(Mortal mortal)
+    {
+        Despawn();
     }
 
     void Despawn()

@@ -10,7 +10,7 @@ namespace HyperCasual.Runner
     /// with this object, it will trigger a fail
     /// state with the GameManager.
     /// </summary>
-    public class Gate : Spawnable, IHitbox
+    public class Gate : Spawnable, ITarget
     {
         const string k_PlayerTag = "Player";
 

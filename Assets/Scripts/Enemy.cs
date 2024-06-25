@@ -1,39 +1,41 @@
 using HyperCasual.Runner;
 using UnityEngine;
 
+[RequireComponent(typeof(Mortal))]
 [RequireComponent(typeof(Obstacle))]
-public class Enemy : Spawnable, IHitbox
+[RequireComponent(typeof(Ragdoll))]
+public class Enemy : Spawnable, Mortal.IMortalCallback
 {
-    [SerializeField] [Min(1)] int maxHealth = 1;
-    [Space]
     [SerializeField] Animator animator;
     [SerializeField] bool startRunning = false;
     [Space]
     [SerializeField] Ragdoll ragdoll;
 
-    Volume health;
+    Mortal mortal;
 
     override protected void Awake()
     {
         base.Awake();
-       
-        health = new (maxHealth);
 
         if (startRunning)
             animator.SetTrigger("run");
         else
             animator.SetTrigger("idle");
+
+        mortal = GetComponent<Mortal>();
     }
 
-    public void OnHit(Bullet bullet)
+    public void OnHeal(Healing healing)
     {
-        if (health.Subtract(bullet.damage))
-        {
-            Die();
-        }
+
     }
 
-    void Die()
+    public void OnSuffer(Harm harm)
+    {
+        Debug.Log($"Add Blood Splatters");
+    }
+
+    public void OnDie()
     {
         animator.enabled = false;
         ragdoll.Activate();

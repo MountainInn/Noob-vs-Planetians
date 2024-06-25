@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using HyperCasual.Gameplay;
 using UnityEngine;
 
@@ -44,7 +44,7 @@ namespace HyperCasual.Runner
             m_Renderers = gameObject.GetComponentsInChildren<Renderer>();
         }
 
-        void OnTriggerEnter(Collider col)
+        protected void OnTriggerEnter(Collider col)
         {
             if (col.CompareTag(k_PlayerTag) && !m_Collected)
             {
@@ -63,7 +63,7 @@ namespace HyperCasual.Runner
             if (m_Event is ItemPickedEvent goldPickedEvent)
             {
                 GetComponents<ICollectable>()
-                    ?.Map(collectable => collectable.Collect());
+                    ?.Map(collectable => collectable.OnCollect());
             }
 
 
@@ -80,5 +80,5 @@ namespace HyperCasual.Runner
 
 public interface ICollectable
 {
-    void Collect();
+    void OnCollect();
 }

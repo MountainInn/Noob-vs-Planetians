@@ -50,12 +50,12 @@ namespace HyperCasual.Runner
         static readonly string s_Speed = "Speed";
 
         enum PlayerSpeedPreset
-        {
-            Slow,
-            Medium,
-            Fast,
-            Custom
-        }
+            {
+                Slow,
+                Medium,
+                Fast,
+                Custom
+            }
 
         Transform m_Transform;
         Vector3 m_StartPosition;

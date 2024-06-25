@@ -13,14 +13,10 @@ namespace HyperCasual.Runner
     /// </summary>
     public class Inventory : AbstractSingleton<Inventory>
     {
-        [SerializeField]
-        GenericGameEventListener m_GoldEventListener;
-        [SerializeField]
-        GenericGameEventListener m_KeyEventListener;
-        [SerializeField]
-        GenericGameEventListener m_WinEventListener;
-        [SerializeField]
-        GenericGameEventListener m_LoseEventListener;
+        [SerializeField] GenericGameEventListener m_GoldEventListener;
+        [SerializeField] GenericGameEventListener m_KeyEventListener;
+        [SerializeField] GenericGameEventListener m_WinEventListener;
+        [SerializeField] GenericGameEventListener m_LoseEventListener;
 
         int m_TempGold;
         int m_TotalGold;
