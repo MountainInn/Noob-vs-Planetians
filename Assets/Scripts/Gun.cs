@@ -9,8 +9,10 @@ public class Gun : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [Space]
     [SerializeField] Transform muzzle;
+    [SerializeField] ParticleSystem muzzleFlaresPS;
     [Space]
     [SerializeField] Bullet prefabBullet;
+    [SerializeField] FollowingTrail prefabFollowingTrail;
 
     Volume attackTimer;
     bool isShooting;
@@ -40,7 +42,16 @@ public class Gun : MonoBehaviour
 
         bullet.Initialize(gunSO.damage, gunSO.range, bulletSpeed);
 
-        MuzzleFlaresPS.instance.Fire(muzzle.position);
+
+        FollowingTrail trail =
+            GameObject.Instantiate(prefabFollowingTrail,
+                                   muzzle.position,
+                                   muzzle.rotation,
+                                   null);
+
+        trail.target = bullet.transform;
+
+        muzzleFlaresPS.Play();
     }
 
     public void ToggleShooting(bool toggle)

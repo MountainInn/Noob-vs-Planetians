@@ -24,6 +24,7 @@ namespace HyperCasual.Runner
 
         bool m_Applied;
         Vector3 m_TextInitialScale;
+        Vector3 initialScale;
 
         enum GateType {
             DamageBonus
@@ -59,7 +60,9 @@ namespace HyperCasual.Runner
             totalValue = startingValue;
 
             labelType.text = $"{System.Enum.GetName(typeof(GateType), m_GateType)}";
-            labelIncrement.text = $"{incrementPerHit:^;v;~}";
+            labelIncrement.text = $"{incrementPerHit:^#;v#;~#}";
+
+            initialScale = transform.localScale;
         }
 
         void OnTriggerEnter(Collider col)
@@ -71,14 +74,19 @@ namespace HyperCasual.Runner
             }
         }
 
+        Tween punchScaleTween;
+
         public void OnHit(Bullet bullet)
         {
             totalValue += incrementPerHit;
 
             labelTotalValue.text = $"{totalValue}";
 
-            transform
-                .DOPunchScale(Vector3.one * 1.1f, .2f);
+            punchScaleTween?.Kill();
+            punchScaleTween =
+                transform
+                .DOPunchScale(Vector3.one * .1f, .2f)
+                .OnKill(() => transform.localScale = initialScale);
         }
 
         void ActivateGate()

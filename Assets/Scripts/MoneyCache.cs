@@ -6,7 +6,7 @@ public class MoneyCache : MonoBehaviour
     static public MoneyCache instance => _inst ??= FindObjectOfType<MoneyCache>();
     static MoneyCache _inst;
 
-    public int coinsOnThisLevel;
+    [HideInInspector] public int coinsOnThisLevel;
 
     public int TotalCoins
     {
@@ -14,7 +14,7 @@ public class MoneyCache : MonoBehaviour
         set => DataManager.Coins = value;
     }
 
-    void Awake()
+    void Start()
     {
         GameManager.Instance.onStartGame.AddListener(Clear);
     }

@@ -312,7 +312,7 @@ namespace HyperCasual.Runner
 
             if (m_Transform.position != m_LastPosition)
             {
-                m_Transform.forward = Vector3.Lerp(m_Transform.forward, (m_Transform.position - m_LastPosition).normalized, speed);
+                // m_Transform.forward = Vector3.Lerp(m_Transform.forward, (m_Transform.position - m_LastPosition).normalized, speed);
             }
 
             m_LastPosition = m_Transform.position;

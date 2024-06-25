@@ -7,19 +7,31 @@ using UnityEngine.Events;
 public class StackedNumber
 {
     [SerializeField] float initial;
+   
     float result;
 
     Dictionary<string, float> multipliers = new();
     Dictionary<string, float> addends = new();
 
+    bool recalculated = false;
+
+    public StackedNumber()
+    {
+    }
     public StackedNumber(float initial)
     {
         this.initial = initial;
     }
 
-    public float AsFloat() => result;
-    public int AsFloorInt() => Mathf.FloorToInt(result);
-    public int AsCeilInt() => Mathf.CeilToInt(result);
+
+    public int AsFloorInt() => Mathf.FloorToInt(AsFloat());
+    public int AsCeilInt() => Mathf.CeilToInt(AsFloat());
+
+    public float AsFloat()
+    {
+        MaybeRecalculate();
+        return result;
+    }
 
     public void SetMultiplierUntil(string name, float multiplier, UnityEvent until)
     {
@@ -54,7 +66,7 @@ public class StackedNumber
             multipliers[name] = multiplier;
         }
 
-        Recalculate();
+        recalculated = false;
     }
 
 
@@ -91,11 +103,14 @@ public class StackedNumber
             addends[name] = addend;
         }
 
-        Recalculate();
+        recalculated = false;
     }
 
-    void Recalculate()
+    void MaybeRecalculate()
     {
+        if (recalculated)
+            return;
+
         result = initial;
 
         foreach (var (key, val) in multipliers)

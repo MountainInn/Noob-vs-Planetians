@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
             transform
             .DOMoveZ(transform.position.z + range, bulletSpeed)
             .SetSpeedBased(true)
+            .SetEase(Ease.Linear)
             .OnKill(Despawn);
     }
 

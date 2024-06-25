@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class MasterPS : MonoBehaviour
 {
-    [SerializeField] ParticleSystem ps;
+    ParticleSystem ps;
 
     void Awake()
     {

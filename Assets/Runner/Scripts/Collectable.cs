@@ -23,6 +23,8 @@ namespace HyperCasual.Runner
         bool m_Collected;
         Renderer[] m_Renderers;
 
+        ICollectable[] icollectableCallbacks;
+
         /// <summary>
         /// Reset the gate to its initial state. Called when a level
         /// is restarted by the GameManager.
@@ -42,6 +44,8 @@ namespace HyperCasual.Runner
             base.Awake();
 
             m_Renderers = gameObject.GetComponentsInChildren<Renderer>();
+
+            icollectableCallbacks = GetComponents<ICollectable>();
         }
 
         protected void OnTriggerEnter(Collider col)
@@ -71,6 +75,9 @@ namespace HyperCasual.Runner
             // {
             //     m_Renderers[i].enabled = false;
             // }
+
+            foreach (var item in icollectableCallbacks)
+                item.OnCollect();
 
             m_Collected = true;
             AudioManager.Instance.PlayEffect(m_Sound);
