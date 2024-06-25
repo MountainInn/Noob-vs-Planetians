@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Gun : MonoBehaviour
 {
@@ -35,11 +36,7 @@ public class Gun : MonoBehaviour
         // = bulletPool.Spawn()
         ;
 
-        bullet.damage = gunSO.damage;
-
-        var rb = bullet.GetComponent<Rigidbody>();
-
-        rb.velocity = muzzle.forward * bulletSpeed;
+        bullet.Initialize(gunSO.damage, gunSO.range, bulletSpeed);
     }
 }
 

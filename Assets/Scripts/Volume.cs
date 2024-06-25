@@ -47,26 +47,30 @@ public class Volume
 
     public bool Tick()
     {
-        if (!IsFull)
-            Add(Time.deltaTime);
+        bool result = Add(Time.deltaTime);
 
-        return IsFull;
+        if (result)
+            current = 0;
+
+        return result;
     }
 
-    public void Add(float amount, out float overflow)
+    public bool Add(float amount, out float overflow)
     {
         overflow = 0;
 
         if (amount > Unfilled)
             overflow = amount - Unfilled;
 
-        Add(amount);
+        return Add(amount);
     }
-    public void Add(float amount)
+    public bool Add(float amount)
     {
         amount = Mathf.Min(amount, Unfilled);
         current = Mathf.Clamp(current + amount,
                               0, maximum);
+
+        return current >= maximum;
     }
 
     public bool Subtract(float amount, out float overflow)
