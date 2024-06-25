@@ -18,7 +18,7 @@ public class Mortal : WithCallbackInterface<Mortal.IMortalCallback>, ITarget
 
     public void Suffer(Harm harm)
     {
-        health.Subtract(harm.damage);
+        health.Subtract(harm.damage.AsFloorInt());
 
         DoCallbacks(item => item.OnSuffer(harm));
 

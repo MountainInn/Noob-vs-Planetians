@@ -39,6 +39,8 @@ public class Gun : MonoBehaviour
         ;
 
         bullet.Initialize(gunSO.damage, gunSO.range, bulletSpeed);
+
+        MuzzleFlaresPS.instance.Fire(muzzle.position);
     }
 
     public void ToggleShooting(bool toggle)

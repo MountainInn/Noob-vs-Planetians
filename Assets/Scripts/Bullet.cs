@@ -4,8 +4,6 @@ using System.Linq;
 using HyperCasual.Core;
 using HyperCasual.Gameplay;
 
-
-
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Harm))]
 public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
@@ -20,7 +18,7 @@ public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
     {
         harm = GetComponent<Harm>();
 
-        harm.damage = damage;
+        harm.damage = PlayerCharacter.instance.harm.damage;
 
         moveTween =
             transform

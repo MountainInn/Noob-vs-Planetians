@@ -1,5 +1,6 @@
 using HyperCasual.Runner;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Mortal))]
 [RequireComponent(typeof(Obstacle))]
@@ -10,6 +11,8 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
     [SerializeField] bool startRunning = false;
     [Space]
     [SerializeField] Ragdoll ragdoll;
+    [Space]
+    [SerializeField] TextMeshPro healthLabel;
 
     Mortal mortal;
 
@@ -32,7 +35,9 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
 
     public void OnSuffer(Harm harm)
     {
-        Debug.Log($"Add Blood Splatters");
+        healthLabel.text = $"{mortal.health.current}";
+
+        PSMobDamaged.instance.Fire(transform.position);
     }
 
     public void OnDie()

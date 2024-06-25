@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Harm : WithCallbackInterface<Harm.IOnHarmCallback>
 {
-    [SerializeField] [Min(1)] public int damage;
+    [SerializeField] [Min(1)] public StackedNumber damage;
 
     public void CauseHarm(Mortal mortal)
     {

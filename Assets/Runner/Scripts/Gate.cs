@@ -1,39 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using TMPro;
 
 namespace HyperCasual.Runner
 {
-    /// <summary>
-    /// A class representing a Spawnable object.
-    /// If a GameObject tagged "Player" collides
-    /// with this object, it will trigger a fail
-    /// state with the GameManager.
-    /// </summary>
     public class Gate : Spawnable, ITarget
     {
         const string k_PlayerTag = "Player";
 
         [SerializeField] GateType m_GateType;
-        [SerializeField] float m_Value;
+        [Space]
+        [SerializeField] int startingValue;
+        [SerializeField] int incrementPerHit;
+        [SerializeField] int totalValue;
+        [Space]
         [SerializeField] RectTransform m_Text;
+        [Space]
+        [SerializeField] TextMeshPro labelType;
+        [SerializeField] TextMeshPro labelIncrement;
+        [SerializeField] TextMeshPro labelTotalValue;
 
         bool m_Applied;
         Vector3 m_TextInitialScale;
 
         enum GateType {
-            ChangeSpeed,
-            ChangeSize,
+            DamageBonus
         }
 
-        /// <summary>
-        /// Sets the local scale of this spawnable object
-        /// and ensures the Text attached to this gate
-        /// does not scale.
-        /// </summary>
-        /// <param name="scale">
-        /// The scale to apply to this spawnable object.
-        /// </param>
         public override void SetScale(Vector3 scale)
         {
             // Ensure the text does not get scaled
@@ -47,10 +42,6 @@ namespace HyperCasual.Runner
             }
         }
 
-        /// <summary>
-        /// Reset the gate to its initial state. Called when a level
-        /// is restarted by the GameManager.
-        /// </summary>
         public override void ResetSpawnable()
         {
             m_Applied = false;
@@ -64,35 +55,47 @@ namespace HyperCasual.Runner
             {
                 m_TextInitialScale = m_Text.localScale;
             }
+
+            totalValue = startingValue;
+
+            labelType.text = $"{System.Enum.GetName(typeof(GateType), m_GateType)}";
+            labelIncrement.text = $"{incrementPerHit:^;v;~}";
         }
 
         void OnTriggerEnter(Collider col)
         {
-            if (col.CompareTag(k_PlayerTag) && !m_Applied)
+            if (col.CompareTag(k_PlayerTag)
+                && !m_Applied)
             {
                 ActivateGate();
             }
+        }
+
+        public void OnHit(Bullet bullet)
+        {
+            totalValue += incrementPerHit;
+
+            labelTotalValue.text = $"{totalValue}";
+
+            transform
+                .DOPunchScale(Vector3.one * 1.1f, .2f);
         }
 
         void ActivateGate()
         {
             switch (m_GateType)
             {
-                case GateType.ChangeSpeed:
-                    PlayerController.Instance.AdjustSpeed(m_Value);
-                    break;
+                case GateType.DamageBonus:
 
-                case GateType.ChangeSize:
-                    PlayerController.Instance.AdjustScale(m_Value);
+                    PlayerCharacter.instance.harm.damage
+                        .SetAddendUntil(nameof(GateType.DamageBonus),
+                                        totalValue,
+                                        GameManager.Instance.onStartGame);
+
                     break;
             }
 
             m_Applied = true;
-        }
-
-        public void OnHit(Bullet bullet)
-        {
-           
         }
     }
 }
