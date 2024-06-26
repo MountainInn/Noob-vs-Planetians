@@ -19,5 +19,7 @@ public class MasterPS : MonoBehaviour
             position = position,
             rotation3D = new Vector3(0, 0, 0),
         };
+
+        ps.Emit(emitParams, 6);
     }
 }

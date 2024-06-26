@@ -15,6 +15,7 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
     [SerializeField] TextMeshPro healthLabel;
 
     Mortal mortal;
+    Harm harm;
 
     override protected void Awake()
     {
@@ -26,6 +27,15 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
             animator.SetTrigger("idle");
 
         mortal = GetComponent<Mortal>();
+        harm = GetComponent<Harm>();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerCharacter playerCharacter))
+        {
+            playerCharacter.mortal.Suffer(harm);
+        }
     }
 
     public void OnHeal(Healing healing)

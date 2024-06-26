@@ -14,11 +14,13 @@ public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
 
     public Harm harm;
 
-    public void Initialize(int damage, int range, float bulletSpeed)
+    public void Initialize(int gunDamage, int range, float bulletSpeed)
     {
         harm = GetComponent<Harm>();
 
-        harm.damage = PlayerCharacter.instance.harm.damage;
+        harm.damage =
+            new (PlayerCharacter.instance.harm.damage.AsFloorInt() * gunDamage)
+            ;
 
         moveTween =
             transform
@@ -36,17 +38,21 @@ public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
         {
             foreach (var item in hitboxes)
                 item.OnHit(this);
+      
+            ImpactPS.instance.Fire(transform.position);
+
+            Despawn();
         }
     }
 
     public void OnHarm(Mortal mortal)
     {
-        Despawn();
     }
 
     void Despawn()
     {
         // pool.Despawn(this);
+
         GameObject.Destroy(gameObject);
     }
 }
