@@ -11,14 +11,12 @@ namespace HyperCasual.Core
     /// </summary>
     public class UIManager : AbstractSingleton<UIManager>
     {
-        [SerializeField]
-        Canvas m_Canvas;
-        [SerializeField]
-        RectTransform m_Root;
-        [SerializeField]
-        RectTransform m_BackgroundLayer;
-        [SerializeField]
-        RectTransform m_ViewLayer;
+        [SerializeField] Canvas m_Canvas;
+        [SerializeField] RectTransform m_Root;
+        [SerializeField] RectTransform m_BackgroundLayer;
+        [SerializeField] RectTransform m_ViewLayer;
+        [Space]
+        [SerializeField] List<View> externalViews;
 
         List<View> m_Views;
 
@@ -28,7 +26,11 @@ namespace HyperCasual.Core
 
         void Start()
         {
-            m_Views = m_Root.GetComponentsInChildren<View>(true).ToList();
+            m_Views = m_Root
+                .GetComponentsInChildren<View>(true)
+                .Concat(externalViews)
+                .ToList();
+
             Init();
             
             m_ViewLayer.ResizeToSafeArea(m_Canvas);

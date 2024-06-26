@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using HyperCasual.Core;
 using UnityEngine;
+using UnityEngine.Events;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -17,17 +18,15 @@ namespace HyperCasual.Runner
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        /// <summary>
-        /// Returns the GameManager.
-        /// </summary>
         public static GameManager Instance => s_Instance;
         static GameManager s_Instance;
 
-        [SerializeField]
-        AbstractGameEvent m_WinEvent;
-
-        [SerializeField]
-        AbstractGameEvent m_LoseEvent;
+        [SerializeField] AbstractGameEvent m_WinEvent;
+        [SerializeField] AbstractGameEvent m_LoseEvent;
+        [Space]
+        [SerializeField] public UnityEvent onWin;
+        [SerializeField] public UnityEvent onLose;
+        [SerializeField] public UnityEvent onStartGame;
 
         LevelDefinition m_CurrentLevel;
 
@@ -213,6 +212,8 @@ namespace HyperCasual.Runner
         {
             ResetLevel();
             m_IsPlaying = true;
+
+            onStartGame?.Invoke();
         }
 
         /// <summary>
@@ -290,6 +291,8 @@ namespace HyperCasual.Runner
                 ResetLevel();
             }
 #endif
+
+            onWin?.Invoke();
         }
 
         public void Lose()
@@ -302,6 +305,7 @@ namespace HyperCasual.Runner
                 ResetLevel();
             }
 #endif
+            onLose?.Invoke();
         }
     }
 }

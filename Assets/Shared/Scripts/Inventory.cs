@@ -13,14 +13,10 @@ namespace HyperCasual.Runner
     /// </summary>
     public class Inventory : AbstractSingleton<Inventory>
     {
-        [SerializeField]
-        GenericGameEventListener m_GoldEventListener;
-        [SerializeField]
-        GenericGameEventListener m_KeyEventListener;
-        [SerializeField]
-        GenericGameEventListener m_WinEventListener;
-        [SerializeField]
-        GenericGameEventListener m_LoseEventListener;
+        [SerializeField] GenericGameEventListener m_GoldEventListener;
+        [SerializeField] GenericGameEventListener m_KeyEventListener;
+        [SerializeField] GenericGameEventListener m_WinEventListener;
+        [SerializeField] GenericGameEventListener m_LoseEventListener;
 
         int m_TempGold;
         int m_TotalGold;
@@ -39,7 +35,7 @@ namespace HyperCasual.Runner
 
         Hud m_Hud;
         LevelCompleteScreen m_LevelCompleteScreen;
-
+       
         void Start()
         {
             m_GoldEventListener.EventHandler = OnGoldPicked;
@@ -77,8 +73,8 @@ namespace HyperCasual.Runner
         {
             if (m_GoldEventListener.m_Event is ItemPickedEvent goldPickedEvent)
             {
-                m_TempGold += goldPickedEvent.Count;
-                m_Hud.GoldValue = m_TempGold;
+                // m_TempGold += goldPickedEvent.Count;
+                // m_Hud.GoldValue = m_TempGold;
             }
             else
             {

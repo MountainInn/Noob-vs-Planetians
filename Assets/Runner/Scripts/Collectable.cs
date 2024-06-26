@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using HyperCasual.Gameplay;
 using UnityEngine;
 
@@ -13,8 +13,7 @@ namespace HyperCasual.Runner
     /// </summary>
     public class Collectable : Spawnable
     {
-        [SerializeField]
-        SoundID m_Sound = SoundID.None;
+        [SerializeField] SoundID m_Sound = SoundID.None;
         
         const string k_PlayerTag = "Player";
 
@@ -23,6 +22,8 @@ namespace HyperCasual.Runner
 
         bool m_Collected;
         Renderer[] m_Renderers;
+
+        ICollectable[] icollectableCallbacks;
 
         /// <summary>
         /// Reset the gate to its initial state. Called when a level
@@ -43,9 +44,11 @@ namespace HyperCasual.Runner
             base.Awake();
 
             m_Renderers = gameObject.GetComponentsInChildren<Renderer>();
+
+            icollectableCallbacks = GetComponents<ICollectable>();
         }
 
-        void OnTriggerEnter(Collider col)
+        protected void OnTriggerEnter(Collider col)
         {
             if (col.CompareTag(k_PlayerTag) && !m_Collected)
             {
@@ -61,13 +64,28 @@ namespace HyperCasual.Runner
                 m_Event.Raise();
             }
 
-            for (int i = 0; i < m_Renderers.Length; i++)
+            if (m_Event is ItemPickedEvent goldPickedEvent)
             {
-                m_Renderers[i].enabled = false;
+                GetComponents<ICollectable>()
+                    ?.Map(collectable => collectable.OnCollect());
             }
+
+
+            // for (int i = 0; i < m_Renderers.Length; i++)
+            // {
+            //     m_Renderers[i].enabled = false;
+            // }
+
+            foreach (var item in icollectableCallbacks)
+                item.OnCollect();
 
             m_Collected = true;
             AudioManager.Instance.PlayEffect(m_Sound);
         }
     }
+}
+
+public interface ICollectable
+{
+    void OnCollect();
 }

@@ -50,12 +50,12 @@ namespace HyperCasual.Runner
         static readonly string s_Speed = "Speed";
 
         enum PlayerSpeedPreset
-        {
-            Slow,
-            Medium,
-            Fast,
-            Custom
-        }
+            {
+                Slow,
+                Medium,
+                Fast,
+                Custom
+            }
 
         Transform m_Transform;
         Vector3 m_StartPosition;
@@ -312,7 +312,7 @@ namespace HyperCasual.Runner
 
             if (m_Transform.position != m_LastPosition)
             {
-                m_Transform.forward = Vector3.Lerp(m_Transform.forward, (m_Transform.position - m_LastPosition).normalized, speed);
+                // m_Transform.forward = Vector3.Lerp(m_Transform.forward, (m_Transform.position - m_LastPosition).normalized, speed);
             }
 
             m_LastPosition = m_Transform.position;
