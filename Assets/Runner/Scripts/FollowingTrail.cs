@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(TrailRenderer))]
 public class FollowingTrail : MonoBehaviour
@@ -6,6 +7,8 @@ public class FollowingTrail : MonoBehaviour
     TrailRenderer trail;
 
     public Transform target;
+
+    [Inject] Pool pool;
 
     void Awake()
     {
@@ -29,11 +32,22 @@ public class FollowingTrail : MonoBehaviour
         if (target == null || !target.gameObject.activeSelf)
         {
             if (trail.positionCount == 0)
-                Destroy(gameObject);
+                // pool.Despawn(this);
+                GameObject.Destroy(gameObject);
 
             return;
         }
 
         transform.position = target.position;
+    }
+
+    public class Pool : MonoMemoryPool<Transform, Transform, FollowingTrail>
+    {
+        protected override void Reinitialize(Transform target, Transform muzzle, FollowingTrail item)
+        {
+            item.transform.position = muzzle.position;
+
+            item.target = target;
+        }
     }
 }

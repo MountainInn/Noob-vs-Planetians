@@ -3,21 +3,19 @@ using DG.Tweening;
 using System.Linq;
 using HyperCasual.Core;
 using HyperCasual.Gameplay;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Harm))]
 public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
 {
-    // Pool pool;
+    [Inject] Pool pool;
+    [Inject] public Harm harm;
 
     Tween moveTween;
 
-    public Harm harm;
-
     public void Initialize(int gunDamage, int range, float bulletSpeed)
     {
-        harm = GetComponent<Harm>();
-
         harm.damage =
             new (PlayerCharacter.instance.harm.damage.AsFloorInt() * gunDamage)
             ;
@@ -27,16 +25,16 @@ public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
             .DOMoveZ(transform.position.z + range, bulletSpeed)
             .SetSpeedBased(true)
             .SetEase(Ease.Linear)
-            .OnKill(Despawn);
+            .OnComplete(Despawn);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        var hitboxes = other.GetComponents<ITarget>();
+        var itargets = other.GetComponents<ITarget>();
 
-        if (hitboxes != null)
+        if (itargets != null)
         {
-            foreach (var item in hitboxes)
+            foreach (var item in itargets)
                 item.OnHit(this);
       
             ImpactPS.instance.Fire(transform.position);
@@ -51,8 +49,22 @@ public class Bullet : MonoBehaviour, Harm.IOnHarmCallback
 
     void Despawn()
     {
-        // pool.Despawn(this);
+        moveTween?.Kill();
+       
+        pool.Despawn(this);
+    }
 
-        GameObject.Destroy(gameObject);
+    public class Pool : MonoMemoryPool<GunSO, float, Transform, Bullet>
+    {
+        protected override void Reinitialize(GunSO gunSO, float speed, Transform muzzle, Bullet item)
+        {
+            item.transform.position = muzzle.position;
+            item.transform.forward = Vector3.forward;
+
+            base.Reinitialize(gunSO, speed, muzzle, item);
+
+            item.Initialize(gunSO.damage, gunSO.range, speed);
+        }
     }
 }
+
