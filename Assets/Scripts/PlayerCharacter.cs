@@ -3,9 +3,9 @@ using HyperCasual.Runner;
 using System;
 using Zenject;
 
-[RequireComponent(typeof(Mortal))]
-[RequireComponent(typeof(Harm))]
-public class PlayerCharacter : MonoBehaviour, Mortal.IMortalCallback, Harm.IOnHarmCallback
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Damage))]
+public class PlayerCharacter : MonoBehaviour
 {
     static public PlayerCharacter instance => _inst ??= FindObjectOfType<PlayerCharacter>();
     static PlayerCharacter _inst;
@@ -16,27 +16,13 @@ public class PlayerCharacter : MonoBehaviour, Mortal.IMortalCallback, Harm.IOnHa
     [Inject]
     public void Construct(ProgressBar progressBar)
     {
-        progressBar.SetVolume(mortal.health);
+        progressBar.SetVolume(mortal.Value);
     }
     
-    [Inject] public Mortal mortal;
-    [Inject] public Harm harm;
+    [Inject] public Health mortal;
+    [Inject] public Damage harm;
 
-    public void OnHeal(Healing healing)
-    {
-        onHealPS.Play();
-    }
-
-    public void OnHarm(Mortal mortal)
-    {
-    }
-
-    public void OnSuffer(Harm harm)
-    {
-        onSufferPS.Play();
-    }
-
-    public void OnDie()
+    public void Die()
     {
         GameManager.Instance.Lose();
     }

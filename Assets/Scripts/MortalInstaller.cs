@@ -5,8 +5,8 @@ public class MortalInstaller : MonoInstaller
     override public void InstallBindings()
     {
         Container
-            .Bind(typeof(Mortal),
-                  typeof(Harm),
+            .Bind(typeof(Health),
+                  typeof(Damage),
                   typeof(Healing)
             )
             .FromComponentSibling();

@@ -67,7 +67,7 @@ namespace HyperCasual.Runner
             if (m_Event is ItemPickedEvent goldPickedEvent)
             {
                 GetComponents<ICollectable>()
-                    ?.Map(collectable => collectable.OnCollect());
+                    ?.Map(collectable => collectable.AddGun());
             }
 
 
@@ -77,7 +77,7 @@ namespace HyperCasual.Runner
             // }
 
             foreach (var item in icollectableCallbacks)
-                item.OnCollect();
+                item.AddGun();
 
             m_Collected = true;
             AudioManager.Instance.PlayEffect(m_Sound);
@@ -87,5 +87,5 @@ namespace HyperCasual.Runner
 
 public interface ICollectable
 {
-    void OnCollect();
+    void AddGun();
 }

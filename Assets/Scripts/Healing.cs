@@ -1,18 +1,17 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Healing : WithCallbackInterface<Healing.IOnHealCallback>
+public class Healing : MonoBehaviour
 {
-    [SerializeField] [Min(1)] public int healing;
+    [SerializeField] public int Value;
+    [Space]
+    [SerializeField] public UnityEvent onHeal;
 
-    public void Heal(Mortal mortal)
+    public void __Heal(Health mortal) => Heal(mortal);
+    public void Heal(Health mortal)
     {
-        DoCallbacks(ionheal => ionheal.OnHeal(mortal));
+        onHeal?.Invoke();
 
         mortal.Heal(this);
-    }
-
-    public interface IOnHealCallback
-    {
-        void OnHeal(Mortal mortal);
     }
 }

@@ -14,7 +14,7 @@ public class CollectableHeal : HyperCasual.Runner.Collectable, ICollectable
         healing = GetComponent<Healing>();
     }
 
-    public void OnCollect()
+    public void AddGun()
     {
         healing.Heal(PlayerCharacter.instance.mortal);
 

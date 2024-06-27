@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5928528988436547237}
   - component: {fileID: 3422265874995436607}
   - component: {fileID: 4877652770548064436}
+  - component: {fileID: 640218673517658022}
   m_Layer: 10
   m_Name: Gate_Damage
   m_TagString: Untagged
@@ -124,6 +125,55 @@ MonoBehaviour:
   labelType: {fileID: 7295731719642658160}
   labelIncrement: {fileID: 7054953240803746697}
   labelTotalValue: {fileID: 2839673960529044872}
+--- !u!114 &640218673517658022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314387739941697089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fbc169f9b20ab45a0bbbd8638368bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SnapToGrid: 1
+  onPlayerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4877652770548064436}
+        m_TargetAssemblyTypeName: HyperCasual.Runner.Gate, Unity.Hypercasual
+        m_MethodName: ActivateGate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEnemyEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onBulletEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4877652770548064436}
+        m_TargetAssemblyTypeName: HyperCasual.Runner.Gate, Unity.Hypercasual
+        m_MethodName: IncreaseBonus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onOtherEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1282791181104469815
 GameObject:
   m_ObjectHideFlags: 0
