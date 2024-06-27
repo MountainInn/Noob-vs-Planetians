@@ -105,14 +105,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHealPS: {fileID: 0}
   onSufferPS: {fileID: 0}
-  mortal: {fileID: 0}
-  damage: {fileID: 0}
+  mortal: {fileID: 511791635737475232}
+  damage: {fileID: 5568838679517214165}
   attackRate:
-    initial: 0
+    initial: 1
     result:
       value: 0
   attackRange:
-    initial: 0
+    initial: 12
     result:
       value: 0
 --- !u!114 &511791635737475232

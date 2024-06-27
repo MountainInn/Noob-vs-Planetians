@@ -46,14 +46,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b0addde9588e2438122e59d5659785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunSO: {fileID: 11400000, guid: 54cf5e306a52da848a35635d39442723, type: 2}
+  damage:
+    value: 1
+  rate:
+    value: 1
+  range:
+    value: 12
   bulletSpeed: 25
   muzzle: {fileID: 522062383957006968}
   muzzleFlaresPS: {fileID: 522062383957006974}
-  prefabBullet: {fileID: 573182875057461188, guid: c1519fed4e0700a47a5e7f38e73514aa,
-    type: 3}
-  prefabFollowingTrail: {fileID: 4894228282851192825, guid: 5608326509768c5438a5165364bcf480,
-    type: 3}
+  totalDamage: 0
+  totalRange: 0
 --- !u!1 &2158135945869180077
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,11 +291,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2158135945352695543}
     m_Modifications:
-    - target: {fileID: 5110433210195138136, guid: ca249a8508407fd4fb57bd06ca36f52c,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5110433210195138141, guid: ca249a8508407fd4fb57bd06ca36f52c,
         type: 3}
       propertyPath: m_Name
