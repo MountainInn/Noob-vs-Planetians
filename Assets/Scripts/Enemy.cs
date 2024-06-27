@@ -3,10 +3,11 @@ using UnityEngine;
 using TMPro;
 using Zenject;
 
-[RequireComponent(typeof(Mortal))]
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Damage))]
 [RequireComponent(typeof(Obstacle))]
 [RequireComponent(typeof(Ragdoll))]
-public class Enemy : Spawnable, Mortal.IMortalCallback
+public class Enemy : Spawnable
 {
     [SerializeField] Animator animator;
     [SerializeField] bool startRunning = false;
@@ -15,8 +16,8 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
     [Space]
     [SerializeField] TextMeshPro healthLabel;
 
-    [Inject] Mortal mortal;
-    [Inject] Harm harm;
+    [Inject] Health mortal;
+    [Inject] Damage harm;
 
     override protected void Awake()
     {
@@ -28,31 +29,16 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
             animator.SetTrigger("idle");
     }
 
-    void OnTriggerEnter(Collider other)
+    public void TakeDamage()
     {
-        if (other.TryGetComponent(out PlayerCharacter playerCharacter))
-        {
-            playerCharacter.mortal.Suffer(harm);
-        }
-    }
-
-    public void OnHeal(Healing healing)
-    {
-
-    }
-
-    public void OnSuffer(Harm harm)
-    {
-        healthLabel.text = $"{mortal.health.current}";
+        healthLabel.text = $"{mortal.Value.current}";
 
         PSMobDamaged.instance.Fire(transform.position);
     }
 
-    public void OnDie()
+    public void Die()
     {
         animator.enabled = false;
         ragdoll.Activate();
-
-        MoneyPS.instance.Fire(transform.position);
     }
 }

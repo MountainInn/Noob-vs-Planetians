@@ -16,7 +16,7 @@ public class CollectableGun : HyperCasual.Runner.Collectable, ICollectable
             ?.GetComponent<Gun>();
     }
 
-    public void OnCollect()
+    public void AddGun()
     {
         GunBelt.instance.Add(gun);
     }

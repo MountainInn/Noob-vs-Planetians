@@ -44,9 +44,3 @@ public class Gun : MonoBehaviour
             attackTimer.ResetToZero();
     }
 }
-
-
-public interface ITarget
-{
-    void OnHit(Bullet bullet);
-}

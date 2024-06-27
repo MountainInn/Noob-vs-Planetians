@@ -6,7 +6,7 @@ using TMPro;
 
 namespace HyperCasual.Runner
 {
-    public class Gate : Spawnable, ITarget
+    public class Gate : Spawnable
     {
         const string k_PlayerTag = "Player";
 
@@ -65,18 +65,9 @@ namespace HyperCasual.Runner
             initialScale = transform.localScale;
         }
 
-        void OnTriggerEnter(Collider col)
-        {
-            if (col.CompareTag(k_PlayerTag)
-                && !m_Applied)
-            {
-                ActivateGate();
-            }
-        }
-
         Tween punchScaleTween;
 
-        public void OnHit(Bullet bullet)
+        public void IncreaseBonus()
         {
             totalValue += incrementPerHit;
 
@@ -89,13 +80,13 @@ namespace HyperCasual.Runner
                 .OnKill(() => transform.localScale = initialScale);
         }
 
-        void ActivateGate()
+        public void ActivateGate()
         {
             switch (m_GateType)
             {
                 case GateType.DamageBonus:
 
-                    PlayerCharacter.instance.harm.damage
+                    PlayerCharacter.instance.harm.Value
                         .SetAddendUntil(nameof(GateType.DamageBonus),
                                         totalValue,
                                         GameManager.Instance.onStartGame);
