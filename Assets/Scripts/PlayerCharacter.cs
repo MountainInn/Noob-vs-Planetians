@@ -24,6 +24,13 @@ public class PlayerCharacter : MonoBehaviour
     public StackedNumber attackRate = new();
     public StackedNumber attackRange = new();
 
+    void Start()
+    {
+        damage.Value.ForceRecalculate();
+        attackRate.ForceRecalculate();
+        attackRange.ForceRecalculate();
+    }
+
     public void Die()
     {
         GameManager.Instance.Lose();

@@ -26,10 +26,17 @@ public class StackedNumber
         this.initial = initial;
     }
 
+    public void ForceRecalculate()
+    {
+        recalculated = false;
+        MaybeRecalculate();
+    }
+
     public void SetInitial(float initial)
     {
         this.initial = initial;
         recalculated = false;
+        MaybeRecalculate();
     }
 
     public int AsFloorInt() => Mathf.FloorToInt(AsFloat());
@@ -75,6 +82,7 @@ public class StackedNumber
         }
 
         recalculated = false;
+        MaybeRecalculate();
     }
 
 
@@ -112,6 +120,7 @@ public class StackedNumber
         }
 
         recalculated = false;
+        MaybeRecalculate();
     }
 
     void MaybeRecalculate()
