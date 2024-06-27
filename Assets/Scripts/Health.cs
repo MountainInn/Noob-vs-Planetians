@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
         Value = new (maxHealth);
     }
 
+    public void __TakeDamage(Damage harm) => TakeDamage(harm);
     public void TakeDamage(Damage harm)
     {
         Value.Subtract(harm.Value.AsFloorInt());
@@ -28,6 +29,7 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void __Heal(Healing healing) => Heal(healing);
     public void Heal(Healing healing)
     {
         Value.Add(healing.Value);

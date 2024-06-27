@@ -67,6 +67,7 @@ namespace HyperCasual.Runner
 
         Tween punchScaleTween;
 
+        public void __IncreaseBonus() => IncreaseBonus();
         public void IncreaseBonus()
         {
             totalValue += incrementPerHit;
@@ -80,6 +81,7 @@ namespace HyperCasual.Runner
                 .OnKill(() => transform.localScale = initialScale);
         }
 
+        public void __ActivateGate() => ActivateGate();
         public void ActivateGate()
         {
             switch (m_GateType)

@@ -18,6 +18,7 @@ public class Repeler : MonoBehaviour
         col = GetComponent<Collider>();
     }
 
+    public void __Repel(Rigidbody rb) => Repel(rb);
     public void Repel(Rigidbody rb)
     {
         var approximateCollisionPoint = col.ClosestPoint(rb.transform.position);

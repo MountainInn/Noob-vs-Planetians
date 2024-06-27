@@ -7,6 +7,7 @@ public class Damage : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent onDoDamage;
 
+    public void __DoDamage(Health health) => DoDamage(health);
     public void DoDamage(Health health)
     {
         onDoDamage?.Invoke();

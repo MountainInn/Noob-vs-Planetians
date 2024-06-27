@@ -9,6 +9,7 @@ public class Anihilator : MonoBehaviour
     [Space]
     [SerializeField] UnityEvent onAnihilate;
 
+    public void __Anihilate() => Anihilate();
     public void Anihilate()
     {
         GameObject.Destroy(objectToDestroy);

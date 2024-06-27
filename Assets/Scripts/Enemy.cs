@@ -29,14 +29,16 @@ public class Enemy : Spawnable
             animator.SetTrigger("idle");
     }
 
-    public void TakeDamage()
+    public void __ReactOnDamage() => ReactOnDamage();
+    public void ReactOnDamage()
     {
         healthLabel.text = $"{mortal.Value.current}";
 
         PSMobDamaged.instance.Fire(transform.position);
     }
 
-    public void Die()
+    public void __ActivateRagdoll() => ActivateRagdoll();
+    public void ActivateRagdoll()
     {
         animator.enabled = false;
         ragdoll.Activate();

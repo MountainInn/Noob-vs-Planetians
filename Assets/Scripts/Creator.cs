@@ -7,6 +7,7 @@ public class Creator : MonoBehaviour
     [Space]
     [SerializeField] UnityEvent onCreation;
 
+    public void __Create() => Create();
     public void Create()
     {
         Instantiate(objectToCreate,

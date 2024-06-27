@@ -7,6 +7,7 @@ public class Healing : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent onHeal;
 
+    public void __Heal(Health mortal) => Heal(mortal);
     public void Heal(Health mortal)
     {
         onHeal?.Invoke();
