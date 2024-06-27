@@ -10,9 +10,6 @@ public class Gun : MonoBehaviour
     [Space]
     [SerializeField] Transform muzzle;
     [SerializeField] ParticleSystem muzzleFlaresPS;
-    [Space]
-    [SerializeField] Bullet prefabBullet;
-    [SerializeField] FollowingTrail prefabFollowingTrail;
 
     Volume attackTimer;
     bool isShooting;
@@ -32,24 +29,9 @@ public class Gun : MonoBehaviour
 
     void Fire()
     {
-        Bullet bullet =
-            GameObject.Instantiate(prefabBullet,
-                                   muzzle.position,
-                                   muzzle.rotation,
-                                   null);
-        // = bulletPool.Spawn()
-        ;
+        Bullet bullet = PoolUser.instance.bulletPool.Spawn(gunSO, bulletSpeed, muzzle);
 
-        bullet.Initialize(gunSO.damage, gunSO.range, bulletSpeed);
-
-
-        FollowingTrail trail =
-            GameObject.Instantiate(prefabFollowingTrail,
-                                   muzzle.position,
-                                   muzzle.rotation,
-                                   null);
-
-        trail.target = bullet.transform;
+        // FollowingTrail trail = PoolUser.instance.trailPool.Spawn(bullet.transform, muzzle);
 
         muzzleFlaresPS.Play();
     }

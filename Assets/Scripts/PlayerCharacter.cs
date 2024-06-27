@@ -1,6 +1,7 @@
 using UnityEngine;
 using HyperCasual.Runner;
 using System;
+using Zenject;
 
 [RequireComponent(typeof(Mortal))]
 [RequireComponent(typeof(Harm))]
@@ -11,17 +12,15 @@ public class PlayerCharacter : MonoBehaviour, Mortal.IMortalCallback, Harm.IOnHa
 
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
-    
-    public Mortal mortal;
-    public Harm harm;
 
-    void Start()
+    [Inject]
+    public void Construct(ProgressBar progressBar)
     {
-        mortal = GetComponent<Mortal>();
-        harm = GetComponent<Harm>();
-
-        var health = mortal.health;
+        progressBar.SetVolume(mortal.health);
     }
+    
+    [Inject] public Mortal mortal;
+    [Inject] public Harm harm;
 
     public void OnHeal(Healing healing)
     {

@@ -1,6 +1,7 @@
 using HyperCasual.Runner;
 using UnityEngine;
 using TMPro;
+using Zenject;
 
 [RequireComponent(typeof(Mortal))]
 [RequireComponent(typeof(Obstacle))]
@@ -14,7 +15,8 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
     [Space]
     [SerializeField] TextMeshPro healthLabel;
 
-    Mortal mortal;
+    [Inject] Mortal mortal;
+    [Inject] Harm harm;
 
     override protected void Awake()
     {
@@ -24,8 +26,14 @@ public class Enemy : Spawnable, Mortal.IMortalCallback
             animator.SetTrigger("run");
         else
             animator.SetTrigger("idle");
+    }
 
-        mortal = GetComponent<Mortal>();
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerCharacter playerCharacter))
+        {
+            playerCharacter.mortal.Suffer(harm);
+        }
     }
 
     public void OnHeal(Healing healing)
