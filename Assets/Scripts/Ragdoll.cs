@@ -4,6 +4,6 @@ public class Ragdoll : MonoBehaviour
 {
     public void Activate()
     {
-        throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
     }
 }

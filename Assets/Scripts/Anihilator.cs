@@ -12,7 +12,8 @@ public class Anihilator : MonoBehaviour
     public void __Anihilate() => Anihilate();
     public void Anihilate()
     {
-        GameObject.Destroy(objectToDestroy);
+        if (objectToDestroy)
+            GameObject.Destroy(objectToDestroy);
 
         if (alsoDestroySelf)
             GameObject.Destroy(gameObject);

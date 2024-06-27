@@ -18,6 +18,7 @@ public class Repeler : MonoBehaviour
         harm = GetComponent<Damage>();
     }
 
+    public void __Repel(PlayerCharacter PlayerCharacter) => Repel(PlayerCharacter.rb);
     public void __Repel(Rigidbody rb) => Repel(rb);
     public void Repel(Rigidbody rb)
     {
