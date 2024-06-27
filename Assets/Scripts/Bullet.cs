@@ -14,9 +14,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] UnityEvent onTriggerEnter;
     [Space]
     [Inject] Pool pool;
-    [Inject] public Damage damage;
+    public Damage damage;
 
     Tween moveTween;
+
+    void Awake()
+    {
+        damage = GetComponent<Damage>();
+    }
 
     public void Initialize(int gunDamage, int range, float bulletSpeed)
     {

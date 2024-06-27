@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Damage))]
@@ -9,13 +8,14 @@ public class Repeler : MonoBehaviour
     [Space]
     [SerializeField] UnityEvent onRepel;
 
-    [Inject] Damage harm;
+    Damage harm;
 
     Collider col;
 
     void Awake()
     {
         col = GetComponent<Collider>();
+        harm = GetComponent<Damage>();
     }
 
     public void __Repel(Rigidbody rb) => Repel(rb);

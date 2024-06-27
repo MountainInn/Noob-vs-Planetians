@@ -1,7 +1,6 @@
 using HyperCasual.Runner;
 using UnityEngine;
 using TMPro;
-using Zenject;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Damage))]
@@ -16,12 +15,15 @@ public class Enemy : Spawnable
     [Space]
     [SerializeField] TextMeshPro healthLabel;
 
-    [Inject] public Health health;
-    [Inject] public Damage damage;
+    public Health health;
+    public Damage damage;
 
     override protected void Awake()
     {
         base.Awake();
+
+        health = GetComponent<Health>();
+        damage = GetComponent<Damage>();
 
         if (startRunning)
             animator.SetTrigger("run");
