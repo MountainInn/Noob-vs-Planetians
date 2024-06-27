@@ -107,6 +107,7 @@ MonoBehaviour:
   onSufferPS: {fileID: 0}
   mortal: {fileID: 511791635737475232}
   damage: {fileID: 5568838679517214165}
+  rb: {fileID: 0}
   attackRate:
     initial: 1
     result:

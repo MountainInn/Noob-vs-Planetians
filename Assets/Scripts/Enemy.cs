@@ -4,10 +4,10 @@ using TMPro;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Damage))]
-[RequireComponent(typeof(Obstacle))]
 [RequireComponent(typeof(Ragdoll))]
-public class Enemy : Spawnable
+public class Enemy : MonoBehaviour
 {
+    [Space]
     [SerializeField] Animator animator;
     [SerializeField] bool startRunning = false;
     [Space]
@@ -18,10 +18,8 @@ public class Enemy : Spawnable
     public Health health;
     public Damage damage;
 
-    override protected void Awake()
+    void Awake()
     {
-        base.Awake();
-
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
 

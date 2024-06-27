@@ -15,6 +15,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public Health mortal;
     public Damage damage;
+    public Rigidbody rb;
 
     public StackedNumber attackRate = new();
     public StackedNumber attackRange = new();
@@ -23,6 +24,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         mortal = GetComponent<Health>();
         damage = GetComponent<Damage>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Start()

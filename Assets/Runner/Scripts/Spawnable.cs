@@ -52,7 +52,8 @@ namespace HyperCasual.Runner
 
             if (m_MeshRenderers != null && m_MeshRenderers.Length > 0)
             {
-                m_BaseColor = m_MeshRenderers[0].sharedMaterial.color;
+                if (m_MeshRenderers[0].sharedMaterial.HasProperty("_Color"))
+                    m_BaseColor = m_MeshRenderers[0].sharedMaterial.color;
             }
 
             if (LevelManager.Instance != null)

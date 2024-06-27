@@ -5,7 +5,7 @@ using System;
 
 public class InteractiveCollider : Spawnable
 {
-    [SerializeField] UnityEvent onPlayerEnter;
+    [SerializeField] UnityEvent<PlayerCharacter> onPlayerEnter;
     [SerializeField] OnEnemyEnter onEnemyEnter;
     [SerializeField] OnBulletEnter onBulletEnter;
     [SerializeField] UnityEvent onOtherEnter;
@@ -17,7 +17,7 @@ public class InteractiveCollider : Spawnable
     {
         if (other.TryGetComponent(out PlayerCharacter player))
         {
-            onPlayerEnter?.Invoke();
+            onPlayerEnter?.Invoke(player);
         }
         else if (other.TryGetComponent(out Enemy enemy))
         {

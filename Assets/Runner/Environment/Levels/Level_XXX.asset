@@ -38,3 +38,10 @@ MonoBehaviour:
     Scale: {x: 3, y: 3, z: 0.1}
     BaseColor: {r: 0.08169933, g: 0.6603774, b: 0, a: 0.76862746}
     SnapToGrid: 1
+  - SpawnablePrefab: {fileID: 1053102385753094072, guid: 51c2bc47b597a594eabca2771f4ba731,
+      type: 3}
+    Position: {x: -5.76, y: 0.009393692, z: 27.36}
+    EulerAngles: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    BaseColor: {r: 0, g: 0, b: 0, a: 0}
+    SnapToGrid: 1
