@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
 
     public int totalDamage, totalRange;
 
-    void Awake()
+    void Start()
     {
         player = GetComponentInParent<PlayerCharacter>();
 
