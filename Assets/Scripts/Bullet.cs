@@ -6,17 +6,22 @@ using HyperCasual.Gameplay;
 using Zenject;
 using UnityEngine.Events;
 
+
+[RequireComponent(typeof(Damage))]
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
     [SerializeField] UnityEvent onTriggerEnter;
     [Space]
     [Inject] Pool pool;
+    [Inject] public Damage damage;
 
     Tween moveTween;
 
     public void Initialize(int gunDamage, int range, float bulletSpeed)
     {
+        damage.Value.SetInitial(gunDamage);
+
         moveTween =
             transform
             .DOMoveZ(transform.position.z + range, bulletSpeed)
@@ -41,16 +46,16 @@ public class Bullet : MonoBehaviour
         pool.Despawn(this);
     }
 
-    public class Pool : MonoMemoryPool<GunSO, float, Transform, Bullet>
+    public class Pool : MonoMemoryPool<Gun, Transform, Bullet>
     {
-        protected override void Reinitialize(GunSO gunSO, float speed, Transform muzzle, Bullet item)
+        protected override void Reinitialize(Gun gun, Transform muzzle, Bullet item)
         {
             item.transform.position = muzzle.position;
             item.transform.forward = Vector3.forward;
 
-            base.Reinitialize(gunSO, speed, muzzle, item);
+            base.Reinitialize(gun, muzzle, item);
 
-            item.Initialize(gunSO.damage, gunSO.range, speed);
+            item.Initialize(gun.totalDamage, gun.totalRange, gun.bulletSpeed);
         }
     }
 }

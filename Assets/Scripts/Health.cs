@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
         Value = new (maxHealth);
     }
 
+    public void __TakeDamage(Bullet bullet) => TakeDamage(bullet.damage);
+    public void __TakeDamage(Enemy enemy) => TakeDamage(enemy.damage);
     public void __TakeDamage(Damage harm) => TakeDamage(harm);
     public void TakeDamage(Damage harm)
     {

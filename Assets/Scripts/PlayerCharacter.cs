@@ -2,6 +2,7 @@ using UnityEngine;
 using HyperCasual.Runner;
 using System;
 using Zenject;
+using UniRx;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Damage))]
@@ -13,14 +14,15 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
 
-    [Inject]
-    public void Construct(ProgressBar progressBar)
+    [Inject] public Health mortal;
+    [Inject] public Damage damage;
+    [Inject] void Construct(ProgressBar progressBar)
     {
         progressBar.SetVolume(mortal.Value);
     }
-    
-    [Inject] public Health mortal;
-    [Inject] public Damage harm;
+
+    public StackedNumber attackRate = new();
+    public StackedNumber attackRange = new();
 
     public void Die()
     {

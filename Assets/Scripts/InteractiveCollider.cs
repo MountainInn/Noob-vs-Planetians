@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.Events;
 using HyperCasual.Runner;
+using System;
 
 public class InteractiveCollider : Spawnable
 {
     [SerializeField] UnityEvent onPlayerEnter;
-    [SerializeField] UnityEvent<Enemy> onEnemyEnter;
-    [SerializeField] UnityEvent<Bullet> onBulletEnter;
+    [SerializeField] OnEnemyEnter onEnemyEnter;
+    [SerializeField] OnBulletEnter onBulletEnter;
     [SerializeField] UnityEvent onOtherEnter;
+
+    [Serializable] public class OnBulletEnter : UnityEvent<Bullet> {  }
+    [Serializable] public class OnEnemyEnter : UnityEvent<Enemy> {  }
 
     void OnTriggerEnter(Collider other)
     {

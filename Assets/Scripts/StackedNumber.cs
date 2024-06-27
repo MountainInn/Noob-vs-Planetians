@@ -2,13 +2,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
+using UniRx;
 
 [Serializable]
 public class StackedNumber
 {
     [SerializeField] float initial;
+
+    public Action onRecalculated;
    
-    float result;
+    public FloatReactiveProperty result;
 
     Dictionary<string, float> multipliers = new();
     Dictionary<string, float> addends = new();
@@ -23,6 +26,11 @@ public class StackedNumber
         this.initial = initial;
     }
 
+    public void SetInitial(float initial)
+    {
+        this.initial = initial;
+        recalculated = false;
+    }
 
     public int AsFloorInt() => Mathf.FloorToInt(AsFloat());
     public int AsCeilInt() => Mathf.CeilToInt(AsFloat());
@@ -30,7 +38,7 @@ public class StackedNumber
     public float AsFloat()
     {
         MaybeRecalculate();
-        return result;
+        return result.Value;
     }
 
     public void SetMultiplierUntil(string name, float multiplier, UnityEvent until)
@@ -111,16 +119,18 @@ public class StackedNumber
         if (recalculated)
             return;
 
-        result = initial;
+        float tempResult = initial;
 
         foreach (var (key, val) in multipliers)
         {
-            result *= val;
+            tempResult *= val;
         }
 
         foreach (var (key, val) in addends)
         {
-            result += val;
+            tempResult += val;
         }
+
+        result.Value = tempResult;
     }
 }

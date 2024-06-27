@@ -106,7 +106,15 @@ MonoBehaviour:
   onHealPS: {fileID: 0}
   onSufferPS: {fileID: 0}
   mortal: {fileID: 0}
-  harm: {fileID: 0}
+  damage: {fileID: 0}
+  attackRate:
+    initial: 0
+    result:
+      value: 0
+  attackRange:
+    initial: 0
+    result:
+      value: 0
 --- !u!114 &511791635737475232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value:
     initial: 0
+    result:
+      value: 0
   onDoDamage:
     m_PersistentCalls:
       m_Calls: []

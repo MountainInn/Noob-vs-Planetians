@@ -21,14 +21,12 @@ namespace HyperCasual.Runner
         [SerializeField] TextMeshPro labelType;
         [SerializeField] TextMeshPro labelIncrement;
         [SerializeField] TextMeshPro labelTotalValue;
+        [Space]
+        [SerializeField] Sprite sprite;
 
         bool m_Applied;
         Vector3 m_TextInitialScale;
         Vector3 initialScale;
-
-        enum GateType {
-            DamageBonus
-        }
 
         public override void SetScale(Vector3 scale)
         {
@@ -81,6 +79,10 @@ namespace HyperCasual.Runner
                 .OnKill(() => transform.localScale = initialScale);
         }
 
+        enum GateType {
+            DamageBonus, AttackRate, Range
+        }
+
         public void __ActivateGate() => ActivateGate();
         public void ActivateGate()
         {
@@ -88,12 +90,28 @@ namespace HyperCasual.Runner
             {
                 case GateType.DamageBonus:
 
-                    PlayerCharacter.instance.harm.Value
+                    PlayerCharacter.instance.damage.Value
                         .SetAddendUntil(nameof(GateType.DamageBonus),
                                         totalValue,
                                         GameManager.Instance.onStartGame);
-
                     break;
+
+                case GateType.AttackRate:
+
+                    PlayerCharacter.instance.attackRate
+                        .SetAddendUntil(nameof(GateType.AttackRate),
+                                        totalValue,
+                                        GameManager.Instance.onStartGame);
+                    break;
+
+                case GateType.Range:
+
+                    PlayerCharacter.instance.attackRange
+                        .SetAddendUntil(nameof(GateType.Range),
+                                        totalValue,
+                                        GameManager.Instance.onStartGame);
+                    break;
+
             }
 
             m_Applied = true;

@@ -16,8 +16,8 @@ public class Enemy : Spawnable
     [Space]
     [SerializeField] TextMeshPro healthLabel;
 
-    [Inject] Health mortal;
-    [Inject] Damage harm;
+    [Inject] public Health health;
+    [Inject] public Damage damage;
 
     override protected void Awake()
     {
@@ -32,7 +32,7 @@ public class Enemy : Spawnable
     public void __ReactOnDamage() => ReactOnDamage();
     public void ReactOnDamage()
     {
-        healthLabel.text = $"{mortal.Value.current}";
+        healthLabel.text = $"{health.Value.current}";
 
         PSMobDamaged.instance.Fire(transform.position);
     }
