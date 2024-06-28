@@ -13,10 +13,14 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] UnityEvent onTriggerEnter;
     [Space]
+    [SerializeField] public Damage damage;
+
     [Inject] Pool pool;
-    public Damage damage;
+    [Inject] FollowingTrail.Pool trailPool;
 
     Tween moveTween;
+
+    TrailRenderer trail;
 
     void Awake()
     {
@@ -26,6 +30,11 @@ public class Bullet : MonoBehaviour
     public void Initialize(int gunDamage, int range, float bulletSpeed)
     {
         damage.Value.SetInitial(gunDamage);
+
+        trail =
+            PoolUser.instance.trailPool
+            .Spawn(transform)
+            .GetComponent<TrailRenderer>();
 
         moveTween =
             transform
@@ -47,7 +56,9 @@ public class Bullet : MonoBehaviour
     void Despawn()
     {
         moveTween?.Kill();
-       
+
+        trail.transform.SetParent(null, true);
+
         pool.Despawn(this);
     }
 

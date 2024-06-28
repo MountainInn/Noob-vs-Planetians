@@ -109,7 +109,7 @@ MonoBehaviour:
   damage: {fileID: 5568838679517214165}
   rb: {fileID: 0}
   attackRate:
-    initial: 1
+    initial: 0.5
     result:
       value: 0
   attackRange:

@@ -49,7 +49,7 @@ MonoBehaviour:
   damage:
     value: 1
   rate:
-    value: 1
+    value: 0.5
   range:
     value: 12
   bulletSpeed: 25

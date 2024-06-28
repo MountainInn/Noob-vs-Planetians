@@ -60,8 +60,6 @@ public class Gun : MonoBehaviour
     {
         Bullet bullet = PoolUser.instance.bulletPool.Spawn(this, muzzle);
 
-        // FollowingTrail trail = PoolUser.instance.trailPool.Spawn(bullet.transform, muzzle);
-
         muzzleFlaresPS.Play();
     }
 
