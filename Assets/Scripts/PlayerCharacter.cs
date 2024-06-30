@@ -2,6 +2,7 @@ using UnityEngine;
 using HyperCasual.Runner;
 using System;
 using UniRx;
+using YG;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Damage))]
@@ -43,8 +44,43 @@ public class PlayerCharacter : MonoBehaviour
         attackRange.ForceRecalculate();
     }
 
+    void OnEnable()
+    {
+        YandexGame.GetDataEvent += Load;
+    }
+
+    void OnDisable()
+    {
+        YandexGame.GetDataEvent -= Load;
+    }
+
+
     public void Die()
     {
         GameManager.Instance.Lose();
+    }
+
+    void OnApplicationQuit()
+    {
+        Save();
+    }
+
+    void Save()
+    {
+        YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
+        YandexGame.savesData.damageUpgradeLevel = upgradeDamage.level.ware.L;
+        YandexGame.savesData.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
+        YandexGame.savesData.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
+
+        YandexGame.SaveProgress();
+    }
+
+    void Load()
+    {
+        upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
+        upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
+        upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
+        upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);
+       
     }
 }
