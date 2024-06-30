@@ -88,7 +88,7 @@ namespace HyperCasual.Gameplay
         {
             m_LevelStates.Clear();
             
-            //Create and connect all level states
+            IState firstState = null;
             IState lastState = null;
             foreach (var level in m_Levels)
             {
@@ -101,13 +101,16 @@ namespace HyperCasual.Gameplay
                 {
                     state = CreateLevelState(level);
                 }
+
+                firstState ??= state;
+
                 lastState = AddLevelPeripheralStates(state, m_LevelSelectState, lastState);
             }
 
             //Closing the loop: connect the last level to the level-selection state
             var unloadLastScene = new UnloadLastSceneState(m_SceneController);
             lastState?.AddLink(new EventLink(m_ContinueEvent, unloadLastScene));
-            unloadLastScene.AddLink(new Link(m_LevelSelectState));
+            unloadLastScene.AddLink(new Link(firstState));
         }
 
         /// <summary>
@@ -129,7 +132,8 @@ namespace HyperCasual.Gameplay
         {
             return new LoadLevelFromDef(m_SceneController, levelData, m_LevelManagers);
         }
-        
+
+
         IState AddLevelPeripheralStates(IState loadLevelState, IState quitState, IState lastState)
         {
             //Create states
