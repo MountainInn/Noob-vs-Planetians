@@ -69,6 +69,23 @@ static public class IEnumerableExt
         }
     }
 
+    static public IEnumerable<T> GetUniqueRandoms<T>(this IEnumerable<T> source, int count)
+    {
+        HashSet<int> usedIndices = new();
+
+        for (int i = 0; i < count; )
+        {
+            int id = UnityEngine.Random.Range(0, source.Count());
+
+            if (usedIndices.Add(id))
+            {
+                i++;
+
+                yield return source.ElementAt(id);
+            }
+        }
+    }
+
 
     static public IEnumerable<T> Takeout<T>(this IEnumerable<T> source, out IEnumerable<T> takeout, Func<T, bool> predicate)
     {
@@ -221,9 +238,9 @@ static public class IEnumerableExt
     }
     public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T> source)
         where T : class
-    {
-        return source.Where(item => item != null);
-    }
+                  {
+                      return source.Where(item => item != null);
+        }
 
     static public IEnumerable<T> NotEqual<T>(this IEnumerable<T> source, T other)
     {

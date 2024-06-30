@@ -7,7 +7,7 @@ using UniRx;
 [Serializable]
 public class StackedNumber
 {
-    [SerializeField] float initial;
+    [SerializeField] public float initial {get; private set;}
 
     public Action onRecalculated;
    

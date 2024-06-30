@@ -13,27 +13,34 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
 
+    public Rigidbody rb;
     public Health mortal;
     public Damage damage;
-    public Rigidbody rb;
 
     public StackedNumber attackRate = new();
     public StackedNumber attackRange = new();
 
+    [SerializeField]
+    public Upgrade
+        upgradeHealth,
+        upgradeDamage,
+        upgradeAttackRate,
+        upgradeAttackRange;
+
     void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         mortal = GetComponent<Health>();
         damage = GetComponent<Damage>();
-        rb = GetComponent<Rigidbody>();
-    }
 
-    void Start()
-    {
+        // upgradeHealth   .Inject(mortal.Value,   l => {  });
+        upgradeDamage      .Inject(damage.Value,   l => l * 10);
+        upgradeAttackRate  .Inject(attackRate,     l => -Mathf.Max(l, 10) * .1f);
+        upgradeAttackRange .Inject(attackRange,    l => l * 2);
+
         damage.Value.ForceRecalculate();
         attackRate.ForceRecalculate();
         attackRange.ForceRecalculate();
-
-        // FindObjectOfType<ProgressBar>().SetVolume(mortal.Value);
     }
 
     public void Die()

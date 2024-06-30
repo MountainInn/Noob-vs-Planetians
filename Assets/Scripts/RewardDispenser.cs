@@ -7,6 +7,7 @@ public class RewardDispenser : MonoBehaviour
     static RewardDispenser _inst;
 
     const int MONEY_MULTIPLIER = 0;
+    const int FREE_UPGRADE = 1;
 
     public event Action onClaimX5;
 
@@ -15,6 +16,14 @@ public class RewardDispenser : MonoBehaviour
     void Awake()
     {
         // YandexGame.RewardVideoEvent += Dispense;
+    }
+
+    Upgrade freeUpgrade;
+
+    public void ShowFreeUpgrade(Upgrade upgrade)
+    {
+        this.freeUpgrade = upgrade;
+        // YandexGame.RewVideoShow(FREE_UPGRADE);
     }
 
     public void ShowMoneyX5()
@@ -33,8 +42,21 @@ public class RewardDispenser : MonoBehaviour
                 onClaimX5?.Invoke();
 
                 break;
+
+            case FREE_UPGRADE:
+
+                OnFreeUpgrade();
+
+                break;
+
+
             default:
                 throw new System.ArgumentOutOfRangeException();
         }
+    }
+
+    void OnFreeUpgrade()
+    {
+        freeUpgrade.level.Steal();
     }
 }
