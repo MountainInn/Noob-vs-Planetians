@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 public class RewardDispenser : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class RewardDispenser : MonoBehaviour
 
     void Awake()
     {
-        // YandexGame.RewardVideoEvent += Dispense;
+        YandexGame.RewardVideoEvent += Dispense;
     }
 
     Upgrade freeUpgrade;
@@ -23,14 +24,15 @@ public class RewardDispenser : MonoBehaviour
     public void ShowFreeUpgrade(Upgrade upgrade)
     {
         this.freeUpgrade = upgrade;
-        // YandexGame.RewVideoShow(FREE_UPGRADE);
+
+        YandexGame.RewVideoShow(FREE_UPGRADE);
     }
 
     public void ShowMoneyX5()
     {
         multiplier = Adometer.instance.StopArrow();
 
-        // YandexGame.RewVideoShow(MONEY_MULTIPLIER);
+        YandexGame.RewVideoShow(MONEY_MULTIPLIER);
     }
 
     void Dispense(int rewardId)
