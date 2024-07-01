@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573182875057461191}
-  - component: {fileID: 573182875057461188}
+  - component: {fileID: 5657988443677001600}
   - component: {fileID: 573182875057461189}
-  - component: {fileID: 1762302262713073206}
+  - component: {fileID: 573182875057461188}
+  - component: {fileID: 2831550322338682978}
   m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573182875057461186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: -5.69, z: 52.54}
+  m_LocalPosition: {x: -0, y: -5.69, z: 51.840004}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -35,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &573182875057461188
+--- !u!114 &5657988443677001600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +45,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 573182875057461186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e061b742d2091c4b84f57225f4f5b22, type: 3}
+  m_Script: {fileID: 11500000, guid: e7fbc169f9b20ab45a0bbbd8638368bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  harm: {fileID: 0}
+  m_SnapToGrid: 1
+  onPlayerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnemyEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2831550322338682978}
+        m_TargetAssemblyTypeName: Damage, MyScripts
+        m_MethodName: __DoDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onBulletEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onOtherEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &573182875057461189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -64,7 +89,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1762302262713073206
+--- !u!114 &573182875057461188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,11 +98,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 573182875057461186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05cc5b8b26a0ecb4ba3811676958b548, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e061b742d2091c4b84f57225f4f5b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage:
-    initial: 0
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  damage: {fileID: 2831550322338682978}
+--- !u!114 &2831550322338682978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573182875057461186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516d8337b411374294e1446ba14f2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    initial: 1
+    result:
+      value: 0
+  onDoDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &573182875232897271
 GameObject:
   m_ObjectHideFlags: 0

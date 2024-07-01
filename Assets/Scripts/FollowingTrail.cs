@@ -6,8 +6,6 @@ public class FollowingTrail : MonoBehaviour
 {
     TrailRenderer trail;
 
-    public Transform target;
-
     [Inject] Pool pool;
 
     void Awake()
@@ -18,36 +16,20 @@ public class FollowingTrail : MonoBehaviour
     void Start()
     {
         trail.emitting = true;
-
-        SafeUpdatePosition();
     }
 
     void FixedUpdate()
     {
-        SafeUpdatePosition();
+        if (trail.positionCount == 0)
+            pool.Despawn(this);
     }
 
-    void SafeUpdatePosition()
+    public class Pool : MonoMemoryPool<Transform, FollowingTrail>
     {
-        if (target == null || !target.gameObject.activeSelf)
+        protected override void Reinitialize(Transform muzzle, FollowingTrail item)
         {
-            if (trail.positionCount == 0)
-                // pool.Despawn(this);
-                GameObject.Destroy(gameObject);
-
-            return;
-        }
-
-        transform.position = target.position;
-    }
-
-    public class Pool : MonoMemoryPool<Transform, Transform, FollowingTrail>
-    {
-        protected override void Reinitialize(Transform target, Transform muzzle, FollowingTrail item)
-        {
-            item.transform.position = muzzle.position;
-
-            item.target = target;
+            item.transform.SetParent(muzzle);
+            item.transform.localPosition = Vector3.zero;
         }
     }
 }
