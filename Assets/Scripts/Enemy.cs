@@ -41,6 +41,6 @@ public class Enemy : MonoBehaviour
     public void ActivateRagdoll()
     {
         animator.enabled = false;
-        ragdoll.Activate();
+        ragdoll.Activate(true);
     }
 }
