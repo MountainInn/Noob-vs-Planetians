@@ -105,17 +105,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHealPS: {fileID: 0}
   onSufferPS: {fileID: 0}
+  rb: {fileID: 0}
   mortal: {fileID: 511791635737475232}
   damage: {fileID: 5568838679517214165}
-  rb: {fileID: 0}
   attackRate:
-    initial: 0.5
     result:
       value: 0
   attackRange:
-    initial: 12
     result:
       value: 0
+  upgradeHealth:
+    name: Health
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
+  upgradeDamage:
+    name: Damage
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
+  upgradeAttackRate:
+    name: Attack Rate
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
+  upgradeAttackRange:
+    name: Range
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
 --- !u!114 &511791635737475232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +164,11 @@ MonoBehaviour:
   onDie:
     m_PersistentCalls:
       m_Calls: []
+  Value:
+    _current:
+      value: 0
+    _maximum:
+      value: 0
 --- !u!114 &5568838679517214165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    initial: 0
     result:
       value: 0
   onDoDamage:

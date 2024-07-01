@@ -1,9 +1,25 @@
 using UnityEngine;
+using System.Linq;
 
 public class Ragdoll : MonoBehaviour
 {
-    public void Activate()
+    Rigidbody[] bones;
+
+    void Awake()
     {
-        // throw new System.NotImplementedException();
+        Rigidbody parentRb = GetComponent<Rigidbody>();
+
+        bones =
+            GetComponentsInChildren<Rigidbody>()
+            .Where(rb => rb != parentRb)
+            .ToArray();
+    }
+
+    public void Activate(bool toggle)
+    {
+        foreach (var item in bones)
+        {
+            item.isKinematic = toggle;
+        }
     }
 }

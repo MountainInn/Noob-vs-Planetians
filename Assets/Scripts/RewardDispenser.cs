@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 public class RewardDispenser : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class RewardDispenser : MonoBehaviour
     static RewardDispenser _inst;
 
     const int MONEY_MULTIPLIER = 0;
+    const int FREE_UPGRADE = 1;
 
     public event Action onClaimX5;
 
@@ -14,14 +16,23 @@ public class RewardDispenser : MonoBehaviour
 
     void Awake()
     {
-        // YandexGame.RewardVideoEvent += Dispense;
+        YandexGame.RewardVideoEvent += Dispense;
+    }
+
+    Upgrade freeUpgrade;
+
+    public void ShowFreeUpgrade(Upgrade upgrade)
+    {
+        this.freeUpgrade = upgrade;
+
+        YandexGame.RewVideoShow(FREE_UPGRADE);
     }
 
     public void ShowMoneyX5()
     {
         multiplier = Adometer.instance.StopArrow();
 
-        // YandexGame.RewVideoShow(MONEY_MULTIPLIER);
+        YandexGame.RewVideoShow(MONEY_MULTIPLIER);
     }
 
     void Dispense(int rewardId)
@@ -33,8 +44,21 @@ public class RewardDispenser : MonoBehaviour
                 onClaimX5?.Invoke();
 
                 break;
+
+            case FREE_UPGRADE:
+
+                OnFreeUpgrade();
+
+                break;
+
+
             default:
                 throw new System.ArgumentOutOfRangeException();
         }
+    }
+
+    void OnFreeUpgrade()
+    {
+        freeUpgrade.level.Steal();
     }
 }

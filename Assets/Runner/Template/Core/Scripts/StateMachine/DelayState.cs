@@ -21,11 +21,7 @@ namespace HyperCasual.Core
 
         public override IEnumerator Execute()
         {
-            var startTime = Time.time;
-            while (Time.time - startTime < m_DelayInSeconds)
-            {
-                yield return null;
-            }
+            yield return new WaitForSeconds(m_DelayInSeconds);
         }
     }
 }
