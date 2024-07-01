@@ -14,10 +14,12 @@ namespace YG
         ///
         ///
 
-        public int healthUpgradeLevel;
-        public int damageUpgradeLevel;
-        public int attackRateUpgradeLevel;
-        public int attackRangeUpgradeLevel;
+        public int healthUpgradeLevel = 0;
+        public int damageUpgradeLevel = 0;
+        public int attackRateUpgradeLevel = 0;
+        public int attackRangeUpgradeLevel = 0;
+        public int lastWeaponIndex = 0;
+        public int weaponExpirience = 0;
 
         public SavesYG()
         {

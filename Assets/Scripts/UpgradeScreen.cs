@@ -17,7 +17,8 @@ public class UpgradeScreen : View
         {
             PlayerCharacter.instance.upgradeDamage,
             PlayerCharacter.instance.upgradeAttackRate,
-            PlayerCharacter.instance.upgradeAttackRange
+            PlayerCharacter.instance.upgradeAttackRange,
+            WeaponExperience.instance.upgradeExpirience,
         }
             .Map(up =>
             {

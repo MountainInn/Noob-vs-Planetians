@@ -13,6 +13,8 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
+    [Space]
+    [SerializeField] EquipmentSlot weaponSlot;
 
     public Rigidbody rb;
     public Health mortal;
@@ -42,6 +44,20 @@ public class PlayerCharacter : MonoBehaviour
         damage.Value.ForceRecalculate();
         attackRate.ForceRecalculate();
         attackRange.ForceRecalculate();
+
+
+
+        WeaponExperience.instance
+            .onNewWeaponUnlocked.AddListener(() =>
+            {
+                SwitchWeapon();
+            });
+    }
+
+    void SwitchWeapon()
+    {
+        weaponSlot.MaybeSwitchEquipment(
+            (int)WeaponExperience.instance.expVolume.current.Value);
     }
 
     void OnEnable()
@@ -81,6 +97,5 @@ public class PlayerCharacter : MonoBehaviour
         upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
         upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
         upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);
-       
     }
 }

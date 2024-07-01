@@ -20,6 +20,14 @@ public class Upgrade
     {
 
     }
+
+    public void Inject(Action<int> bonusCalculation)
+    {
+        level = new Buyable<Level>(new(bonusCalculation),
+                                   OnBuy,
+                                   price);
+    }
+
     public void Inject(StackedNumber stat, Func<int, float> bonusCalculation)
     {
         this.stat = stat;
