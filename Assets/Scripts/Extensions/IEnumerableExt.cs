@@ -35,23 +35,6 @@ static public class IEnumerableExt
                     gr.Select(tuple => tuple.obj));
     }
 
-    public static void DestroyAll<T>(this IEnumerable<T> source)
-        where T : Component
-    {
-        foreach (var item in source) MonoBehaviour.Destroy(item.gameObject);
-    }
-
-    public static void DestroyAllImmediate<T>(this IEnumerable<T> source)
-        where T : Component
-    {
-        foreach (var item in source) MonoBehaviour.DestroyImmediate(item.gameObject);
-    }
-
-    public static void DestroyAllImmediate(this IEnumerable<GameObject> source)
-    {
-        foreach (var item in source) GameObject.DestroyImmediate(item);
-    }
-
     static public T GetRandom<T>(this IEnumerable<T> source)
     {
         int id = UnityEngine.Random.Range(0, source.Count());

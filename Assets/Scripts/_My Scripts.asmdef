@@ -8,7 +8,8 @@
         "Runner",
         "UnityEngine.UI",
         "DOTween.Modules",
-        "YandexGames"
+        "YandexGames",
+        "Extensions"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

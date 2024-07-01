@@ -51,7 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 1343788436432330388}
   coll: {fileID: 2501397437444141431}
+  width: 0
   length: 100
+  height: 0
 --- !u!1 &4326486221234013164
 GameObject:
   m_ObjectHideFlags: 0

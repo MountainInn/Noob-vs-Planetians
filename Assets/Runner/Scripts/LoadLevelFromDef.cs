@@ -7,6 +7,32 @@ using Object = UnityEngine.Object;
 
 namespace HyperCasual.Runner
 {
+    public class LoadWorldLevelState : AbstractState
+    {
+        public readonly WorldLevel worldLevel;
+        readonly SceneController sceneController;
+        readonly GameObject[] managerPrefabs;
+
+        public LoadWorldLevelState(SceneController sceneController, WorldLevel worldLevel, GameObject[] managerPrefabs)
+        {
+            this.worldLevel = worldLevel;
+            this.managerPrefabs = managerPrefabs;
+            this.sceneController = sceneController;
+        }
+
+        public override IEnumerator Execute()
+        {
+            yield return sceneController.LoadNewScene(worldLevel.name);
+
+            foreach (var prefab in managerPrefabs)
+            {
+                Object.Instantiate(prefab);
+            }
+
+            GameManager.Instance.LoadLevel(worldLevel);
+        }
+    }
+
     public class LoadLevelFromDef : AbstractState
     {
         public readonly LevelDefinition m_LevelDefinition;

@@ -8,7 +8,7 @@ public class LevelSegment : MonoBehaviour
     [Space]
     [SerializeField] List<Chunk> chunks;
 
-    [HideInInspector] [SerializeField] List<Chunk> spawnedChunks = new();
+    [HideInInspector] [SerializeField] public List<Chunk> spawnedChunks = new();
     [HideInInspector] public float currentLength = 0;
 
     public void ReparentChunks(Transform parent)
@@ -39,7 +39,7 @@ public class LevelSegment : MonoBehaviour
         foreach (var item in rolledChunks)
         {
             var newChunk = Instantiate(item,
-                                       position,
+                                       position.AddZ(item.length / 2f),
                                        Quaternion.identity,
                                        null);
 
@@ -53,16 +53,6 @@ public class LevelSegment : MonoBehaviour
 
     public void ClearChunks()
     {
-        foreach (var item in spawnedChunks)
-        {
-            if (item == null)
-                continue;
-
-            if (Application.isPlaying)
-                Destroy(item.gameObject);
-            else
-                DestroyImmediate(item.gameObject, true);
-        }
-        spawnedChunks.Clear();
+        spawnedChunks.DestroyAll();
     }
 }

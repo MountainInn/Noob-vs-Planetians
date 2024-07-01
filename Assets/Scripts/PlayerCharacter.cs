@@ -47,11 +47,11 @@ public class PlayerCharacter : MonoBehaviour
 
 
 
-        WeaponExperience.instance
-            .onNewWeaponUnlocked.AddListener(() =>
-            {
-                SwitchWeapon();
-            });
+        // WeaponExperience.instance
+        //     .onNewWeaponUnlocked.AddListener(() =>
+        //     {
+        //         SwitchWeapon();
+        //     });
     }
 
     void SwitchWeapon()

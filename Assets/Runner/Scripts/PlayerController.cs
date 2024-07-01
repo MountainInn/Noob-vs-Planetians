@@ -251,6 +251,7 @@ namespace HyperCasual.Runner
 
             m_HasInput = false;
 
+
             ResetSpeed();
             ResetScale();
         }
@@ -300,7 +301,7 @@ namespace HyperCasual.Runner
                 m_XPos += newPositionDifference;
             }
 
-            m_Transform.position = new Vector3(m_XPos, m_Transform.position.y, m_ZPos);
+            m_Transform.position = new Vector3(m_XPos, 2, m_ZPos);
 
             if (m_Animator != null && deltaTime > 0.0f)
             {

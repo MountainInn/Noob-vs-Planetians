@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using HyperCasual.Core;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,7 +29,7 @@ namespace HyperCasual.Runner
         [SerializeField] public UnityEvent onLose;
         [SerializeField] public UnityEvent onStartGame;
 
-        LevelDefinition m_CurrentLevel;
+        public LevelDefinition m_CurrentLevel;
 
         /// <summary>
         /// Returns true if the game is currently active.
@@ -36,15 +37,15 @@ namespace HyperCasual.Runner
         /// or has ended.
         /// </summary>
         public bool IsPlaying => m_IsPlaying;
-        bool m_IsPlaying;
-        GameObject m_CurrentLevelGO;
-        GameObject m_CurrentTerrainGO;
-        GameObject m_LevelMarkersGO;
+        public bool m_IsPlaying;
+        public GameObject m_CurrentLevelGO;
+        public GameObject m_CurrentTerrainGO;
+        public GameObject m_LevelMarkersGO;
 
-        List<Spawnable> m_ActiveSpawnables = new List<Spawnable>();
+        public List<Spawnable> m_ActiveSpawnables = new List<Spawnable>();
 
 #if UNITY_EDITOR
-        bool m_LevelEditorMode;
+        public bool m_LevelEditorMode;
 #endif
 
         void Awake()
@@ -66,6 +67,13 @@ namespace HyperCasual.Runner
             }
 #endif
         }
+
+        public void LoadLevel(WorldLevel worldLevel)
+        {
+            LoadLevel(worldLevel, ref m_CurrentLevelGO);
+            StartGame();
+        }
+
 
         /// <summary>
         /// This method calls all methods necessary to load and
@@ -101,6 +109,57 @@ namespace HyperCasual.Runner
                 LevelManager.Instance.ResetSpawnables();
             }
         }
+
+        public static void LoadLevel(WorldLevel worldLevel, ref GameObject levelGameObject)
+        {
+            LevelDefinition.SpawnableObject[] spawnables =
+                worldLevel
+                .GetComponentsInChildren<Spawnable>()
+                .Select(sp => new LevelDefinition.SpawnableObject()
+                {
+                    Position = sp.transform.position,
+                    EulerAngles = sp.transform.eulerAngles,
+                    Scale = sp.transform.lossyScale,
+                    SpawnablePrefab = sp.gameObject
+                })
+                .ToArray();
+
+            LevelDefinition levelDefinition = new ()
+            {
+                name = worldLevel.name,
+                // LevelWidth = worldLevel.LevelWidth,
+                // LevelLength = worldLevel.TotalLength,
+                Spawnables = spawnables
+            };
+
+            LoadLevel(levelDefinition, ref levelGameObject);
+
+            var floors =
+                worldLevel
+                .Segments
+                .SelectMany(seg => seg.spawnedChunks)
+                .Concat(worldLevel.spawnedChunks)
+                .Select(ch => ch.Floor);
+
+            foreach (var item in floors)
+            {
+                GameObject go = null;
+
+                if (Application.isPlaying)
+                {
+                    go = GameObject.Instantiate(item, item.transform.position, default, null);
+                }
+                else
+                {
+#if UNITY_EDITOR
+                    go = (GameObject)PrefabUtility.InstantiatePrefab(item);
+#endif
+                }
+            }
+
+            PlayerController.Instance.SetMaxXPosition(20);
+        }
+
 
         /// <summary>
         /// This method loads and instantiates the level defined in levelDefinition,
@@ -208,7 +267,7 @@ namespace HyperCasual.Runner
             m_CurrentLevel = null;
         }
 
-        void StartGame()
+        public void StartGame()
         {
             ResetLevel();
             m_IsPlaying = true;

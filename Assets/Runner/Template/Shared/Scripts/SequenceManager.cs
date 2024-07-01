@@ -14,27 +14,22 @@ namespace HyperCasual.Gameplay
     [Serializable]
     public class SequenceManager : AbstractSingleton<SequenceManager>
     {
-        [SerializeField]
-        GameObject[] m_PreloadedAssets;
-        [SerializeField]
-        AbstractLevelData[] m_Levels;
-        [SerializeField]
-        GameObject[] m_LevelManagers;
-        public AbstractLevelData[] Levels => m_Levels;
+        [Header("World Levels")]
+        [SerializeField] WorldLevel[] worldLevels;
+        [Space]
+        [SerializeField] GameObject[] m_PreloadedAssets;
+        [SerializeField] AbstractLevelData[] m_Levels;
+        [SerializeField] GameObject[] m_LevelManagers;
         [Header("Events")]
-        [SerializeField]
-        AbstractGameEvent m_ContinueEvent;
-        [SerializeField]
-        AbstractGameEvent m_BackEvent;
-        [SerializeField]
-        AbstractGameEvent m_WinEvent;
-        [SerializeField]
-        AbstractGameEvent m_LoseEvent;
-        [SerializeField]
-        AbstractGameEvent m_PauseEvent;
+        [SerializeField] AbstractGameEvent m_ContinueEvent;
+        [SerializeField] AbstractGameEvent m_BackEvent;
+        [SerializeField] AbstractGameEvent m_WinEvent;
+        [SerializeField] AbstractGameEvent m_LoseEvent;
+        [SerializeField] AbstractGameEvent m_PauseEvent;
         [Header("Other")]
-        [SerializeField]
-        float m_SplashDelay = 2f;
+        [SerializeField] float m_SplashDelay = 2f;
+
+        public AbstractLevelData[] Levels => m_Levels;
 
         readonly StateMachine m_StateMachine = new ();
         IState m_SplashScreenState;
@@ -90,17 +85,9 @@ namespace HyperCasual.Gameplay
             
             IState firstState = null;
             IState lastState = null;
-            foreach (var level in m_Levels)
+            foreach (var level in worldLevels)
             {
-                IState state = null;
-                if (level is SceneRef sceneLevel)
-                {
-                    state = CreateLevelState(sceneLevel.m_ScenePath);
-                }
-                else
-                {
-                    state = CreateLevelState(level);
-                }
+                IState state = CreateLevelState(level);
 
                 firstState ??= state;
 
@@ -131,6 +118,11 @@ namespace HyperCasual.Gameplay
         IState CreateLevelState(AbstractLevelData levelData)
         {
             return new LoadLevelFromDef(m_SceneController, levelData, m_LevelManagers);
+        }
+
+        IState CreateLevelState(WorldLevel worldLevel)
+        {
+            return new LoadWorldLevelState(m_SceneController, worldLevel, m_LevelManagers);
         }
 
 

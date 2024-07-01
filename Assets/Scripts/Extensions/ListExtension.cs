@@ -5,11 +5,21 @@ using System.Collections.Generic;
 
 static public class ListExtension
 {
-    public static void DestroyAll<T>(this List<T> source)
+    public static void DestroyAll<T>(this List<T> list)
         where T : Component
     {
-        foreach (var item in source) MonoBehaviour.Destroy(item.gameObject);
-        source.Clear();
+        foreach (var item in list)
+        {
+            if (item == null)
+                continue;
+
+            if (Application.isPlaying)
+                MonoBehaviour.Destroy(item.gameObject);
+            else
+                MonoBehaviour.DestroyImmediate(item.gameObject);
+        }
+
+        list.Clear();
     }
 
     public static void ResizeDestructive<T>(this List<T> list, int targetSize)

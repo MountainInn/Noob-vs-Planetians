@@ -18,5 +18,9 @@ public class WorldLevelEditor : Editor
         {
             wl.ParentChunks();
         }
+
+        EditorGUILayout.Space();
+
+        base.OnInspectorGUI();
     }
 }

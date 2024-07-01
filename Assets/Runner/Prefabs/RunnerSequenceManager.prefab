@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2e0d11b92744820b428599073d1874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldLevels:
+  - {fileID: 7778531776622411524, guid: 17da1d28c16c0de478a5eba470781b75, type: 3}
   m_PreloadedAssets:
   - {fileID: 4575908568916051441, guid: 3634157dd07b141c2aaa950dd4771f81, type: 3}
   - {fileID: 8617234690931488546, guid: 24e6103122814457297dc45d1ebd9d78, type: 3}

@@ -5,12 +5,27 @@ using UnityEngine;
 
 namespace HyperCasual.Runner
 {
+    public interface ILevelDefinition
+    {
+        float LevelLength{ get;  set;}
+        float LevelLengthBufferStart{ get;  set;}
+        float LevelLengthBufferEnd{ get;  set;}
+        float LevelWidth{ get;  set;}
+        float LevelThickness{ get;  set;}
+        bool SnapToGrid{ get;  set;}
+        float GridSize{ get;  set;}
+        Material TerrainMaterial{ get;  set;}
+        GameObject StartPrefab{ get;  set;}
+        GameObject EndPrefab{ get;  set;}
+        LevelDefinition.SpawnableObject[] Spawnables{ get;  set;}
+    }
+
     /// <summary>
     /// A scriptable object that stores all information
     /// needed to load and set up a Runner level.
     /// </summary>
     [CreateAssetMenu(fileName = "Data", menuName = "Runner/LevelDefinition", order = 1)]
-    public class LevelDefinition : AbstractLevelData
+    public class LevelDefinition : AbstractLevelData, ILevelDefinition
     {
         /// <summary>
         /// The Length of the level.
@@ -68,6 +83,18 @@ namespace HyperCasual.Runner
         /// An array of all SpawnableObjects that exist in this level.
         /// </summary>
         public SpawnableObject[] Spawnables;
+
+        float ILevelDefinition.LevelLength { get => LevelLength; set => LevelLength = value; }
+        float ILevelDefinition.LevelLengthBufferStart { get => LevelLengthBufferStart;  set => LevelLengthBufferStart = value; }
+        float ILevelDefinition.LevelLengthBufferEnd { get => LevelLengthBufferEnd;  set => LevelLengthBufferEnd = value; }
+        float ILevelDefinition.LevelWidth { get => LevelWidth;  set => LevelWidth = value; }
+        float ILevelDefinition.LevelThickness { get => LevelThickness;  set => LevelThickness = value; }
+        bool ILevelDefinition.SnapToGrid { get => SnapToGrid;  set => SnapToGrid = value; }
+        float ILevelDefinition.GridSize { get => GridSize;  set => GridSize = value; }
+        Material ILevelDefinition.TerrainMaterial { get => TerrainMaterial;  set => TerrainMaterial = value; }
+        GameObject ILevelDefinition.StartPrefab { get => StartPrefab;  set => StartPrefab = value; }
+        GameObject ILevelDefinition.EndPrefab { get => EndPrefab;  set => EndPrefab = value; }
+        SpawnableObject[] ILevelDefinition.Spawnables { get => Spawnables;  set => Spawnables = value; }
 
         [System.Serializable]
         public class SpawnableObject
