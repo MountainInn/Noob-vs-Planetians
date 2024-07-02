@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
-        player = GetComponentInParent<PlayerCharacter>();
+        player = PlayerCharacter.instance;
 
         attackTimer = new Volume(0, 1);
 

@@ -1,20 +1,33 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
-public class EquipmentSlot : MonoBehaviour
+public abstract class EquipmentSlot<T> : MonoBehaviour
+    where T : Component
 {
-    [SerializeField] protected List<bool> variants = new();
+    [SerializeField] protected List<bool> toggles = new();
 
-    int activeId;
+    protected int activeId = -1;
+
+    [SerializeField] T[] equipments;
 
     public void OnValidate()
     {
-        variants.ResizeDestructive(transform.childCount);
+        equipments = GetComponentsInChildren<T>(true);
 
-        for (int i = 0; i < variants.Count; i ++)
+        toggles.ResizeDestructive(equipments.Length);
+
+        for (int i = 0; i < toggles.Count; i ++)
         {
-            transform.GetChild(i).gameObject.SetActive(variants[i]);
+            equipments[i].gameObject.SetActive(toggles[i]);
         }
+    }
+
+    public T RandomEquip()
+    {
+        MaybeSwitchEquipment(UnityEngine.Random.Range(0, equipments.Length));
+
+        return equipments[activeId];
     }
 
     public void MaybeSwitchEquipment(int i)
@@ -24,20 +37,20 @@ public class EquipmentSlot : MonoBehaviour
         
         activeId = i;
 
-        for (i = 0; i < variants.Count; i ++)
+        for (i = 0; i < toggles.Count; i ++)
         {
-            transform.GetChild(i).gameObject.SetActive(i == activeId);
+            bool toggle = (i == activeId);
+
+            OnToggle(equipments[i], toggle);
+
+            equipments[i].gameObject.SetActive(toggle);
         }
     }
 
-    public GameObject GetFirstActive()
-    {
-        foreach (Transform item in transform)
-        {
-            if (item.gameObject.activeSelf)
-                return item.gameObject;
-        }
+    protected abstract void OnToggle(T equipment, bool toggle);
 
-        return null;
+    public T GetFirstActive()
+    {
+        return equipments.First(eq => eq.gameObject.activeSelf);
     }
 }

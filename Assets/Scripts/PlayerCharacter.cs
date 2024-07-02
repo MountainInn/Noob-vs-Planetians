@@ -14,14 +14,13 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
     [Space]
-    [SerializeField] EquipmentSlot weaponSlot;
+    [SerializeField] public GunSlot gunSlot;
 
     public Rigidbody rb;
     public Health mortal;
     public Damage damage;
-
-    public StackedNumber attackRate = new();
-    public StackedNumber attackRange = new();
+    public StackedNumber attackRate;
+    public StackedNumber attackRange;
 
     [SerializeField]
     public Upgrade
@@ -44,20 +43,11 @@ public class PlayerCharacter : MonoBehaviour
         damage.Value.ForceRecalculate();
         attackRate.ForceRecalculate();
         attackRange.ForceRecalculate();
-
-
-
-        // WeaponExperience.instance
-        //     .onNewWeaponUnlocked.AddListener(() =>
-        //     {
-        //         SwitchWeapon();
-        //     });
     }
 
-    void SwitchWeapon()
+    void Start()
     {
-        weaponSlot.MaybeSwitchEquipment(
-            (int)WeaponExperience.instance.expVolume.current.Value);
+        gunSlot.GetFirstActive().ToggleShooting(true);
     }
 
     void OnEnable()
@@ -83,7 +73,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void Save()
     {
-        YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
+        // YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
         YandexGame.savesData.damageUpgradeLevel = upgradeDamage.level.ware.L;
         YandexGame.savesData.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
         YandexGame.savesData.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
@@ -93,7 +83,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void Load()
     {
-        upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
+        // upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
         upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
         upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
         upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);

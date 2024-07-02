@@ -17,7 +17,7 @@ public class WeaponExperience : MonoBehaviour
     [SerializeField] public UnityEvent onNewWeaponUnlocked;
 
     int exp,
-        lastWeaponIndex;
+        lastWeaponIndex = -1;
 
     [HideInInspector] public Volume expVolume = new();
 
@@ -53,12 +53,20 @@ public class WeaponExperience : MonoBehaviour
             fields
             .FindLastIndex(f => f.expirience <= exp);
 
+        if (lastWeaponIndex == -1)
+            lastWeaponIndex = 0;
+
         if (lastWeaponIndex != cacheLastWeaponIndex)
         {
             expVolume.Resize(fields[lastWeaponIndex].expirience);
 
-            onNewWeaponUnlocked?.Invoke();
+            MaybeSwitchWeapon(PlayerCharacter.instance.gunSlot);
         }
+    }
+
+    void MaybeSwitchWeapon(GunSlot gunSlot)
+    {
+        gunSlot.MaybeSwitchEquipment(lastWeaponIndex);
     }
 
     void Save()

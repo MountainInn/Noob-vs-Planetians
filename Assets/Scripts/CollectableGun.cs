@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[RequireComponent(typeof(EquipmentSlot))]
+[RequireComponent(typeof(GunSlot))]
 public class CollectableGun : HyperCasual.Runner.Collectable, ICollectable
 {
     Gun gun;
@@ -10,10 +10,7 @@ public class CollectableGun : HyperCasual.Runner.Collectable, ICollectable
     {
         base.Awake();
 
-        gun =
-            GetComponent<EquipmentSlot>()
-            .GetFirstActive()
-            ?.GetComponent<Gun>();
+        gun = GetComponent<GunSlot>().RandomEquip();
     }
 
     public void AddGun()
