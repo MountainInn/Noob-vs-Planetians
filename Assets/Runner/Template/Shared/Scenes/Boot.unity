@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 747017390784148148, guid: 17da1d28c16c0de478a5eba470781b75, type: 3}
+  - {fileID: 9080779998604626786, guid: 17da1d28c16c0de478a5eba470781b75, type: 3}
   m_SequenceManagerPrefab: {fileID: 4462145952910458180, guid: 6a3c13f7e2c6d42fe8c3f5029e1d0a98,
     type: 3}
   levelManagers:
