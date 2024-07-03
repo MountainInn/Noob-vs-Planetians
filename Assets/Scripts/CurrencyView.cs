@@ -9,7 +9,6 @@ public class CurrencyView : MonoBehaviour
     [Space]
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI label;
-    [SerializeField] HorizontalLayoutGroup layout;
 
     CompositeDisposable disposables = new();
 
@@ -25,11 +24,6 @@ public class CurrencyView : MonoBehaviour
         {
             label = new GameObject("Label").AddComponent<TMPro.TextMeshProUGUI>();
             label.transform.SetParent(transform);
-        }
-
-        if (layout == null)
-        {
-            layout ??= gameObject.AddComponent<HorizontalLayoutGroup>();
         }
 
         if (currency)

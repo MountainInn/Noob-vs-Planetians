@@ -5,6 +5,7 @@ using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
 using System;
+using UniRx;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -78,30 +79,30 @@ public class ProgressBar : MonoBehaviour
         }
     }
 
-    // public IDisposable Subscribe(GameObject volumeOwner, Volume volume)
-    // {
-    //     return
-    //         volume
-    //         .ObserveAll()
-    //         .TakeWhile(_ => volumeOwner != null && volumeOwner.activeSelf)
-    //         .Subscribe(tup =>
-    //         {
-    //             if (float.IsNaN(tup.ratio))
-    //                 return;
+    public IDisposable Subscribe(GameObject volumeOwner, Volume volume)
+    {
+        return
+            volume
+            .ObserveAll()
+            .TakeWhile(_ => volumeOwner != null && volumeOwner.activeSelf)
+            .Subscribe(tup =>
+            {
+                if (float.IsNaN(tup.ratio))
+                    return;
 
-    //             if (label)
-    //                 label.text = volume.ToString();
+                if (label)
+                    label.text = volume.ToString();
 
-    //             slider.value = tup.ratio;
+                slider.value = tup.ratio;
 
-    //             if (afterimage != null)
-    //             {
-    //                 var tween = afterimage.slider.DOValue(tup.ratio, underFillDelay);
+                if (afterimage != null)
+                {
+                    var tween = afterimage.slider.DOValue(tup.ratio, underFillDelay);
 
-    //                 QueueTween(tween);
-    //             }
-    //         });
-    // }
+                    QueueTween(tween);
+                }
+            });
+    }
 
     public void SetVolume(Volume volume)
     {

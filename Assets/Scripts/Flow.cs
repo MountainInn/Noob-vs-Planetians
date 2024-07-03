@@ -22,7 +22,7 @@ public class Flow : MonoBehaviour
 
     enum Branch {
         Preparation,
-        LevelStarted, Lose, Win,
+        LevelInProgress, Lose, Win,
         Ressurect, Retry,
         Continue, MultiplyMoney,
         StartLoadingLevel
@@ -73,7 +73,7 @@ public class Flow : MonoBehaviour
                 {
                     Branch.Preparation => await ShowUpgradeScreen(),
 
-                    Branch.LevelStarted => await WaitForGameplayResult(),
+                    Branch.LevelInProgress => await WaitForGameplayResult(),
 
                     Branch.Lose => await ShowRetryScreen(),
                     Branch.Ressurect => await Ressurect(),
@@ -101,7 +101,7 @@ public class Flow : MonoBehaviour
 
         PlayerCharacter.instance.Ressurect();
 
-        return Branch.Ressurect;
+        return Branch.LevelInProgress;
     }
 
     async UniTask<Branch> Retry()
@@ -169,6 +169,8 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> WaitForGameplayResult()
     {
+        ShowScreen<Hud>();
+
         Branch result =
             await UniTask.WhenAny(
                 GameManager.Instance.onLose.OnInvokeAsync(onAppQuitCancellation.Token),
@@ -179,6 +181,8 @@ public class Flow : MonoBehaviour
                 1 => Branch.Win,
                 _ => throw new System.ArgumentException()
             };
+
+        GetScreen<Hud>().Hide();
 
         return result;
     }
@@ -201,6 +205,8 @@ public class Flow : MonoBehaviour
 
         PlayerController.Instance.SetMaxXPosition(20);
 
+        PCHealthBar.instance.Resubscribe();
+
         return Branch.Preparation;
     }
 
@@ -215,7 +221,13 @@ public class Flow : MonoBehaviour
 
         PlayerCharacter.instance.FullForward();
 
-        return Branch.LevelStarted;
+        return Branch.LevelInProgress;
+    }
+
+    T GetScreen<T>()
+        where T : View
+    {
+        return UIManager.Instance.GetView<T>();
     }
 
     T ShowScreen<T>()
@@ -226,6 +238,3 @@ public class Flow : MonoBehaviour
         return UIManager.Instance.GetView<T>();
     }
 }
-
-
-
