@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7680686150170255983}
+  - component: {fileID: 3080867106153001744}
   - component: {fileID: 6931430198559016198}
   - component: {fileID: 8475646709700121470}
   - component: {fileID: 2926604082106359834}
-  - component: {fileID: 3080867106153001744}
   - component: {fileID: 511791635737475232}
   - component: {fileID: 5568838679517214165}
   m_Layer: 0
@@ -39,6 +39,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3080867106153001744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168254820557207646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ea024531d8ccf45ab588347b987977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHealPS: {fileID: 0}
+  onSufferPS: {fileID: 0}
+  gunSlot: {fileID: 6970419749310679498}
+  rb: {fileID: 2926604082106359834}
+  health: {fileID: 511791635737475232}
+  damage: {fileID: 5568838679517214165}
+  attackRate:
+    initial: 0
+    result:
+      value: 0
+  attackRange:
+    initial: 10
+    result:
+      value: 0
+  upgradeHealth:
+    name: Health
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
+  upgradeDamage:
+    name: Damage
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
+  upgradeAttackRate:
+    name: Attack Rate
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
+  upgradeAttackRange:
+    name: Range
+    icon: {fileID: 0}
+    price:
+      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+      cost:
+        value: 1
 --- !u!114 &6931430198559016198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,60 +145,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3080867106153001744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168254820557207646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ea024531d8ccf45ab588347b987977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHealPS: {fileID: 0}
-  onSufferPS: {fileID: 0}
-  gunSlot: {fileID: 6970419749310679498}
-  rb: {fileID: 2926604082106359834}
-  health: {fileID: 0}
-  damage: {fileID: 5568838679517214165}
-  attackRate:
-    initial: 0
-    result:
-      value: 0
-  attackRange:
-    initial: 0
-    result:
-      value: 0
-  upgradeHealth:
-    name: Health
-    icon: {fileID: 0}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  upgradeDamage:
-    name: Damage
-    icon: {fileID: 0}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  upgradeAttackRate:
-    name: Attack Rate
-    icon: {fileID: 0}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  upgradeAttackRange:
-    name: Range
-    icon: {fileID: 0}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
 --- !u!114 &511791635737475232
 MonoBehaviour:
   m_ObjectHideFlags: 0

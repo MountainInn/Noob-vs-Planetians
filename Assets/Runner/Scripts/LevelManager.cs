@@ -29,7 +29,6 @@ namespace HyperCasual.Runner
 
                 if (m_LevelDefinition != null && PlayerController.Instance != null)
                 {
-                    PlayerController.Instance.SetMaxXPosition(m_LevelDefinition.LevelWidth);
                 }
             }
         }

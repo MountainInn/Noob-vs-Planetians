@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Chunk : MonoBehaviour
 {
@@ -22,4 +25,22 @@ public class Chunk : MonoBehaviour
         if (!(coll.bounds.size.z == 0))
             length = coll.bounds.size.z;
     }
+
+    static public Chunk InstantiateChunk(float zPosition, Object prefabChunk)
+    {
+        Chunk newChunk;
+
+#if UNITY_EDITOR
+        newChunk = (Chunk)PrefabUtility.InstantiatePrefab(prefabChunk, null);
+        newChunk.transform.position = Vector3.zero.WithZ(zPosition);
+        newChunk.transform.rotation = Quaternion.identity;
+#else
+        newStartChunk = Instantiate(startChunk,
+                                    Vector3.zero.WithZ(zPosition),
+                                    Quaternion.identity,
+                                    null);
+#endif
+        return newChunk;
+    }
+
 }

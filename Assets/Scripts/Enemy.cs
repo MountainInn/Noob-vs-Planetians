@@ -17,12 +17,17 @@ public class Enemy : Spawnable
     [Space]
     [SerializeField] TextMeshPro healthLabel;
 
+
     public Health health;
     public Damage damage;
+
+    Collider col;
 
     protected override void Awake()
     {
         base.Awake();
+
+        col = GetComponent<Collider>();
 
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
@@ -50,7 +55,7 @@ public class Enemy : Spawnable
     public void __ReactOnDamage() => ReactOnDamage();
     public void ReactOnDamage()
     {
-        PSMobDamaged.instance.Fire(transform.position);
+        PSMobDamaged.instance.Fire(col.bounds.center, 3);
     }
 
     public void __ActivateRagdoll() => ActivateRagdoll(true);

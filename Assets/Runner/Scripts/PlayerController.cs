@@ -114,8 +114,6 @@ namespace HyperCasual.Runner
 
             s_Instance = this;
 
-            SetMaxXPosition(20);
-
             Initialize();
         }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1021949262770465885}
   - component: {fileID: 817768811790563833}
+  - component: {fileID: 7543757207440390361}
   m_Layer: 10
   m_Name: Gate_Damage Big
   m_TagString: Untagged
@@ -51,13 +52,37 @@ MonoBehaviour:
   m_SnapToGrid: 1
   onPlayerEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 817768811790563833}
+        m_TargetAssemblyTypeName: Gate, MyScripts
+        m_MethodName: __ActivateGate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onEnemyEnter:
     m_PersistentCalls:
       m_Calls: []
   onBulletEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 817768811790563833}
+        m_TargetAssemblyTypeName: Gate, MyScripts
+        m_MethodName: __IncreaseBonus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onOtherEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -70,6 +95,19 @@ MonoBehaviour:
   labelIncrement: {fileID: 7054953240803746697}
   labelTotalValue: {fileID: 2839673960529044872}
   sprite: {fileID: 0}
+--- !u!65 &7543757207440390361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314387739941697089}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.09, y: 3, z: 0.48}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1282791181104469815
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 123
+  m_text: 32323
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -452,8 +490,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.45
-  m_fontSizeBase: 6
+  m_fontSize: 13.9
+  m_fontSizeBase: 23.55
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 13.9
@@ -468,7 +506,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -763,7 +801,6 @@ GameObject:
   - component: {fileID: 8798415679243141967}
   - component: {fileID: 1573628910746853766}
   - component: {fileID: 137418149268293597}
-  - component: {fileID: 295842883069054812}
   m_Layer: 10
   m_Name: Gate
   m_TagString: Untagged
@@ -838,16 +875,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &295842883069054812
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8213422365599137651}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

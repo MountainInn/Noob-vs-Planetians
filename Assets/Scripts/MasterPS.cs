@@ -10,7 +10,7 @@ public class MasterPS : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
     }
 
-    public void Fire(Vector3 position)
+    public void Fire(Vector3 position, int amount)
     {
         ParticleSystem.EmitParams emitParams = new ()
         {
@@ -20,6 +20,6 @@ public class MasterPS : MonoBehaviour
             rotation3D = new Vector3(0, 0, 0),
         };
 
-        ps.Emit(emitParams, 6);
+        ps.Emit(emitParams, amount);
     }
 }

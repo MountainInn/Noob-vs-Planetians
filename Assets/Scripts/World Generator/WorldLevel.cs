@@ -30,10 +30,7 @@ public class WorldLevel : MonoBehaviour
 
         float zPosition = 0;
 
-        var newStartChunk = Instantiate(startChunk,
-                                        Vector3.zero.WithZ(zPosition),
-                                        Quaternion.identity,
-                                        null);
+        Chunk newStartChunk = Chunk.InstantiateChunk(zPosition, startChunk);
 
         zPosition += newStartChunk.length / 2;
 
@@ -43,12 +40,11 @@ public class WorldLevel : MonoBehaviour
             zPosition = item.Generate(zPosition);
         }
 
-        var newFinishChunk = Instantiate(finishChunk,
-                                         Vector3.zero.WithZ(zPosition + finishChunk.length / 2),
-                                         Quaternion.identity,
-                                         null);
+        Chunk newFinishChunk = Chunk.InstantiateChunk(zPosition + finishChunk.length / 2,
+                                                      finishChunk);
 
         spawnedChunks.Add(newStartChunk);
         spawnedChunks.Add(newFinishChunk);
     }
+
 }

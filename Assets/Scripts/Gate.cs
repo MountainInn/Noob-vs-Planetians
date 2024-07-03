@@ -58,6 +58,7 @@ public class Gate : InteractiveCollider
 
         labelType.text = $"{System.Enum.GetName(typeof(GateType), m_GateType)}";
         labelIncrement.text = $"{incrementPerHit:^#;v#;~#}";
+        labelTotalValue.text = $"{totalValue}";
 
         initialScale = transform.localScale;
     }
@@ -71,16 +72,15 @@ public class Gate : InteractiveCollider
 
         labelTotalValue.text = $"{totalValue}";
 
-        punchScaleTween?.Kill();
+        // punchScaleTween?.Kill();
         punchScaleTween =
             transform
-            .DOPunchScale(Vector3.one * .1f, .2f)
-            .OnKill(() => transform.localScale = initialScale);
+            .DOPunchScale(Vector3.one * .1f, .2f);
     }
 
     enum GateType {
-        DamageBonus, AttackRate, Range
-    }
+            DamageBonus, AttackRate, Range
+        }
 
     public void __ActivateGate() => ActivateGate();
     public void ActivateGate()

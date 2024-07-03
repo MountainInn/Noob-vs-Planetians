@@ -116,6 +116,8 @@ namespace HyperCasual.Runner
             LevelDefinition.SpawnableObject[] spawnables =
                 worldLevel
                 .GetComponentsInChildren<Spawnable>()
+                .GroupBy(sp => sp.gameObject)
+                .Select(gr => gr.First())
                 .Select(sp => new LevelDefinition.SpawnableObject()
                 {
                     Position = sp.transform.position,
@@ -234,7 +236,7 @@ namespace HyperCasual.Runner
                 Spawnable spawnable = go.GetComponent<Spawnable>();
                 if (spawnable != null)
                 {
-                    spawnable.SetBaseColor(spawnableObject.BaseColor);
+                    // spawnable.SetBaseColor(spawnableObject.BaseColor);
                     spawnable.SetScale(scale);
                     levelManager.AddSpawnable(spawnable);
                 }

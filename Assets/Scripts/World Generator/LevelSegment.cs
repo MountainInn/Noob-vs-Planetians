@@ -33,22 +33,16 @@ public class LevelSegment : MonoBehaviour
             .Shuffle()
             .TakeWhile(ch => (currentLength += ch.length) <= length);
 
-        Vector3 position = default;
-        position.z = zPosition;
-
         foreach (var item in rolledChunks)
         {
-            var newChunk = Instantiate(item,
-                                       position.AddZ(item.length / 2f),
-                                       Quaternion.identity,
-                                       null);
+            var newChunk = Chunk.InstantiateChunk(zPosition + item.length / 2, item);
 
             spawnedChunks.Add(newChunk);
 
-            position.z += item.length;
+            zPosition += item.length;
         }
 
-        return position.z;
+        return zPosition;
     }
 
     public void ClearChunks()

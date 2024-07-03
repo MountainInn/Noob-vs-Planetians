@@ -199,6 +199,8 @@ public class Flow : MonoBehaviour
 
         GameManager.Instance.LoadLevel(wLevel);
 
+        PlayerController.Instance.SetMaxXPosition(20);
+
         return Branch.Preparation;
     }
 

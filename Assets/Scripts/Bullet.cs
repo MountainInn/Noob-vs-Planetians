@@ -5,6 +5,7 @@ using HyperCasual.Core;
 using HyperCasual.Gameplay;
 using Zenject;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(Damage))]
@@ -48,7 +49,7 @@ public class Bullet : MonoBehaviour
     {
         onTriggerEnter?.Invoke();
        
-        ImpactPS.instance.Fire(transform.position);
+        ImpactPS.instance.Fire(transform.position, 6);
 
         Despawn();
     }
@@ -68,8 +69,6 @@ public class Bullet : MonoBehaviour
         {
             item.transform.position = muzzle.position;
             item.transform.forward = Vector3.forward;
-
-            base.Reinitialize(gun, muzzle, item);
 
             item.Initialize(gun.totalDamage, gun.totalRange, gun.bulletSpeed);
         }
