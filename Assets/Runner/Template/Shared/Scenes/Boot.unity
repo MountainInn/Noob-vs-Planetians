@@ -295,6 +295,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1510556316337615326, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577752678506871781, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.000002861023
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577752678506871781, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2404344050537117818, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
       propertyPath: m_RootOrder
@@ -900,6 +915,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8567625337810541133, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8701068580347915586, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1073,7 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeExpirience:
     name: Weapon Expirience
-    icon: {fileID: 0}
+    icon: {fileID: 215305511, guid: 436aafd9c91e7224cb28faa2d4e4ed71, type: 3}
     price:
       currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
       cost:

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a8ae928f0312794daa404428d8da8f6, type: 3}
-  m_Name: Star Currency
+  m_Name: Gold Currency
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5d7a6f610963b490f85be6688b1c68db, type: 3}
+  sprite: {fileID: 21300000, guid: 53a92cf01a86841748c10bd35fd2e74a, type: 3}
   value:
     value: 12
