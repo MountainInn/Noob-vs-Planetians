@@ -43,6 +43,8 @@ namespace HyperCasual.Runner
         [SerializeField]
         bool m_AutoMoveForward = true;
 
+        [SerializeField] public bool enableMovement = true;
+
         Vector3 m_LastPosition;
         float m_StartHeight;
 
@@ -111,6 +113,8 @@ namespace HyperCasual.Runner
             }
 
             s_Instance = this;
+
+            SetMaxXPosition(20);
 
             Initialize();
         }
@@ -267,6 +271,9 @@ namespace HyperCasual.Runner
                 m_Scale = Vector3.Lerp(m_Scale, m_TargetScale, deltaTime * m_ScaleVelocity);
                 m_Transform.localScale = m_Scale;
             }
+
+            if (!enableMovement)
+                return;
 
             // Update Speed
 

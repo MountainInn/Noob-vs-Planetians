@@ -24,12 +24,17 @@ namespace HyperCasual.Core
 
         readonly Stack<View> m_History = new ();
 
-        void Start()
+        public void Initialize()
         {
             m_Views = m_Root
                 .GetComponentsInChildren<View>(true)
                 .Concat(externalViews)
                 .ToList();
+
+            foreach (var item in m_Views)
+            {
+                item.Initialize();
+            }
 
             Init();
             

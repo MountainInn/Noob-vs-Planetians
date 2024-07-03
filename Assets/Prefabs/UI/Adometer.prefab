@@ -131,8 +131,8 @@ MonoBehaviour:
   endingAngle: 180
   rotationSpeed: 60
   numberOfZones: 5
-  scale: {fileID: 0}
-  arrow: {fileID: 0}
+  scale: {fileID: 8701068580615240890}
+  arrow: {fileID: 8701068581449616910}
   labelCurrentMultiplier: {fileID: 0}
 --- !u!1 &8701068581449616908
 GameObject:

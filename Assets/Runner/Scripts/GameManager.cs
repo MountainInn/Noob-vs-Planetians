@@ -27,6 +27,7 @@ namespace HyperCasual.Runner
         [Space]
         [SerializeField] public UnityEvent onWin;
         [SerializeField] public UnityEvent onLose;
+        [SerializeField] public UnityEvent onRetry;
         [SerializeField] public UnityEvent onStartGame;
 
         public LevelDefinition m_CurrentLevel;
@@ -156,8 +157,6 @@ namespace HyperCasual.Runner
 #endif
                 }
             }
-
-            PlayerController.Instance.SetMaxXPosition(20);
         }
 
 
@@ -354,16 +353,17 @@ namespace HyperCasual.Runner
             onWin?.Invoke();
         }
 
-        public void Lose()
+        public void Retry()
         {
             m_LoseEvent.Raise();
 
-#if UNITY_EDITOR
-            if (m_LevelEditorMode)
-            {
-                ResetLevel();
-            }
-#endif
+            ResetLevel();
+
+            onRetry?.Invoke();
+        }
+
+        public void Lose()
+        {
             onLose?.Invoke();
         }
     }

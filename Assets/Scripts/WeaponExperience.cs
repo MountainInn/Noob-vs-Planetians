@@ -16,10 +16,11 @@ public class WeaponExperience : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent onNewWeaponUnlocked;
 
-    int exp,
-        lastWeaponIndex = -1;
+    int lastWeaponIndex = -1;
 
     [HideInInspector] public Volume expVolume = new();
+
+    StackedNumber expirience = new(0);
 
     public (Sprite, Sprite) GetWeaponSprites()
     {
@@ -29,7 +30,7 @@ public class WeaponExperience : MonoBehaviour
    
     void Awake()
     {
-        upgradeExpirience.Inject(OnLevelUp);
+        upgradeExpirience.Inject(expirience, l => l);
     }
 
     void OnEnable()
@@ -44,14 +45,13 @@ public class WeaponExperience : MonoBehaviour
 
     void OnLevelUp(int l)
     {
-        exp = l;
-        expVolume.current.Value = exp;
+        expVolume.current.Value = expirience.AsFloorInt();
 
         int cacheLastWeaponIndex = lastWeaponIndex;
 
         lastWeaponIndex =
             fields
-            .FindLastIndex(f => f.expirience <= exp);
+            .FindLastIndex(f => f.expirience <= expirience.AsFloorInt());
 
         if (lastWeaponIndex == -1)
             lastWeaponIndex = 0;
@@ -71,7 +71,7 @@ public class WeaponExperience : MonoBehaviour
 
     void Save()
     {
-        YandexGame.savesData.weaponExpirience = exp;
+        YandexGame.savesData.weaponExpirience = expirience.AsFloorInt();
         YandexGame.savesData.lastWeaponIndex = lastWeaponIndex;
 
         YandexGame.SaveProgress();
@@ -79,10 +79,11 @@ public class WeaponExperience : MonoBehaviour
 
     void Load()
     {
-        exp = YandexGame.savesData.weaponExpirience;
+        upgradeExpirience.level.ware.SetLevel(YandexGame.savesData.weaponExpirience);
+
         lastWeaponIndex = YandexGame.savesData.lastWeaponIndex;
 
-        OnLevelUp(exp);
+        OnLevelUp(expirience.AsFloorInt());
     }
 
 

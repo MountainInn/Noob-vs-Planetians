@@ -9,7 +9,11 @@
         "UnityEngine.UI",
         "DOTween.Modules",
         "YandexGames",
-        "Extensions"
+        "Extensions",
+        "UniTask",
+        "UniTask.Linq",
+        "UniTask.TextMeshPro",
+        "WorldLevelGeneration"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

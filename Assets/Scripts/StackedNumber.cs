@@ -11,7 +11,7 @@ public class StackedNumber
 
     public Action onRecalculated;
    
-    [HideInInspector] public FloatReactiveProperty result;
+    [HideInInspector] public FloatReactiveProperty result = new();
 
     Dictionary<string, float> multipliers = new();
     Dictionary<string, float> addends = new();

@@ -28,6 +28,8 @@ public class GunBelt : MonoBehaviour
         gun.transform.SetParent(transform);
         gun.transform.forward = Vector3.forward;
 
+        gun.Initialize();
+
         gun.ToggleShooting(true);
 
         angleStep = 360 / guns.Count;

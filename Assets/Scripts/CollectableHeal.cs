@@ -16,7 +16,7 @@ public class CollectableHeal : HyperCasual.Runner.Collectable, ICollectable
 
     public void AddGun()
     {
-        healing.Heal(PlayerCharacter.instance.mortal);
+        healing.Heal(PlayerCharacter.instance.health);
 
         GameObject.Destroy(gameObject);
     }

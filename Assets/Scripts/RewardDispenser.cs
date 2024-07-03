@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using YG;
 
 public class RewardDispenser : MonoBehaviour
@@ -7,10 +8,12 @@ public class RewardDispenser : MonoBehaviour
     static public RewardDispenser instance => _inst ??= FindObjectOfType<RewardDispenser>();
     static RewardDispenser _inst;
 
+    [SerializeField] public UnityEvent onClaimX5;
+    [SerializeField] public UnityEvent onResurrect;
+
     const int MONEY_MULTIPLIER = 0;
     const int FREE_UPGRADE = 1;
-
-    public event Action onClaimX5;
+    const int RESURRECT = 2;
 
     int multiplier;
 
@@ -35,19 +38,30 @@ public class RewardDispenser : MonoBehaviour
         YandexGame.RewVideoShow(MONEY_MULTIPLIER);
     }
 
+    public void ShowResurrect()
+    {
+        YandexGame.RewVideoShow(RESURRECT);
+    }
+
     void Dispense(int rewardId)
     {
         switch (rewardId)
         {
             case MONEY_MULTIPLIER:
 
-                onClaimX5?.Invoke();
+                onClaimX5.Invoke();
 
                 break;
 
             case FREE_UPGRADE:
 
                 OnFreeUpgrade();
+
+                break;
+
+            case RESURRECT:
+
+                onResurrect.Invoke();
 
                 break;
 

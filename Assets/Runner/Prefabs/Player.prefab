@@ -60,6 +60,7 @@ MonoBehaviour:
   m_HorizontalSpeedFactor: 0.8
   m_ScaleVelocity: 2
   m_AutoMoveForward: 1
+  enableMovement: 1
 --- !u!136 &8475646709700121470
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ MonoBehaviour:
   onSufferPS: {fileID: 0}
   gunSlot: {fileID: 6970419749310679498}
   rb: {fileID: 2926604082106359834}
-  mortal: {fileID: 511791635737475232}
+  health: {fileID: 0}
   damage: {fileID: 5568838679517214165}
   attackRate:
     initial: 0
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196eab9b9ed1baf4498e83ea60f86cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 10
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    initial: 0
+    initial: 1
     result:
       value: 0
   onDoDamage:

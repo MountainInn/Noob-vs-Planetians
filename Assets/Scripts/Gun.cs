@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using UniRx;
+using Cysharp.Threading.Tasks;
 
 public class Gun : MonoBehaviour
 {
@@ -20,11 +21,21 @@ public class Gun : MonoBehaviour
 
     public int totalDamage, totalRange;
 
+    void Awake()
+    {
+        attackTimer = new Volume(0, 1);
+    }
+
     void Start()
     {
-        player = PlayerCharacter.instance;
+        player = GetComponentInParent<PlayerCharacter>();
 
-        attackTimer = new Volume(0, 1);
+        if (player)
+            Initialize();
+    }
+
+    public void Initialize()
+    {
 
         Observable
             .CombineLatest(player.attackRate.result, rate,
@@ -50,7 +61,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (isShooting && attackTimer.Tick())
+        if (player != null && isShooting && attackTimer.Tick())
         {
             Fire();
         }

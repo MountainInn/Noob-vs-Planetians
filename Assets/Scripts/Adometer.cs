@@ -55,7 +55,7 @@ public class Adometer : MonoBehaviour
             .DOLocalRotate(new Vector3(0, 0, endingAngle), rotationSpeed)
             .SetSpeedBased(true)
             .SetLoops(-1, LoopType.Yoyo)
-            .OnUpdate(() => labelCurrentMultiplier.text = $"{GetCurrentMultiplier()}");
+            .OnUpdate(() => labelCurrentMultiplier.text = $"Get x{GetCurrentMultiplier()}!");
     }
 
     void OnDisable()

@@ -1,11 +1,13 @@
 using HyperCasual.Runner;
 using UnityEngine;
 using TMPro;
+using System;
+using UniRx;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Damage))]
 [RequireComponent(typeof(Ragdoll))]
-public class Enemy : MonoBehaviour
+public class Enemy : Spawnable
 {
     [Space]
     [SerializeField] Animator animator;
@@ -18,10 +20,17 @@ public class Enemy : MonoBehaviour
     public Health health;
     public Damage damage;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
+
+        health.Value
+            .current
+            .Subscribe(cur => healthLabel.text = $"{cur}")
+            .AddTo(this);
 
         if (startRunning)
             animator.SetTrigger("run");
@@ -29,18 +38,25 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("idle");
     }
 
+    public override void ResetSpawnable()
+    {
+        ragdoll.Activate(false);
+
+        transform.position = SavedPosition;
+
+        health.Value.Refill();
+    }
+
     public void __ReactOnDamage() => ReactOnDamage();
     public void ReactOnDamage()
     {
-        healthLabel.text = $"{health.Value.current}";
-
         PSMobDamaged.instance.Fire(transform.position);
     }
 
-    public void __ActivateRagdoll() => ActivateRagdoll();
-    public void ActivateRagdoll()
+    public void __ActivateRagdoll() => ActivateRagdoll(true);
+    public void ActivateRagdoll(bool toggle)
     {
-        animator.enabled = false;
-        ragdoll.Activate(true);
+        ragdoll.Activate(toggle);
+        animator.enabled = !toggle;
     }
 }

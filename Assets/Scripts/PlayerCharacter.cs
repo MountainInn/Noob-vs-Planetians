@@ -8,8 +8,13 @@ using YG;
 [RequireComponent(typeof(Damage))]
 public class PlayerCharacter : MonoBehaviour
 {
-    static public PlayerCharacter instance => _inst ??= FindObjectOfType<PlayerCharacter>();
+    static public PlayerCharacter instance => _inst;
     static PlayerCharacter _inst;
+
+    PlayerCharacter()
+    {
+        _inst = this;
+    }
 
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
@@ -17,7 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] public GunSlot gunSlot;
 
     public Rigidbody rb;
-    public Health mortal;
+    public Health health;
     public Damage damage;
     public StackedNumber attackRate;
     public StackedNumber attackRange;
@@ -32,7 +37,7 @@ public class PlayerCharacter : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        mortal = GetComponent<Health>();
+        health = GetComponent<Health>();
         damage = GetComponent<Damage>();
 
         // upgradeHealth   .Inject(mortal.Value,   l => {  });
@@ -48,6 +53,16 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         gunSlot.GetFirstActive().ToggleShooting(true);
+
+        health.Value.ObserveEmpty()
+            .Subscribe(b =>
+            {
+                if (b)
+                    Die();
+            })
+            .AddTo(this);
+
+        FullStop();
     }
 
     void OnEnable()
@@ -60,10 +75,30 @@ public class PlayerCharacter : MonoBehaviour
         YandexGame.GetDataEvent -= Load;
     }
 
-
     public void Die()
     {
+        FullStop();
+
         GameManager.Instance.Lose();
+    }
+
+    public void FullStop()
+    {
+        gunSlot.GetFirstActive().ToggleShooting(false);
+
+        PlayerController.Instance.enableMovement = false;
+    }
+
+    public void Ressurect()
+    {
+        FullForward();
+    }
+
+    public void FullForward()
+    {
+        gunSlot.GetFirstActive().ToggleShooting(true);
+
+        PlayerController.Instance.enableMovement = true;
     }
 
     void OnApplicationQuit()

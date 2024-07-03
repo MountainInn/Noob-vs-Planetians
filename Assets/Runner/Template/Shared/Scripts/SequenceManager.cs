@@ -49,12 +49,12 @@ namespace HyperCasual.Gameplay
             
             InstantiatePreloadedAssets();
 
-            m_SplashScreenState = new State(ShowUI<SplashScreen>);
-            m_StateMachine.Run(m_SplashScreenState);
-            
-            CreateMenuNavigationSequence();
-            CreateLevelSequences();
-            SetStartingLevel(0);
+            // m_SplashScreenState = new State(ShowUI<SplashScreen>);
+            // m_StateMachine.Run(m_SplashScreenState);
+
+            // CreateMenuNavigationSequence();
+            // CreateLevelSequences();
+            // SetStartingLevel(0);
         }
 
         void InstantiatePreloadedAssets()
