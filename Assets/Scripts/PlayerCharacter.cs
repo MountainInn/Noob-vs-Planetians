@@ -10,16 +10,13 @@ public class PlayerCharacter : MonoBehaviour
 {
     static public PlayerCharacter instance => _inst;
     static PlayerCharacter _inst;
-
-    PlayerCharacter()
-    {
-        _inst = this;
-    }
+    PlayerCharacter() { _inst = this; }
 
     [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
     [Space]
     [SerializeField] public GunSlot gunSlot;
+    [SerializeField] public GunBelt gunBelt;
 
     public Rigidbody rb;
     public Health health;
@@ -52,8 +49,6 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
-        gunSlot.GetFirstActive().ToggleShooting(true);
-
         health.Value.ObserveEmpty()
             .Subscribe(b =>
             {
@@ -61,6 +56,9 @@ public class PlayerCharacter : MonoBehaviour
                     Die();
             })
             .AddTo(this);
+
+        FindObjectsOfType<Gun>()
+            .Map(g => g.Initialize(this));
 
         FullStop();
     }
@@ -85,6 +83,7 @@ public class PlayerCharacter : MonoBehaviour
     public void FullStop()
     {
         gunSlot.GetFirstActive().ToggleShooting(false);
+        gunBelt.ToggleShooting(false);
 
         PlayerController.Instance.enableMovement = false;
     }
@@ -97,6 +96,7 @@ public class PlayerCharacter : MonoBehaviour
     public void FullForward()
     {
         gunSlot.GetFirstActive().ToggleShooting(true);
+        gunBelt.ToggleShooting(true);
 
         PlayerController.Instance.enableMovement = true;
     }

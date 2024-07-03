@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class GunBelt : MonoBehaviour
 {
-    static public GunBelt instance => _inst ??= FindObjectOfType<GunBelt>();
+    static public GunBelt instance => _inst;
     static GunBelt _inst;
+    GunBelt() { _inst = this; }
 
     [SerializeField] [Min(1)] float radius;
     [SerializeField] float rotationAnglePerSecond = 60;
@@ -21,14 +22,19 @@ public class GunBelt : MonoBehaviour
             Add(item);
     }
 
+    public void ToggleShooting(bool toggle)
+    {
+        foreach (var item in guns)
+            item.ToggleShooting(toggle);
+    }
+
     public void Add(Gun gun)
     {
         guns.Add(gun);
 
         gun.transform.SetParent(transform);
         gun.transform.forward = Vector3.forward;
-
-        gun.Initialize();
+        gun.transform.localScale = Vector3.one;
 
         gun.ToggleShooting(true);
 

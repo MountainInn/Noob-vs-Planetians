@@ -26,16 +26,9 @@ public class Gun : MonoBehaviour
         attackTimer = new Volume(0, 1);
     }
 
-    void Start()
+    public void Initialize(PlayerCharacter playerCharacter)
     {
-        player = GetComponentInParent<PlayerCharacter>();
-
-        if (player)
-            Initialize();
-    }
-
-    public void Initialize()
-    {
+        player = playerCharacter;
 
         Observable
             .CombineLatest(player.attackRate.result, rate,
