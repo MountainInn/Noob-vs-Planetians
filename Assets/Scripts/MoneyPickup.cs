@@ -12,6 +12,6 @@ public class MoneyPickup : MonoBehaviour
     {
         MoneyCache.instance.Add(amount);
 
-        MoneyPickupPS.instance.Fire(particleOrigin.position, 7);
+        MoneyPS.instance.Fire(particleOrigin.position, 7);
     }
 }

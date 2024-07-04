@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UniRx;
+using DG.Tweening;
 
 public class CurrencyView : MonoBehaviour
 {
@@ -53,10 +54,38 @@ public class CurrencyView : MonoBehaviour
     {
         Init(currency);
 
-        currency.value
-            .Subscribe(v => label.text = currency.value.Value.ToString())
+        currency
+            .ObservePair()
+            .Subscribe(p =>
+            {
+                int newCoins = p.Previous + p.Current;
+
+                DoPunchCounter(p.Previous, newCoins);
+
+                label.text = newCoins.ToString();
+            })
             .AddTo(disposables);
     }
+
+    Tween punchTween;
+    void DoPunchCounter(int prevCoins, int newCoins)
+    {
+        float duration = .75f;
+
+        DOVirtual.Int(prevCoins, newCoins, duration,
+                      (val) => {
+                          label.text = $"{val}";
+                      }
+        );
+        // .OnComplete(() => GameState.Instance.LoadNextLevel());
+
+        if (punchTween == null)
+            punchTween =
+                transform
+                .DOPunchScale(transform.lossyScale * 1.05f, duration / 4)
+                .OnKill(() => punchTween = null);
+    }
+
 
     public void InitAndSubscribe(Price price)
     {

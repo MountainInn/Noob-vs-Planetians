@@ -31,7 +31,7 @@ public class RewardDispenser : MonoBehaviour
         YandexGame.RewVideoShow(FREE_UPGRADE);
     }
 
-    public void ShowMoneyX5()
+    public void ShowMoneyMult()
     {
         multiplier = Adometer.instance.StopArrow();
 
@@ -48,6 +48,8 @@ public class RewardDispenser : MonoBehaviour
         switch (rewardId)
         {
             case MONEY_MULTIPLIER:
+
+                MoneyCache.instance.Multiply(multiplier);
 
                 onClaimX5.Invoke();
 

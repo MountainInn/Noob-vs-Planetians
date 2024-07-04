@@ -136,7 +136,7 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> MultiplyMoney()
     {
-        RewardDispenser.instance.ShowMoneyX5();
+        RewardDispenser.instance.ShowMoneyMult();
 
         await RewardDispenser.instance.onClaimX5.OnInvokeAsync(onAppQuitCancellation.Token);
 
@@ -147,6 +147,8 @@ public class Flow : MonoBehaviour
     {
         levelCount++;
         currentLevelIndex++;
+
+        MoneyCache.instance.Claim();
 
         return Branch.StartLoadingLevel;
     }

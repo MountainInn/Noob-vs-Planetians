@@ -25,8 +25,12 @@ public class Currency : ScriptableObject
     public IObservable<int> ObserveChange()
     {
         return
-            value
-            .Pairwise()
+            ObservePair()
             .Select(pair => pair.Current - pair.Previous);
+    }
+
+    public IObservable<Pair<int>> ObservePair()
+    {
+        return value.Pairwise();
     }
 }
