@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ea024531d8ccf45ab588347b987977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHealPS: {fileID: 0}
   onSufferPS: {fileID: 0}
   gunSlot: {fileID: 6970419749310679498}
   gunBelt: {fileID: 5299518380038920869}

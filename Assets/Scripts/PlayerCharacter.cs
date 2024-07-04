@@ -12,7 +12,6 @@ public class PlayerCharacter : MonoBehaviour
     static PlayerCharacter _inst;
     PlayerCharacter() { _inst = this; }
 
-    [SerializeField] ParticleSystem onHealPS;
     [SerializeField] ParticleSystem onSufferPS;
     [Space]
     [SerializeField] public GunSlot gunSlot;
@@ -36,6 +35,8 @@ public class PlayerCharacter : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
+
+        health.onHeal.AddListener(() => HealthPickupPS.instance.Fire(transform.position, 5));
 
         // upgradeHealth   .Inject(mortal.Value,   l => {  });
         upgradeDamage      .Inject(damage.Value,   l => l * 10);

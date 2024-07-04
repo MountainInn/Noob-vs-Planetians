@@ -5,9 +5,9 @@ public class Health : MonoBehaviour
 {
     [SerializeField] [Min(1)] int maxHealth;
     [Space]
-    [SerializeField] UnityEvent onHeal;
-    [SerializeField] UnityEvent onTakeDamage;
-    [SerializeField] UnityEvent onDie;
+    [SerializeField] public UnityEvent onHeal;
+    [SerializeField] public UnityEvent onTakeDamage;
+    [SerializeField] public UnityEvent onDie;
 
     [HideInInspector] public Volume Value;
 
