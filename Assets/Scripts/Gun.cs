@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 using System;
 using UniRx;
@@ -13,13 +14,15 @@ public class Gun : MonoBehaviour
     [Space]
     [SerializeField] Transform muzzle;
     [SerializeField] ParticleSystem muzzleFlaresPS;
+    [Space]
+    [SerializeField] UnityEvent onShot;
 
     Volume attackTimer;
     bool isShooting;
 
     PlayerCharacter player;
 
-    public int totalDamage, totalRange;
+    [HideInInspector] public int totalDamage, totalRange;
 
     void Awake()
     {
@@ -65,6 +68,8 @@ public class Gun : MonoBehaviour
         Bullet bullet = PoolUser.instance.bulletPool.Spawn(this, muzzle);
 
         muzzleFlaresPS.Play();
+
+        onShot?.Invoke();
     }
 
     public void ToggleShooting(bool toggle)

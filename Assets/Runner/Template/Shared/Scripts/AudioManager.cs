@@ -137,14 +137,20 @@ namespace HyperCasual.Runner
             m_MusicSource.Stop();
         }
 
-        void PlayEffect(AudioClip audioClip)
+        public void PlayEffect(AudioClip audioClip)
+        {
+            PlayEffect(audioClip, 1);
+        }
+
+        public void PlayEffect(AudioClip audioClip, float volume)
         {
             if (Time.time - m_LastSoundPlayTime >= m_MinSoundInterval)
             {
-                m_EffectSource.PlayOneShot(audioClip);
+                m_EffectSource.PlayOneShot(audioClip, volume);
                 m_LastSoundPlayTime = Time.time;
             }
         }
+
 
         /// <summary>
         /// Play a sound effect based on its sound ID

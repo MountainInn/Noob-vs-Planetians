@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2158135945352695543}
   - component: {fileID: 2158135945352695536}
+  - component: {fileID: 4756170267371493226}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -55,8 +56,42 @@ MonoBehaviour:
   bulletSpeed: 25
   muzzle: {fileID: 522062383957006968}
   muzzleFlaresPS: {fileID: 522062383957006974}
+  onShot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4756170267371493226}
+        m_TargetAssemblyTypeName: MyAudioSource, MyScripts
+        m_MethodName: __PlayRandom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   totalDamage: 0
   totalRange: 0
+--- !u!114 &4756170267371493226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158135945352695537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0.6
+  clips:
+  - {fileID: 8300000, guid: db2ab44fffa42cf4188168f7955d6c78, type: 3}
+  - {fileID: 8300000, guid: b06bce481e4a2404a9a2ca3c79782d85, type: 3}
+  - {fileID: 8300000, guid: 443d519e80fdfc942ae2f9229a5b2bea, type: 3}
+  - {fileID: 8300000, guid: 38db3cd162b0473458104c042c19d299, type: 3}
+  - {fileID: 8300000, guid: 9a57f0f628ce2d74fbb6d9199e342518, type: 3}
 --- !u!1 &2158135945869180077
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +326,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2158135945352695543}
     m_Modifications:
+    - target: {fileID: 5110433210195138136, guid: ca249a8508407fd4fb57bd06ca36f52c,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110433210195138136, guid: ca249a8508407fd4fb57bd06ca36f52c,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5110433210195138141, guid: ca249a8508407fd4fb57bd06ca36f52c,
         type: 3}
       propertyPath: m_Name
@@ -304,17 +349,17 @@ PrefabInstance:
     - target: {fileID: 5110433210195138142, guid: ca249a8508407fd4fb57bd06ca36f52c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.13799997
+      value: 0.414
       objectReference: {fileID: 0}
     - target: {fileID: 5110433210195138142, guid: ca249a8508407fd4fb57bd06ca36f52c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.13799997
+      value: 0.414
       objectReference: {fileID: 0}
     - target: {fileID: 5110433210195138142, guid: ca249a8508407fd4fb57bd06ca36f52c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.13799997
+      value: 0.414
       objectReference: {fileID: 0}
     - target: {fileID: 5110433210195138142, guid: ca249a8508407fd4fb57bd06ca36f52c,
         type: 3}
