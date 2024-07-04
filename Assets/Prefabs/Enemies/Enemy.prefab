@@ -262,6 +262,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -2407357994118021857}
+        m_TargetAssemblyTypeName: Creator, MyScripts
+        m_MethodName: __Create
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Value:
     _current:
       value: 0
@@ -435,7 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d864b9c3b42794faf3c44c6b26a155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToCreate: {fileID: 0}
+  objectToCreate: {fileID: 1943025365244136953, guid: 62a5a637a3ced86488581ea2229af40f,
+    type: 3}
   onCreation:
     m_PersistentCalls:
       m_Calls: []

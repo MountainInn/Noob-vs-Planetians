@@ -19,9 +19,9 @@ public class MoneyCache : MonoBehaviour
         GameManager.Instance.onStartGame.AddListener(Clear);
     }
 
-    public void AddCoins(int obj)
+    public void Add(int amount)
     {
-        coinsOnThisLevel += obj;
+        coinsOnThisLevel += amount;
     }
 
     public void Multiply(int mult)

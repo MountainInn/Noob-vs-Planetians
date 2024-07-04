@@ -21,6 +21,9 @@ public class Health : MonoBehaviour
     public void __TakeDamage(Damage harm) => TakeDamage(harm);
     public void TakeDamage(Damage harm)
     {
+        if (Value.IsEmpty)
+            return;
+
         Value.Subtract(harm.Value.AsFloorInt());
 
         onTakeDamage?.Invoke();

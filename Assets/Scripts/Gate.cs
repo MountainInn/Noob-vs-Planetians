@@ -56,7 +56,6 @@ public class Gate : InteractiveCollider
 
         totalValue = startingValue;
 
-        labelType.text = $"{System.Enum.GetName(typeof(GateType), m_GateType)}";
         labelIncrement.text = $"{incrementPerHit:^#;v#;~#}";
         labelTotalValue.text = $"{totalValue}";
 
