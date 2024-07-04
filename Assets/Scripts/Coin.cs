@@ -7,7 +7,7 @@ public class Coin : MonoBehaviour, ICollectable
 
     public void AddGun()
     {
-        DataManager.Coins += amount;
+        MoneyCache.instance.TotalCoins += amount;
 
         CoinContainer.instance.OnCoinCollected(this);
     }

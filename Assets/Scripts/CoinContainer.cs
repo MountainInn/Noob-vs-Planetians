@@ -20,7 +20,7 @@ public class CoinContainer : MonoBehaviour
         //             1)
         //     .OnKill(() =>
         //     {
-        int prevCoins = DataManager.Coins;
+        int prevCoins = MoneyCache.instance.TotalCoins;
         int newCoins = prevCoins + coin.amount;
 
         DoTweenSelf(prevCoins, newCoins);

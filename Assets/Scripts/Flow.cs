@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class Flow : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class Flow : MonoBehaviour
     System.Threading.CancellationTokenSource onAppQuitCancellation = new CancellationTokenSource();
 
     SceneController sceneController;
-    int currentLevelIndex;
+    int
+        levelCount,
+        currentLevelIndex;
 
     enum Branch {
         Preparation,
@@ -26,6 +29,26 @@ public class Flow : MonoBehaviour
         Ressurect, Retry,
         Continue, MultiplyMoney,
         StartLoadingLevel
+    }
+
+    void OnEnable()
+    {
+        YandexGame.GetDataEvent += Load;
+    }
+    void OnDisable()
+    {
+        YandexGame.GetDataEvent -= Load;
+    }
+    void Save()
+    {
+        YandexGame.savesData.levelCount = levelCount;
+        YandexGame.savesData.currentLevelIndex = currentLevelIndex;
+        YandexGame.SaveProgress();
+    }
+    void Load()
+    {
+        levelCount = YandexGame.savesData.levelCount;
+        currentLevelIndex = YandexGame.savesData.currentLevelIndex;
     }
 
     void Awake()
@@ -122,7 +145,8 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> Continue()
     {
-        DataManager.SimpleLevelIndex++;
+        levelCount++;
+        currentLevelIndex++;
 
         return Branch.StartLoadingLevel;
     }
@@ -190,7 +214,7 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> LoadLevel()
     {
-        currentLevelIndex = DataManager.SimpleLevelIndex % levels.Length;
+        currentLevelIndex %= levels.Length;
 
         WorldLevel wLevel = levels[currentLevelIndex];
 

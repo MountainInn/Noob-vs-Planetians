@@ -1,17 +1,24 @@
 using HyperCasual.Runner;
 using UnityEngine;
+using YG;
 
 public class MoneyCache : MonoBehaviour
 {
-    static public MoneyCache instance => _inst ??= FindObjectOfType<MoneyCache>();
+    static public MoneyCache instance => _inst;
     static MoneyCache _inst;
+    MoneyCache(){ _inst = this; }
 
     [HideInInspector] public int coinsOnThisLevel;
 
-    public int TotalCoins
+    public int TotalCoins;
+
+    void OnEnable()
     {
-        get => DataManager.Coins;
-        set => DataManager.Coins = value;
+        YandexGame.GetDataEvent += Load;
+    }
+    void OnDisable()
+    {
+        YandexGame.GetDataEvent -= Load;
     }
 
     void Start()
@@ -43,5 +50,15 @@ public class MoneyCache : MonoBehaviour
     void Clear()
     {
         coinsOnThisLevel = 0;
+    }
+
+    void Save()
+    {
+        YandexGame.savesData.totalCoins = TotalCoins;
+        YandexGame.SaveProgress();
+    }
+    void Load()
+    {
+        TotalCoins = YandexGame.savesData.totalCoins;
     }
 }
