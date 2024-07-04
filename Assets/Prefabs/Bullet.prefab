@@ -105,7 +105,7 @@ MonoBehaviour:
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  force: 150
+  force: 500
   damage: {fileID: 2831550322338682978}
 --- !u!114 &2831550322338682978
 MonoBehaviour:

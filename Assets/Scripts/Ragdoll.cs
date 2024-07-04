@@ -9,6 +9,7 @@ public class Ragdoll : MonoBehaviour
     Collider[] boneColliders;
 
     Rigidbody parentRb;
+    Collider parentCollider;
 
     bool isToggled = false;
     Vector3 storedForce;
@@ -16,6 +17,7 @@ public class Ragdoll : MonoBehaviour
     void Awake()
     {
         parentRb = GetComponent<Rigidbody>();
+        parentCollider = GetComponent<Collider>();
 
         boneRbs =
             GetComponentsInChildren<Rigidbody>()
@@ -41,6 +43,8 @@ public class Ragdoll : MonoBehaviour
         {
             col.isTrigger = !toggle;
         }
+
+        parentCollider.enabled = !toggle;
 
         if (isToggled)
             root.AddForce(storedForce, ForceMode.Impulse);
