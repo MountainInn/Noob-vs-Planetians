@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] UnityEvent onTriggerEnter;
     [Space]
+    [SerializeField] public float force;
+    [Space]
     [SerializeField] public Damage damage;
 
     [Inject] Pool pool;

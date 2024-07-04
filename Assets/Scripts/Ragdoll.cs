@@ -3,23 +3,54 @@ using System.Linq;
 
 public class Ragdoll : MonoBehaviour
 {
-    Rigidbody[] bones;
+    [SerializeField] Rigidbody root;
+
+    Rigidbody[] boneRbs;
+    Collider[] boneColliders;
+
+    Rigidbody parentRb;
+
+    bool isToggled = false;
+    Vector3 storedForce;
 
     void Awake()
     {
-        Rigidbody parentRb = GetComponent<Rigidbody>();
+        parentRb = GetComponent<Rigidbody>();
 
-        bones =
+        boneRbs =
             GetComponentsInChildren<Rigidbody>()
+            .ToArray();
+
+        boneColliders =
+            boneRbs
             .Where(rb => rb != parentRb)
+            .Select(rb => rb.GetComponent<Collider>())
             .ToArray();
     }
 
     public void Activate(bool toggle)
     {
-        foreach (var item in bones)
+        isToggled = toggle;
+
+        foreach (var rb in boneRbs)
         {
-            item.isKinematic = toggle;
+            rb.isKinematic = !toggle;
         }
+
+        foreach (var col in boneColliders)
+        {
+            col.isTrigger = !toggle;
+        }
+
+        if (isToggled)
+            root.AddForce(storedForce, ForceMode.Impulse);
+    }
+
+    public void __StoreBulletForce(Bullet Bullet) => StoreBulletForce(Bullet);
+    public void StoreBulletForce(Bullet bullet)
+    {
+        storedForce =
+            (transform.position - bullet.transform.position)
+            .WithY(0).normalized * bullet.force;
     }
 }
