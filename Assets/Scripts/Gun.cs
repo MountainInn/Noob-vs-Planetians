@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     [SerializeField] UnityEvent onShot;
 
     Volume attackTimer;
-    bool isShooting;
+    public bool isShooting;
 
     PlayerCharacter player;
 

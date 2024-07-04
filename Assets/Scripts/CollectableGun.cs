@@ -1,16 +1,12 @@
 using UnityEngine;
 
-
-[RequireComponent(typeof(GunSlot))]
-public class CollectableGun : HyperCasual.Runner.Collectable, ICollectable
+public class CollectableGun : MonoBehaviour
 {
     Gun gun;
 
-    override protected void Awake()
+    void Awake()
     {
-        base.Awake();
-
-        gun = GetComponent<GunSlot>().RandomEquip();
+        gun = GetComponentInChildren<GunSlot>().RandomEquip();
     }
 
     public void AddGun()

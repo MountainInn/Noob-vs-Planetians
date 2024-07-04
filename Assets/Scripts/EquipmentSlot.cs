@@ -7,9 +7,8 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
 {
     [SerializeField] protected List<bool> toggles = new();
 
-    protected int activeId = -1;
-
     [SerializeField] T[] equipments;
+    T current;
 
     public void OnValidate()
     {
@@ -27,27 +26,32 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
     {
         MaybeSwitchEquipment(UnityEngine.Random.Range(0, equipments.Length));
 
-        return equipments[activeId];
+        return current;
     }
 
     public void MaybeSwitchEquipment(int i)
     {
-        if (activeId == i)
+        if (current == equipments[i])
             return;
-        
-        activeId = i;
 
-        for (i = 0; i < toggles.Count; i ++)
+        T previous = current;
+        current = equipments[i];
+
+        foreach (var eq in equipments)
         {
-            bool toggle = (i == activeId);
+            bool thisToggle = (eq == current);
 
-            OnToggle(equipments[i], toggle);
+            if (thisToggle && previous != null)
+                OnToggleOn(previous, eq);
+            else
+                OnToggleOff(eq);
 
-            equipments[i].gameObject.SetActive(toggle);
+            eq.gameObject.SetActive(thisToggle);
         }
     }
 
-    protected abstract void OnToggle(T equipment, bool toggle);
+    protected abstract void OnToggleOff(T current);
+    protected abstract void OnToggleOn(T previous, T current);
 
     public T GetFirstActive()
     {
