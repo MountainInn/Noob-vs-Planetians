@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.6
+  volume: 0.38
   clips:
   - {fileID: 8300000, guid: db2ab44fffa42cf4188168f7955d6c78, type: 3}
   - {fileID: 8300000, guid: b06bce481e4a2404a9a2ca3c79782d85, type: 3}

@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MusicSource: {fileID: 885773408479466227}
   m_EffectSource: {fileID: 857437054333850566}
-  m_MinSoundInterval: 0.075
+  m_MinSoundInterval: 0.125
   m_Sounds:
   - m_SoundID: 4
     m_AudioClip: {fileID: 8300000, guid: af19dcf2eb2434766b7ebfda2204fdbd, type: 3}
