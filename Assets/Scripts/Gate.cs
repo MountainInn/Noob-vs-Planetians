@@ -112,6 +112,8 @@ public class Gate : InteractiveCollider
 
         }
 
+        LevelUpPS.instance.Fire(transform.position, 1);
+
         m_Applied = true;
     }
 }
