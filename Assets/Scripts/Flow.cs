@@ -157,7 +157,7 @@ public class Flow : MonoBehaviour
         levelCount++;
         currentLevelIndex++;
 
-        MoneyCache.instance.Claim();
+        Vault.instance.Claim();
 
         return Branch.StartLoadingLevel;
     }

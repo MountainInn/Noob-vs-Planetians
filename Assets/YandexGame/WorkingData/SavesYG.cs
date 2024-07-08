@@ -20,7 +20,7 @@ namespace YG
         public int attackRangeUpgradeLevel = 0;
         public int lastWeaponIndex = 0;
         public int weaponExpirience = 0;
-        public int totalCoins;
+        public int money;
         public int levelCount;
         public int currentLevelIndex;
 

@@ -10,7 +10,7 @@ public class MoneyPickup : MonoBehaviour
     public void __AddToVault( ) => AddToVault();
     public void AddToVault()
     {
-        MoneyCache.instance.Add(amount);
+        Vault.instance.GainMoney(amount);
 
         MoneyPS.instance.Fire(particleOrigin.position, 7);
     }

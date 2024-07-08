@@ -49,7 +49,7 @@ public class RewardDispenser : MonoBehaviour
         {
             case MONEY_MULTIPLIER:
 
-                MoneyCache.instance.Multiply(multiplier);
+                Vault.instance.Multiply(multiplier);
 
                 onClaimX5.Invoke();
 

@@ -1,5 +1,5 @@
 {
-    "idSave": 177,
+    "idSave": 249,
     "isFirstSession": false,
     "language": "en",
     "promptDone": false,
@@ -9,7 +9,7 @@
     "attackRangeUpgradeLevel": 0,
     "lastWeaponIndex": 0,
     "weaponExpirience": 0,
-    "totalCoins": 0,
+    "money": 0,
     "levelCount": 0,
     "currentLevelIndex": 0
 }

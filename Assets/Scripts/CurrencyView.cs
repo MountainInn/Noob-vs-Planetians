@@ -32,10 +32,15 @@ public class CurrencyView : MonoBehaviour
             if (icon.sprite != currency.sprite)
                 icon.sprite = currency.sprite;
 
-            string currencyText = currency.value.Value.ToString();
+            string currencyText = currency.react.Value.ToString();
             if (label.text != currencyText)
                 label.text = currencyText;
         }
+    }
+
+    void Start()
+    {
+        InitAndSubscribe(currency);
     }
 
     public void Clear()
@@ -105,7 +110,7 @@ public class CurrencyView : MonoBehaviour
     public void Init(Currency currency)
     {
         icon.sprite = currency.sprite;
-        label.text = currency.value.Value.ToString();
+        label.text = currency.react.Value.ToString();
     }
 
     public void Init(Price price)

@@ -21,14 +21,14 @@ public class Price
 
     public bool IsAffordable()
     {
-        return cost.Value <= currency.value.Value;
+        return cost.Value <= currency.react.Value;
     }
 
     public IObservable<bool> IsAffordableObservable()
     {
         return
             Observable
-            .CombineLatest(cost, currency.value,
+            .CombineLatest(cost, currency.react,
                            (cost, currency) => cost <= currency);
     }
 
@@ -36,19 +36,19 @@ public class Price
     {
         return
             Observable
-            .CombineLatest(cost, currency.value,
+            .CombineLatest(cost, currency.react,
                            (cost, currency) => (float)currency / cost);
     }
 
 
     public void Pay()
     {
-        currency.value.Value -= cost.Value;
+        currency.react.Value -= cost.Value;
         onPay?.Invoke(cost.Value);
     }
 
     public void GetPaid()
     {
-        currency.value.Value += cost.Value;
+        currency.react.Value += cost.Value;
     }
 }
