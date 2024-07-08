@@ -93,7 +93,7 @@ public class ProgressBar : MonoBehaviour
                 if (label)
                     label.text = volume.ToString();
 
-                slider.value = tup.ratio;
+                QueueTween(slider.DOValue(tup.ratio, underFillDelay));
 
                 if (afterimage != null)
                 {
