@@ -1,3 +1,5 @@
+using System;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,14 +17,18 @@ public class Health : MonoBehaviour
     void Awake()
     {
         Volume = new (Value.initial);
-
-        Value.onRecalculated += () =>
-        {
-            if (Flow.instance.currentBranch == Flow.Branch.Preparation)
-                Volume.ResizeAndRefill(Value.result.Value);
-            else
-                Volume.Resize(Value.result.Value);
-        };
+    }
+    void Start()
+    {
+        Value.result
+            .Subscribe((_) =>
+            {
+                if (Flow.instance.currentBranch == Flow.Branch.Preparation)
+                    Volume.ResizeAndRefill(Value.AsFloorInt());
+                else
+                    Volume.Resize(Value.AsFloorInt());
+            })
+            .AddTo(this);
     }
 
     public void __TakeDamage(Bullet bullet) => TakeDamage(bullet.damage);
