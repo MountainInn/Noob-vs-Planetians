@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
+using System;
 
 public class WeaponExpirienceView : MonoBehaviour
 {
@@ -10,13 +12,22 @@ public class WeaponExpirienceView : MonoBehaviour
     void Start()
     {
         progressBar
-            .SetVolume(WeaponExperience.instance.expVolume);
+            .Subscribe(WeaponExperience.instance.gameObject,
+                       WeaponExperience.instance.expirienceVolume)
+            .AddTo(this);
+
+        UpdateWeaponSprites();
 
         WeaponExperience.instance
             .onNewWeaponUnlocked.AddListener(() =>
             {
-                (currentWeaponImage.sprite,
-                 nextWeaponImage.sprite) = WeaponExperience.instance.GetWeaponSprites();
+                UpdateWeaponSprites();
             });
+    }
+
+    void UpdateWeaponSprites()
+    {
+        (currentWeaponImage.sprite,
+         nextWeaponImage.sprite) = WeaponExperience.instance.GetWeaponSprites();
     }
 }

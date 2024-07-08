@@ -10,27 +10,29 @@ public class WeaponExperience : MonoBehaviour
     static public WeaponExperience instance => _inst ??= FindObjectOfType<WeaponExperience>();
     static WeaponExperience _inst;
 
-    [SerializeField] public Upgrade upgradeExpirience;
+    [SerializeField] public Volume levelVolume = new(6);
+    [SerializeField] public Volume expirienceVolume = new(5);
     [Space]
     [SerializeField] List<Field> fields;
     [Space]
     [SerializeField] public UnityEvent onNewWeaponUnlocked;
 
-    int lastWeaponIndex = -1;
-
-    [HideInInspector] public Volume expVolume = new();
-
-    StackedNumber expirience = new(0);
+    int currentWeaponIndex => (int)levelVolume.current.Value;
+    int currentExpirience => (int)expirienceVolume.current.Value;
 
     public (Sprite, Sprite) GetWeaponSprites()
     {
-        return (fields[lastWeaponIndex].icon,
-                fields.ElementAtOrDefault(lastWeaponIndex+1).icon);
+        return (fields[currentWeaponIndex].icon,
+                fields.ElementAtOrDefault(currentWeaponIndex+1).icon);
+    }
+
+    void OnValidate()
+    {
+        fields.ResizeDestructive((int)levelVolume.maximum.Value);
     }
    
     void Awake()
     {
-        upgradeExpirience.Inject(expirience, l => l);
     }
 
     void OnEnable()
@@ -43,47 +45,44 @@ public class WeaponExperience : MonoBehaviour
         YandexGame.GetDataEvent -= Load;
     }
 
-    void OnLevelUp(int l)
+    public void AddExpirience(int amount)
     {
-        expVolume.current.Value = expirience.AsFloorInt();
-
-        int cacheLastWeaponIndex = lastWeaponIndex;
-
-        lastWeaponIndex =
-            fields
-            .FindLastIndex(f => f.expirience <= expirience.AsFloorInt());
-
-        if (lastWeaponIndex == -1)
-            lastWeaponIndex = 0;
-
-        if (lastWeaponIndex != cacheLastWeaponIndex)
+        if (expirienceVolume.Add(amount))
         {
-            expVolume.Resize(fields[lastWeaponIndex].expirience);
+            if (levelVolume.Add(1))
+            {
 
-            MaybeSwitchWeapon(PlayerCharacter.instance.gunSlot);
+            }
+            OnLevelUp();
         }
+    }
+
+    void OnLevelUp()
+    {
+        expirienceVolume.Resize(fields[currentWeaponIndex].expirience);
+
+        MaybeSwitchWeapon(PlayerCharacter.instance.gunSlot);
     }
 
     void MaybeSwitchWeapon(GunSlot gunSlot)
     {
-        gunSlot.MaybeSwitchEquipment(lastWeaponIndex);
+        gunSlot.MaybeSwitchEquipment(currentWeaponIndex);
     }
 
     void Save()
     {
-        YandexGame.savesData.weaponExpirience = expirience.AsFloorInt();
-        YandexGame.savesData.lastWeaponIndex = lastWeaponIndex;
+        YandexGame.savesData.weaponExpirience = currentExpirience;
+        YandexGame.savesData.lastWeaponIndex = currentWeaponIndex;
 
         YandexGame.SaveProgress();
     }
 
     void Load()
     {
-        upgradeExpirience.level.ware.SetLevel(YandexGame.savesData.weaponExpirience);
+        expirienceVolume.current.Value = YandexGame.savesData.weaponExpirience;
+        levelVolume.current.Value = YandexGame.savesData.lastWeaponIndex;
 
-        lastWeaponIndex = YandexGame.savesData.lastWeaponIndex;
-
-        OnLevelUp(expirience.AsFloorInt());
+        OnLevelUp();
     }
 
 
@@ -91,7 +90,6 @@ public class WeaponExperience : MonoBehaviour
     public struct Field
     {
         [SerializeField] [Min(1)] public int expirience;
-        [SerializeField] public Gun gun;
         [SerializeField] public Sprite icon;
 
     }

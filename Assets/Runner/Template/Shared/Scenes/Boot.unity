@@ -421,6 +421,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4270141579100171962, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270141579100171962, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4923482831237969039, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1155,25 +1165,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db326e85b74a0e04e8868fc25cc5cf9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeExpirience:
-    name: Weapon Expirience
-    icon: {fileID: 215305511, guid: 436aafd9c91e7224cb28faa2d4e4ed71, type: 3}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  fields:
-  - expirience: 4
-    gun: {fileID: 2158135945352695536, guid: 9271f513d0c59e6409901172c8eb9a21, type: 3}
-    icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  onNewWeaponUnlocked:
-    m_PersistentCalls:
-      m_Calls: []
-  expVolume:
+  levelVolume:
     _current:
       value: 0
     _maximum:
+      value: 5
+  expirienceVolume:
+    _current:
       value: 0
+    _maximum:
+      value: 5
+  fields:
+  - expirience: 5
+    icon: {fileID: 215305511, guid: 436aafd9c91e7224cb28faa2d4e4ed71, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: edd8ce5141077402989d18611370c7d3, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: 82b333bda2fda43f1ab8658f6cdd254d, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: bb40abbe6aba34274a8ecf7298f767a2, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: 049d1403ca0954c6e8c805419a41f803, type: 3}
+  onNewWeaponUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1907410068
 Transform:
   m_ObjectHideFlags: 0

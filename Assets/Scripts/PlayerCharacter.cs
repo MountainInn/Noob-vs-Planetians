@@ -44,6 +44,19 @@ public class PlayerCharacter : MonoBehaviour
         upgradeAttackRate  .Inject(attackRate,     l => -Mathf.Max(l, 10) * .1f);
         upgradeAttackRange .Inject(attackRange,    l => l * 2);
 
+
+        new [] {
+            upgradeHealth,
+            upgradeDamage,
+            upgradeAttackRate,
+            upgradeAttackRange
+        }
+            .Map(upg => upg.level.onBuy += (l) =>
+            {
+                WeaponExperience.instance.AddExpirience(1);
+            });
+
+
         damage.Value.ForceRecalculate();
         attackRate.ForceRecalculate();
         attackRange.ForceRecalculate();
