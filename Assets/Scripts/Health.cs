@@ -3,17 +3,26 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] [Min(1)] int maxHealth;
+    [SerializeField] public StackedNumber Value;
     [Space]
     [SerializeField] public UnityEvent onHeal;
     [SerializeField] public UnityEvent onTakeDamage;
     [SerializeField] public UnityEvent onDie;
 
-    [HideInInspector] public Volume Value;
+    [HideInInspector] public Volume Volume;
+
 
     void Awake()
     {
-        Value = new (maxHealth);
+        Volume = new (Value.initial);
+
+        Value.onRecalculated += () =>
+        {
+            if (Flow.instance.currentBranch == Flow.Branch.Preparation)
+                Volume.ResizeAndRefill(Value.result.Value);
+            else
+                Volume.Resize(Value.result.Value);
+        };
     }
 
     public void __TakeDamage(Bullet bullet) => TakeDamage(bullet.damage);
@@ -21,14 +30,14 @@ public class Health : MonoBehaviour
     public void __TakeDamage(Damage harm) => TakeDamage(harm);
     public void TakeDamage(Damage harm)
     {
-        if (Value.IsEmpty)
+        if (Volume.IsEmpty)
             return;
 
-        Value.Subtract(harm.Value.AsFloorInt());
+        Volume.Subtract(harm.Value.AsFloorInt());
 
         onTakeDamage?.Invoke();
 
-        if (Value.IsEmpty)
+        if (Volume.IsEmpty)
         {
             onDie?.Invoke();
         }
@@ -37,7 +46,7 @@ public class Health : MonoBehaviour
     public void __Heal(Healing healing) => Heal(healing);
     public void Heal(Healing healing)
     {
-        Value.Add(healing.Value);
+        Volume.Add(healing.Value);
 
         onHeal?.Invoke();
     }

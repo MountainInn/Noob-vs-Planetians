@@ -32,7 +32,7 @@ public class Enemy : Spawnable
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
 
-        health.Value
+        health.Volume
             .current
             .Subscribe(cur => healthLabel.text = $"{cur}")
             .AddTo(this);
@@ -49,7 +49,7 @@ public class Enemy : Spawnable
 
         transform.position = SavedPosition;
 
-        health.Value.Refill();
+        health.Volume.Refill();
     }
 
     public void __ReactOnDamage() => ReactOnDamage();

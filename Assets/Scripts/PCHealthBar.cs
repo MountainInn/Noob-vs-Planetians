@@ -14,6 +14,6 @@ public class PCHealthBar : MonoBehaviour
         subscription?.Dispose();
         subscription =
             prog.Subscribe(PlayerCharacter.instance.gameObject,
-                           PlayerCharacter.instance.health.Value);
+                           PlayerCharacter.instance.health.Volume);
     }
 }

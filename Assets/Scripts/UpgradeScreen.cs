@@ -32,10 +32,10 @@ public class UpgradeScreen : View
     {
         new []
         {
+            PlayerCharacter.instance.upgradeHealth,
             PlayerCharacter.instance.upgradeDamage,
             PlayerCharacter.instance.upgradeAttackRate,
             PlayerCharacter.instance.upgradeAttackRange,
-            WeaponExperience.instance.upgradeExpirience,
         }
             .Map(up =>
             {
