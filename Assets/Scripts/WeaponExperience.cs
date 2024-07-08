@@ -17,8 +17,8 @@ public class WeaponExperience : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent onNewWeaponUnlocked;
 
-    int currentWeaponIndex => (int)levelVolume.current.Value;
-    int currentExpirience => (int)expirienceVolume.current.Value;
+    public int currentWeaponIndex => (int)levelVolume.current.Value;
+    public int currentExpirience => (int)expirienceVolume.current.Value;
 
     public (Sprite, Sprite) GetWeaponSprites()
     {

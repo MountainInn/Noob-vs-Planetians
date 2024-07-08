@@ -1,5 +1,7 @@
 public class GunSlot : EquipmentSlot<Gun>
 {
+    protected override int maxAvailableIndex => WeaponExperience.instance.currentWeaponIndex;
+
     protected override void OnToggleOff(Gun current)
     {
         if (current.isShooting)

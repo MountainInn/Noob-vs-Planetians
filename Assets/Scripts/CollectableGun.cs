@@ -4,7 +4,7 @@ public class CollectableGun : MonoBehaviour
 {
     Gun gun;
 
-    void Awake()
+    void Start()
     {
         gun = GetComponentInChildren<GunSlot>().RandomEquip();
     }

@@ -10,6 +10,8 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
     [SerializeField] T[] equipments;
     T current;
 
+    protected virtual int maxAvailableIndex => equipments.Length;
+
     public void OnValidate()
     {
         equipments = GetComponentsInChildren<T>(true);
@@ -24,14 +26,15 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
 
     public T RandomEquip()
     {
-        MaybeSwitchEquipment(UnityEngine.Random.Range(0, equipments.Length));
+        MaybeSwitchEquipment(UnityEngine.Random.Range(0, maxAvailableIndex));
 
         return current;
     }
 
     public void MaybeSwitchEquipment(int i)
     {
-        if (current == equipments[i])
+        if (current == equipments[i]
+            || maxAvailableIndex < i)
             return;
 
         T previous = current;
