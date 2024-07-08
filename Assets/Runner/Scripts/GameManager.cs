@@ -141,7 +141,7 @@ namespace HyperCasual.Runner
                 worldLevel
                 .Segments
                 .SelectMany(seg => seg.spawnedChunks)
-                .Concat(worldLevel.spawnedChunks)
+                .Concat(worldLevel.GetComponentsInChildren<Chunk>())
                 .Select(ch => ch.Floor);
 
             foreach (var item in floors)

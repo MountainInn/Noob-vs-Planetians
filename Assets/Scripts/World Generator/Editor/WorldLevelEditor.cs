@@ -14,11 +14,6 @@ public class WorldLevelEditor : Editor
             wl.Generate();
         }
 
-        if (GUILayout.Button("Parent Chunks"))
-        {
-            wl.ParentChunks();
-        }
-
         EditorGUILayout.Space();
 
         base.OnInspectorGUI();

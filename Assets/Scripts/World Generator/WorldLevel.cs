@@ -7,30 +7,19 @@ public class WorldLevel : MonoBehaviour
     [SerializeField] Chunk startChunk;
     [SerializeField] Chunk finishChunk;
 
-    [SerializeField] public List<Chunk> spawnedChunks = new();
-
     public LevelSegment[] Segments => GetComponents<LevelSegment>();
-
-    public void ParentChunks()
-    {
-        foreach (var item in Segments)
-        {
-            item.ReparentChunks(transform);
-        }
-
-        foreach (var item in spawnedChunks)
-        {
-            item.transform.SetParent(transform);
-        }
-    }
 
     public void Generate()
     {
-        spawnedChunks?.DestroyAll();
+        GetComponentsInChildren<Transform>(true)
+            .Where(t => t != transform)
+            .ToList()
+            .DestroyAll();
 
         float zPosition = 0;
 
         Chunk newStartChunk = Chunk.InstantiateChunk(zPosition, startChunk);
+        newStartChunk.transform.SetParent(transform);
 
         zPosition += newStartChunk.length / 2;
 
@@ -38,13 +27,12 @@ public class WorldLevel : MonoBehaviour
         {
             item.ClearChunks();
             zPosition = item.Generate(zPosition);
+
+            item.ReparentChunks(transform);
         }
 
         Chunk newFinishChunk = Chunk.InstantiateChunk(zPosition + finishChunk.length / 2,
                                                       finishChunk);
-
-        spawnedChunks.Add(newStartChunk);
-        spawnedChunks.Add(newFinishChunk);
+        newFinishChunk.transform.SetParent(transform);
     }
-
 }
