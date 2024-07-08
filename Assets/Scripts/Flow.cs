@@ -204,8 +204,6 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> WaitForGameplayResult()
     {
-        ShowScreen<Hud>();
-
         Branch result =
             await UniTask.WhenAny(
                 GameManager.Instance.onLose.OnInvokeAsync(onAppQuitCancellation.Token),
@@ -216,8 +214,6 @@ public class Flow : MonoBehaviour
                 1 => Branch.Win,
                 _ => throw new System.ArgumentException()
             };
-
-        GetScreen<Hud>().Hide();
 
         return result;
     }
