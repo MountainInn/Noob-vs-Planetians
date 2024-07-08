@@ -34,6 +34,9 @@ static public class ListExtension
     {
         int diff = (targetSize - list.Count);
 
+        if (diff == 0)
+            return;
+
         for (int i = 0; i < Mathf.Abs(diff); i++)
         {
             int lastIndex = Mathf.Max(0, list.Count - 1);

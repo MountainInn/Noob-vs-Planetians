@@ -23,6 +23,7 @@ public class PlayerCharacter : MonoBehaviour
     public StackedNumber attackRate;
     public StackedNumber attackRange;
 
+    [Header("Upgrades")]
     [SerializeField]
     public Upgrade
         upgradeHealth,
@@ -38,10 +39,23 @@ public class PlayerCharacter : MonoBehaviour
 
         health.onHeal.AddListener(() => HealthPickupPS.instance.Fire(transform.position, 5));
 
-        // upgradeHealth   .Inject(mortal.Value,   l => {  });
+        upgradeHealth      .Inject(health.Value,   l => l * 100 );
         upgradeDamage      .Inject(damage.Value,   l => l * 10);
         upgradeAttackRate  .Inject(attackRate,     l => -Mathf.Max(l, 10) * .1f);
         upgradeAttackRange .Inject(attackRange,    l => l * 2);
+
+
+        new [] {
+            upgradeHealth,
+            upgradeDamage,
+            upgradeAttackRate,
+            upgradeAttackRange
+        }
+            .Map(upg => upg.level.onBuy += (l) =>
+            {
+                WeaponExperience.instance.AddExpirience(1);
+            });
+
 
         damage.Value.ForceRecalculate();
         attackRate.ForceRecalculate();
@@ -50,7 +64,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
-        health.Value.ObserveEmpty()
+        health.Volume.ObserveEmpty()
             .Subscribe(b =>
             {
                 if (b)

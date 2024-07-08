@@ -6,7 +6,7 @@ using UniRx;
 public class Currency : ScriptableObject
 {
     public Sprite sprite;
-    public ReactiveProperty<int> value;
+    public ReactiveProperty<int> react;
 
     public IObservable<int> ObserveAddition()
     {
@@ -31,6 +31,6 @@ public class Currency : ScriptableObject
 
     public IObservable<Pair<int>> ObservePair()
     {
-        return value.Pairwise();
+        return react.Pairwise();
     }
 }

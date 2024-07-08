@@ -11,10 +11,18 @@ using YG;
 
 public class Flow : MonoBehaviour
 {
+    static public Flow instance => _inst;
+    static Flow _inst;
+    Flow(){ _inst = this; }
+
+
     [SerializeField] WorldLevel[] levels;
     [Space]
     [SerializeField] SequenceManager m_SequenceManagerPrefab;
     [SerializeField] GameObject[] levelManagers;
+
+    public Branch currentBranch => branch;
+    Branch branch = Branch.NONE;
 
     System.Threading.CancellationTokenSource onAppQuitCancellation = new CancellationTokenSource();
 
@@ -23,7 +31,8 @@ public class Flow : MonoBehaviour
         levelCount,
         currentLevelIndex;
 
-    enum Branch {
+    public enum Branch {
+        NONE,
         Preparation,
         LevelInProgress, Lose, Win,
         Ressurect, Retry,
@@ -88,7 +97,7 @@ public class Flow : MonoBehaviour
 
     async UniTask MainLoop()
     {
-        Branch branch = Branch.Preparation;
+        branch = Branch.Preparation;
 
         do
         {
@@ -148,7 +157,7 @@ public class Flow : MonoBehaviour
         levelCount++;
         currentLevelIndex++;
 
-        MoneyCache.instance.Claim();
+        Vault.instance.Claim();
 
         return Branch.StartLoadingLevel;
     }
@@ -195,8 +204,6 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> WaitForGameplayResult()
     {
-        ShowScreen<Hud>();
-
         Branch result =
             await UniTask.WhenAny(
                 GameManager.Instance.onLose.OnInvokeAsync(onAppQuitCancellation.Token),
@@ -207,8 +214,6 @@ public class Flow : MonoBehaviour
                 1 => Branch.Win,
                 _ => throw new System.ArgumentException()
             };
-
-        GetScreen<Hud>().Hide();
 
         return result;
     }

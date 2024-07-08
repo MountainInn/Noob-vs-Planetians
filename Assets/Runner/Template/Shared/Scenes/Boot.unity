@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 258715996}
   - component: {fileID: 258715995}
   m_Layer: 0
-  m_Name: Money Cache
+  m_Name: Vault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,11 +199,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 258715994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5d7ba6af99ede45a37b6333aaf6346, type: 3}
+  m_Script: {fileID: 11500000, guid: c4d71c8b84bf4684a977e09356a11471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinsOnThisLevel: 0
-  TotalCoins: 0
+  money: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+  buffer: 0
 --- !u!4 &258715996
 Transform:
   m_ObjectHideFlags: 0
@@ -276,6 +276,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 778858009039076603, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038268167232907268, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_Name
+      value: Start Label
+      objectReference: {fileID: 0}
     - target: {fileID: 1510556315093794855, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -303,8 +313,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1577752678506871781, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577752678506871781, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577752678506871781, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
       propertyPath: m_SizeDelta.y
-      value: -0.000002861023
+      value: -0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 1577752678506871781, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
@@ -373,6 +393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2404344050537117821, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
+      propertyPath: externalViews.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404344050537117821, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
       propertyPath: externalViews.Array.data[0]
       value: 
       objectReference: {fileID: 1499087499}
@@ -394,6 +419,16 @@ PrefabInstance:
     - target: {fileID: 2757182233251913500, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270141579100171962, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270141579100171962, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4923482831237969039, guid: 48e60f0845bd446d1962e2da252b92ea,
@@ -1130,25 +1165,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db326e85b74a0e04e8868fc25cc5cf9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeExpirience:
-    name: Weapon Expirience
-    icon: {fileID: 215305511, guid: 436aafd9c91e7224cb28faa2d4e4ed71, type: 3}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  fields:
-  - expirience: 4
-    gun: {fileID: 2158135945352695536, guid: 9271f513d0c59e6409901172c8eb9a21, type: 3}
-    icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  onNewWeaponUnlocked:
-    m_PersistentCalls:
-      m_Calls: []
-  expVolume:
+  levelVolume:
     _current:
       value: 0
     _maximum:
+      value: 5
+  expirienceVolume:
+    _current:
       value: 0
+    _maximum:
+      value: 5
+  fields:
+  - expirience: 5
+    icon: {fileID: 215305511, guid: 436aafd9c91e7224cb28faa2d4e4ed71, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: edd8ce5141077402989d18611370c7d3, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: 82b333bda2fda43f1ab8658f6cdd254d, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: bb40abbe6aba34274a8ecf7298f767a2, type: 3}
+  - expirience: 5
+    icon: {fileID: 21300000, guid: 049d1403ca0954c6e8c805419a41f803, type: 3}
+  onNewWeaponUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1907410068
 Transform:
   m_ObjectHideFlags: 0
@@ -1402,6 +1442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803517912873057069, guid: a199d962ca53e4a10ba285d5d34bf335,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4535999669067553597, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}

@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
     {
         onTriggerEnter?.Invoke();
        
-        ImpactPS.instance.Fire(transform.position, 6);
+        ImpactPS.instance.Fire(transform.position, Vector3.right * 90, 1);
 
         Despawn();
     }

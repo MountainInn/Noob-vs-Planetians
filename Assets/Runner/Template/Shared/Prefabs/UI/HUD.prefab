@@ -344,16 +344,6 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 45.4
       objectReference: {fileID: 0}
-    - target: {fileID: 3835864114276685904, guid: 5e39dc22117e6a9498304dc30813d0d0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 346.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 3835864114276685904, guid: 5e39dc22117e6a9498304dc30813d0d0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5180603948933498430, guid: 5e39dc22117e6a9498304dc30813d0d0,
         type: 3}
       propertyPath: m_Sprite
