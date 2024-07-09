@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    initial: 0
+    initial: 10
     result:
       value: 0
   onHeal:
