@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     [SerializeField] Transform muzzle;
     [SerializeField] ParticleSystem muzzleFlaresPS;
     [Space]
-    [SerializeField] UnityEvent onShot;
+    [SerializeField] public UnityEvent onShot;
 
     Volume attackTimer;
     public bool isShooting;

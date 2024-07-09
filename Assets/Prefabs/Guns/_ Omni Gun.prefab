@@ -50,6 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b260cdaa55ce54b8d5713f26526dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onToggledOn:
+    m_PersistentCalls:
+      m_Calls: []
+  onToggledOff:
+    m_PersistentCalls:
+      m_Calls: []
   toggles: 010000000000
   equipments:
   - {fileID: 3127628785871930136}

@@ -13,6 +13,7 @@ public class PlayerCharacter : MonoBehaviour
     PlayerCharacter() { _inst = this; }
 
     [SerializeField] ParticleSystem onSufferPS;
+    [SerializeField] Animator animator;
     [Space]
     [SerializeField] public GunSlot gunSlot;
     [SerializeField] public GunBelt gunBelt;
@@ -73,7 +74,16 @@ public class PlayerCharacter : MonoBehaviour
         FindObjectsOfType<Gun>()
             .Map(g => g.Initialize(this));
 
+        gunSlot
+            .AddListeners(gun => gun.onShot.AddListener(SetTriggerShoot),
+                          gun => gun.onShot.RemoveListener(SetTriggerShoot));
+       
         FullStop();
+    }
+
+    void SetTriggerShoot()
+    {
+        animator.SetTrigger("Shoot");
     }
 
     void OnEnable()
