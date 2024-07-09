@@ -12,7 +12,14 @@ public class MasterPS : MonoBehaviour
 
     public void Fire(Vector3 position, int amount)
     {
-        Fire(position, Vector3.zero, amount);
+        ParticleSystem.EmitParams emitParams = new ()
+        {
+            randomSeed = (uint)(UnityEngine.Random.value * 10000),
+            applyShapeToPosition = true,
+            position = position,
+        };
+
+        ps.Emit(emitParams, amount);
     }
 
     public void Fire(Vector3 position, Vector3 rotation, int amount)
