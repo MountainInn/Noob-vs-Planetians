@@ -22,11 +22,9 @@ public class FinishMult : MonoBehaviour
         };
     }
 
-    void Start()
+    public void Reset()
     {
-        GameManager.Instance.onStartGame.AddListener(() =>
-        {
-            hasReachedFinish = false;
-        });
+        hasReachedFinish = false;
+        currentMultiplier = 1;
     }
 }

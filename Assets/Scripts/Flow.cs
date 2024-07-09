@@ -252,6 +252,8 @@ public class Flow : MonoBehaviour
 
         upgradeScreen.Hide();
 
+        FinishMult.instance.Reset();
+
         PlayerCharacter.instance.FullForward();
 
         return Branch.LevelInProgress;
