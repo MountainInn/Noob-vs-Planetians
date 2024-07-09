@@ -5,10 +5,10 @@ using System;
 
 public class InteractiveCollider : Spawnable
 {
-    [SerializeField] UnityEvent<PlayerCharacter> onPlayerEnter;
-    [SerializeField] OnEnemyEnter onEnemyEnter;
-    [SerializeField] OnBulletEnter onBulletEnter;
-    [SerializeField] UnityEvent onOtherEnter;
+    [SerializeField] public UnityEvent<PlayerCharacter> onPlayerEnter;
+    [SerializeField] public OnEnemyEnter onEnemyEnter;
+    [SerializeField] public OnBulletEnter onBulletEnter;
+    [SerializeField] public UnityEvent onOtherEnter;
 
     [Serializable] public class OnBulletEnter : UnityEvent<Bullet> {  }
     [Serializable] public class OnEnemyEnter : UnityEvent<Enemy> {  }

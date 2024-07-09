@@ -168,6 +168,8 @@ public class Flow : MonoBehaviour
 
         WinScreen winScreen = ShowScreen<WinScreen>();
 
+        Vault.instance.Multiply(FinishMult.instance.currentMultiplier);
+
         Branch result =
             await UniTask.WhenAny(
                 winScreen.multiplyButton.OnClickAsync(),
