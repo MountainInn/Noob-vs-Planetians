@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Events;
 
 public abstract class EquipmentSlot<T> : MonoBehaviour
     where T : Component
 {
+    [SerializeField] public UnityEvent<T> onToggledOn;
+    [SerializeField] public UnityEvent<T> onToggledOff;
+    [Space]
     [SerializeField] protected List<bool> toggles = new();
 
     [SerializeField] T[] equipments;
@@ -22,6 +26,20 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
         {
             equipments[i].gameObject.SetActive(toggles[i]);
         }
+    }
+
+    void Start()
+    {
+        current = GetFirstActive();
+
+        OnToggleOn(current, current);
+        onToggledOn?.Invoke(current);
+    }
+
+    public void AddListeners(UnityAction<T> toggledOn, UnityAction<T> toggledOff)
+    {
+        onToggledOn.AddListener(toggledOn);
+        onToggledOff.AddListener(toggledOff);
     }
 
     public T RandomEquip()
@@ -45,9 +63,15 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
             bool thisToggle = (eq == current);
 
             if (thisToggle && previous != null)
+            {
                 OnToggleOn(previous, eq);
+                onToggledOn?.Invoke(previous);
+            }
             else
+            {
                 OnToggleOff(eq);
+                onToggledOff?.Invoke(eq);
+            }
 
             eq.gameObject.SetActive(thisToggle);
         }
