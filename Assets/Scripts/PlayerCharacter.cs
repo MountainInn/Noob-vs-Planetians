@@ -37,8 +37,6 @@ public class PlayerCharacter : MonoBehaviour
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
 
-        health.onHeal.AddListener(() => HealthPickupPS.instance.Fire(transform.position, 5));
-
         upgradeHealth      .Inject(health.Value,   l => l * 100 );
         upgradeDamage      .Inject(damage.Value,   l => l * 10);
         upgradeAttackRate  .Inject(attackRate,     l => -Mathf.Max(l, 10) * .1f);
