@@ -36,16 +36,8 @@ public class UpgradeHold : MonoBehaviour
             {
                 WeaponExperience.instance.AddExpirience(1);
             });
-    }
 
-    void OnEnable()
-    {
-        YandexGame.GetDataEvent += Load;
-    }
-
-    void OnDisable()
-    {
-        YandexGame.GetDataEvent -= Load;
+        Load();
     }
 
     void OnApplicationQuit()
