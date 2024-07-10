@@ -30,10 +30,6 @@ public class WeaponExperience : MonoBehaviour
     {
         fields.ResizeDestructive((int)levelVolume.maximum.Value);
     }
-   
-    void Awake()
-    {
-    }
 
     void OnEnable()
     {
@@ -45,23 +41,21 @@ public class WeaponExperience : MonoBehaviour
         YandexGame.GetDataEvent -= Load;
     }
 
+    void OnApplicationQuit()
+    {
+        Save();
+    }
+
     public void AddExpirience(int amount)
     {
         if (expirienceVolume.Add(amount))
         {
             if (levelVolume.Add(1))
             {
-
+                expirienceVolume.ResetToZero();
             }
             OnLevelUp();
         }
-    }
-
-    void OnLevelUp()
-    {
-        expirienceVolume.Resize(fields[currentWeaponIndex].expirience);
-
-        MaybeSwitchWeapon(PlayerCharacter.instance.gunSlot);
     }
 
     void MaybeSwitchWeapon(GunSlot gunSlot)
@@ -79,10 +73,20 @@ public class WeaponExperience : MonoBehaviour
 
     void Load()
     {
-        expirienceVolume.current.Value = YandexGame.savesData.weaponExpirience;
         levelVolume.current.Value = YandexGame.savesData.lastWeaponIndex;
 
-        OnLevelUp();
+        expirienceVolume.Resize(fields[currentWeaponIndex].expirience);
+
+        expirienceVolume.current.Value = YandexGame.savesData.weaponExpirience;
+
+        MaybeSwitchWeapon(PlayerCharacter.instance.gunSlot);
+    }
+
+    void OnLevelUp()
+    {
+        expirienceVolume.Resize(fields[currentWeaponIndex].expirience);
+
+        MaybeSwitchWeapon(PlayerCharacter.instance.gunSlot);
     }
 
 

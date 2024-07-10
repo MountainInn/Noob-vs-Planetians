@@ -9,7 +9,7 @@ public class WeaponExpirienceView : MonoBehaviour
     [SerializeField] Image currentWeaponImage;
     [SerializeField] Image nextWeaponImage;
 
-    void Start()
+    void Awake()
     {
         progressBar
             .Subscribe(WeaponExperience.instance.gameObject,
