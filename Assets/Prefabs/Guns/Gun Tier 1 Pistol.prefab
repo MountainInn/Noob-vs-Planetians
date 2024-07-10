@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8514085991465822905}
   - component: {fileID: 3015844414065947427}
   m_Layer: 0
-  m_Name: Gun Tier 1
+  m_Name: Gun Tier 1 Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage:
-    value: 1
+    value: 5
   rate:
-    value: 0.5
+    value: 10
   range:
-    value: 12
+    value: 5
   bulletSpeed: 25
   muzzle: {fileID: 7846851461124537905}
   muzzleFlaresPS: {fileID: 7846851461124537911}
@@ -71,6 +71,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isShooting: 0
   totalDamage: 0
   totalRange: 0
 --- !u!114 &3015844414065947427

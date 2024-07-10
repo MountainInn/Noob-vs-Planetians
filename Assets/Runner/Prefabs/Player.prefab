@@ -59,41 +59,13 @@ MonoBehaviour:
   health: {fileID: 511791635737475232}
   damage: {fileID: 5568838679517214165}
   attackRate:
-    initial: 0
+    initial: 1
     result:
       value: 0
   attackRange:
     initial: 10
     result:
       value: 0
-  upgradeHealth:
-    name: Health
-    icon: {fileID: 21300000, guid: a15beef3e99cc42118d9a86018e0767e, type: 3}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  upgradeDamage:
-    name: Damage
-    icon: {fileID: 21300000, guid: 5674d4404f826414faa14430d3df6268, type: 3}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  upgradeAttackRate:
-    name: Attack Rate
-    icon: {fileID: 21300000, guid: 140398e933b9d400489aad46fc2f82ca, type: 3}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
-  upgradeAttackRange:
-    name: Range
-    icon: {fileID: 21300000, guid: 962d8365913f04935b5da32f81c41988, type: 3}
-    price:
-      currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
-      cost:
-        value: 1
 --- !u!114 &6931430198559016198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    initial: 10
+    initial: 100
     result:
       value: 0
   onHeal:
@@ -189,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    initial: 1
+    initial: 10
     result:
       value: 0
   onDoDamage:

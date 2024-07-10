@@ -38,7 +38,7 @@ public class Upgrade
 
     void OnLevelUp(int l)
     {
-        stat.SetAddend(name, bonusCalculation.Invoke(l));
+        stat.SetMultiplier(name, bonusCalculation.Invoke(l));
 
         price.amount.SetMultiplier(name, Mathf.Pow(1.1f, l));
     }

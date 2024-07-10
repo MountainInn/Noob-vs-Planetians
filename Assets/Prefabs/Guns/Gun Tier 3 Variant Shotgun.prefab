@@ -20,7 +20,22 @@ PrefabInstance:
     - target: {fileID: 8514085991465822904, guid: e5fc43bbe1e43db488cd363744cd5386,
         type: 3}
       propertyPath: m_Name
-      value: Gun Tier 3 Variant
+      value: Gun Tier 3 Variant Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514085991465822905, guid: e5fc43bbe1e43db488cd363744cd5386,
+        type: 3}
+      propertyPath: rate.value
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514085991465822905, guid: e5fc43bbe1e43db488cd363744cd5386,
+        type: 3}
+      propertyPath: range.value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514085991465822905, guid: e5fc43bbe1e43db488cd363744cd5386,
+        type: 3}
+      propertyPath: damage.value
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8514085991465822910, guid: e5fc43bbe1e43db488cd363744cd5386,
         type: 3}
@@ -109,7 +124,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -5082682527122600861, guid: bdae5336ec9b8db468c225edf150e2a1,
+      objectReference: {fileID: 6855769239189202100, guid: 261419866a202044e94f2a458769d2fe,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5fc43bbe1e43db488cd363744cd5386, type: 3}
