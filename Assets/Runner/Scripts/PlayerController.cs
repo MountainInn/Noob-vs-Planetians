@@ -123,7 +123,7 @@ namespace HyperCasual.Runner
         public void Initialize()
         {
             m_Transform = transform;
-            m_StartPosition = m_Transform.position;
+            m_StartPosition = new Vector3(0, 2, 0);
             m_DefaultScale = m_Transform.localScale;
             m_Scale = m_DefaultScale;
             m_TargetScale = m_Scale;
