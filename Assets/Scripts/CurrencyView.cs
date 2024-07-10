@@ -92,8 +92,9 @@ public class CurrencyView : MonoBehaviour
     {
         Init(price);
 
-        price.cost
-            .Subscribe(c => label.text = c.ToString())
+        price.amount
+            .result
+            .Subscribe(c => label.text = price.amount.AsFloorInt().ToString())
             .AddTo(disposables);
 
         price
@@ -112,6 +113,6 @@ public class CurrencyView : MonoBehaviour
     public void Init(Price price)
     {
         icon.sprite = price.currency.sprite;
-        label.text = price.cost.Value.ToString();
+        label.text = price.amount.AsFloorInt().ToString();
     }
 }

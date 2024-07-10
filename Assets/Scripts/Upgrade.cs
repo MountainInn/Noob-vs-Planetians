@@ -40,6 +40,6 @@ public class Upgrade
     {
         stat.SetAddend(name, bonusCalculation.Invoke(l));
 
-        price.cost.Value = l * 100;
+        price.amount.SetMultiplier(name, Mathf.Pow(1.1f, l));
     }
 }
