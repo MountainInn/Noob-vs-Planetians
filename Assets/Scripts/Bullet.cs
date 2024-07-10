@@ -1,12 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
-using System.Linq;
-using HyperCasual.Core;
-using HyperCasual.Gameplay;
 using Zenject;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-
 
 [RequireComponent(typeof(Damage))]
 [RequireComponent(typeof(Rigidbody))]
@@ -76,4 +71,3 @@ public class Bullet : MonoBehaviour
         }
     }
 }
-

@@ -16,6 +16,7 @@ public class Enemy : Spawnable
     [SerializeField] Ragdoll ragdoll;
     [Space]
     [SerializeField] TextMeshPro healthLabel;
+    [SerializeField] ProgressBar healthBar;
 
 
     public Health health;
@@ -36,6 +37,8 @@ public class Enemy : Spawnable
             .current
             .Subscribe(cur => healthLabel.text = $"{cur}")
             .AddTo(this);
+
+        healthBar.Subscribe(gameObject, health.Volume);
 
         if (startRunning)
             animator.SetTrigger("run");

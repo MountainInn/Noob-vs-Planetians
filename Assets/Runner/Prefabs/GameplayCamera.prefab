@@ -45,8 +45,8 @@ Camera:
   m_GameObject: {fileID: 5237897444947184902}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.28057137, g: 0.83521646, b: 0.9150943, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 1804231910221468730, guid: 3c7a51309061d411eb5591ed1fd837f3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15.200012
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2418144165519764240, guid: 3c7a51309061d411eb5591ed1fd837f3,
         type: 3}
@@ -430,6 +430,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1499087502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887171132174013297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!224 &887171132174013310 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2418144165573983337, guid: 3c7a51309061d411eb5591ed1fd837f3,

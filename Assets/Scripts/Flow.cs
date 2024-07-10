@@ -15,7 +15,8 @@ public class Flow : MonoBehaviour
     static Flow _inst;
     Flow(){ _inst = this; }
 
-
+    [SerializeField] Material skyboxMaterial;
+    [Space]
     [SerializeField] WorldLevel[] levels;
     [Space]
     [SerializeField] SequenceManager m_SequenceManagerPrefab;
@@ -77,13 +78,13 @@ public class Flow : MonoBehaviour
 
         currentLevelIndex = 0;
 
+        UIManager.Instance.Initialize();
+
         await LoadLevel();
 
         await
             UniTask
             .WaitUntil(() => PlayerCharacter.instance != null);
-
-        UIManager.Instance.Initialize();
 
         await UniTask.Yield(PlayerLoopTiming.Update);
 
@@ -168,6 +169,8 @@ public class Flow : MonoBehaviour
 
         WinScreen winScreen = ShowScreen<WinScreen>();
 
+        Vault.instance.Multiply(FinishMult.instance.currentMultiplier);
+
         Branch result =
             await UniTask.WhenAny(
                 winScreen.multiplyButton.OnClickAsync(),
@@ -225,18 +228,30 @@ public class Flow : MonoBehaviour
 
         WorldLevel wLevel = levels[currentLevelIndex];
 
-        await sceneController.LoadNewScene(wLevel.name).ToUniTask();
+        MySplashScreen splash = ShowScreen<MySplashScreen>();
 
-        foreach (var prefab in levelManagers)
+        await splash.fade.FadeIn();
         {
-            Object.Instantiate(prefab);
+            await sceneController.LoadNewScene(wLevel.name).ToUniTask();
+
+            foreach (var prefab in levelManagers)
+            {
+                Object.Instantiate(prefab);
+            }
+
+            RenderSettings.skybox = skyboxMaterial;
+
+            WorldLevel instantiatedWLevel = GameObject.Instantiate(wLevel);
+
+            instantiatedWLevel.Generate();
+
+            PlayerController.Instance.SetMaxXPosition(20);
+            PlayerController.Instance.ResetPlayer();
+
+            PCHealthBar.instance.Resubscribe();
+
         }
-
-        GameManager.Instance.LoadLevel(wLevel);
-
-        PlayerController.Instance.SetMaxXPosition(20);
-
-        PCHealthBar.instance.Resubscribe();
+        await splash.fade.FadeOut();
 
         return Branch.Preparation;
     }
@@ -249,6 +264,8 @@ public class Flow : MonoBehaviour
         await upgradeScreen .startLevelButton .OnClickAsync();
 
         upgradeScreen.Hide();
+
+        FinishMult.instance.Reset();
 
         PlayerCharacter.instance.FullForward();
 

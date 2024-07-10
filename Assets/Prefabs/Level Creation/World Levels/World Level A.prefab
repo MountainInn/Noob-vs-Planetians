@@ -73,6 +73,7 @@ MonoBehaviour:
   length: 100
   chunks:
   - {fileID: 13150664811081505, guid: 5755cb9b9e493c346ba0dbe302606d22, type: 3}
+  - {fileID: 13150664811081505, guid: dd65bbd3bf159624cad0fde3e69a437f, type: 3}
   spawnedChunks:
   - {fileID: 6628064627331132802}
   currentLength: 40
@@ -608,6 +609,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 741037416871210551}
     m_Modifications:
+    - target: {fileID: 767896781785891019, guid: 5755cb9b9e493c346ba0dbe302606d22,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 767896781785891019, guid: 5755cb9b9e493c346ba0dbe302606d22,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787811281645420087, guid: 5755cb9b9e493c346ba0dbe302606d22,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787811281645420087, guid: 5755cb9b9e493c346ba0dbe302606d22,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3868191570285222558, guid: 5755cb9b9e493c346ba0dbe302606d22,
         type: 3}
       propertyPath: m_RootOrder
@@ -662,6 +683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079752669928902079, guid: 5755cb9b9e493c346ba0dbe302606d22,
+        type: 3}
+      propertyPath: m_text
+      value: 0/0
       objectReference: {fileID: 0}
     - target: {fileID: 9084432314417542523, guid: 5755cb9b9e493c346ba0dbe302606d22,
         type: 3}

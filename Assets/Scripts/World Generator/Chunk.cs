@@ -31,15 +31,28 @@ public class Chunk : MonoBehaviour
         Chunk newChunk;
 
 #if UNITY_EDITOR
-        newChunk = (Chunk)PrefabUtility.InstantiatePrefab(prefabChunk, null);
-        newChunk.transform.position = Vector3.zero.WithZ(zPosition);
-        newChunk.transform.rotation = Quaternion.identity;
+        if (Application.isPlaying)
+        {
+            RuntimeInstantiate();
+        }
+        else
+        {
+            newChunk = (Chunk)PrefabUtility.InstantiatePrefab(prefabChunk, null);
+            newChunk.transform.position = Vector3.zero.WithZ(zPosition);
+            newChunk.transform.rotation = Quaternion.identity;
+        }
 #else
-        newStartChunk = Instantiate(startChunk,
-                                    Vector3.zero.WithZ(zPosition),
-                                    Quaternion.identity,
-                                    null);
+        RuntimeInstantiate();
 #endif
+
+        void RuntimeInstantiate()
+        {
+            newChunk = (Chunk)GameObject.Instantiate(prefabChunk,
+                                                     Vector3.zero.WithZ(zPosition),
+                                                     Quaternion.identity,
+                                                     null);
+        }
+
         return newChunk;
     }
 

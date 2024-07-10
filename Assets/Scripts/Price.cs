@@ -5,30 +5,21 @@ using UniRx;
 public class Price
 {
     public Currency currency;
-    public IntReactiveProperty cost;
+    public StackedNumber amount;
 
     public Action<int> onPay;
 
-    public Price (Currency currency)
-        : this(currency, 0)
-    {
-    }
-    public Price(Currency currency, int cost)
-    {
-        this.currency = currency;
-        this.cost = new IntReactiveProperty(cost);
-    }
 
     public bool IsAffordable()
     {
-        return cost.Value <= currency.react.Value;
+        return amount.AsFloorInt() <= currency.react.Value;
     }
 
     public IObservable<bool> IsAffordableObservable()
     {
         return
             Observable
-            .CombineLatest(cost, currency.react,
+            .CombineLatest(amount.result, currency.react,
                            (cost, currency) => cost <= currency);
     }
 
@@ -36,19 +27,22 @@ public class Price
     {
         return
             Observable
-            .CombineLatest(cost, currency.react,
+            .CombineLatest(amount.result, currency.react,
                            (cost, currency) => (float)currency / cost);
     }
 
 
     public void Pay()
     {
-        currency.react.Value -= cost.Value;
-        onPay?.Invoke(cost.Value);
+        int payAmount = amount.AsFloorInt();
+
+        currency.react.Value -= payAmount;
+
+        onPay?.Invoke(payAmount);
     }
 
     public void GetPaid()
     {
-        currency.react.Value += cost.Value;
+        currency.react.Value += amount.AsFloorInt();
     }
 }

@@ -13,6 +13,7 @@ public class PlayerCharacter : MonoBehaviour
     PlayerCharacter() { _inst = this; }
 
     [SerializeField] ParticleSystem onSufferPS;
+    [SerializeField] Animator animator;
     [Space]
     [SerializeField] public GunSlot gunSlot;
     [SerializeField] public GunBelt gunBelt;
@@ -23,38 +24,12 @@ public class PlayerCharacter : MonoBehaviour
     public StackedNumber attackRate;
     public StackedNumber attackRange;
 
-    [Header("Upgrades")]
-    [SerializeField]
-    public Upgrade
-        upgradeHealth,
-        upgradeDamage,
-        upgradeAttackRate,
-        upgradeAttackRange;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
-
-        health.onHeal.AddListener(() => HealthPickupPS.instance.Fire(transform.position, 5));
-
-        upgradeHealth      .Inject(health.Value,   l => l * 100 );
-        upgradeDamage      .Inject(damage.Value,   l => l * 10);
-        upgradeAttackRate  .Inject(attackRate,     l => -Mathf.Max(l, 10) * .1f);
-        upgradeAttackRange .Inject(attackRange,    l => l * 2);
-
-
-        new [] {
-            upgradeHealth,
-            upgradeDamage,
-            upgradeAttackRate,
-            upgradeAttackRange
-        }
-            .Map(upg => upg.level.onBuy += (l) =>
-            {
-                WeaponExperience.instance.AddExpirience(1);
-            });
 
 
         damage.Value.ForceRecalculate();
@@ -75,17 +50,16 @@ public class PlayerCharacter : MonoBehaviour
         FindObjectsOfType<Gun>()
             .Map(g => g.Initialize(this));
 
+        gunSlot
+            .AddListeners(gun => gun.onShot.AddListener(SetTriggerShoot),
+                          gun => gun.onShot.RemoveListener(SetTriggerShoot));
+       
         FullStop();
     }
 
-    void OnEnable()
+    void SetTriggerShoot()
     {
-        YandexGame.GetDataEvent += Load;
-    }
-
-    void OnDisable()
-    {
-        YandexGame.GetDataEvent -= Load;
+        animator.SetTrigger("Shoot");
     }
 
     public void Die()
@@ -114,28 +88,5 @@ public class PlayerCharacter : MonoBehaviour
         gunBelt.ToggleShooting(true);
 
         PlayerController.Instance.enableMovement = true;
-    }
-
-    void OnApplicationQuit()
-    {
-        Save();
-    }
-
-    void Save()
-    {
-        // YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
-        YandexGame.savesData.damageUpgradeLevel = upgradeDamage.level.ware.L;
-        YandexGame.savesData.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
-        YandexGame.savesData.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
-
-        YandexGame.SaveProgress();
-    }
-
-    void Load()
-    {
-        // upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
-        upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
-        upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
-        upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);
     }
 }
