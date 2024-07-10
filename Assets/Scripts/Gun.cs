@@ -35,9 +35,9 @@ public class Gun : MonoBehaviour
 
         Observable
             .CombineLatest(player.attackRate.result, rate,
-                           (pRate, rate) => pRate + rate)
+                           (playerRate, rate) => playerRate * rate)
             .Subscribe(r =>
-                       attackTimer.Resize(r))
+                       attackTimer.Resize(RateToSeconds(r)))
             .AddTo(this);
 
         Observable
@@ -54,6 +54,8 @@ public class Gun : MonoBehaviour
                        totalRange = Mathf.FloorToInt(r))
             .AddTo(this);
     }
+
+    float RateToSeconds(float rate) => 10f / rate;
 
     void Update()
     {
