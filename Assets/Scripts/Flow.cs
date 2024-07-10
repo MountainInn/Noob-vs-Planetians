@@ -15,7 +15,8 @@ public class Flow : MonoBehaviour
     static Flow _inst;
     Flow(){ _inst = this; }
 
-
+    [SerializeField] Material skyboxMaterial;
+    [Space]
     [SerializeField] WorldLevel[] levels;
     [Space]
     [SerializeField] SequenceManager m_SequenceManagerPrefab;
@@ -237,6 +238,8 @@ public class Flow : MonoBehaviour
             {
                 Object.Instantiate(prefab);
             }
+
+            RenderSettings.skybox = skyboxMaterial;
 
             WorldLevel instantiatedWLevel = GameObject.Instantiate(wLevel);
 
