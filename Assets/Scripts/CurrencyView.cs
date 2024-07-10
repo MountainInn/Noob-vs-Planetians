@@ -63,11 +63,7 @@ public class CurrencyView : MonoBehaviour
             .ObservePair()
             .Subscribe(p =>
             {
-                int newCoins = p.Previous + p.Current;
-
-                DoPunchCounter(p.Previous, newCoins);
-
-                label.text = newCoins.ToString();
+                DoPunchCounter(p.Previous, p.Current);
             })
             .AddTo(disposables);
     }
