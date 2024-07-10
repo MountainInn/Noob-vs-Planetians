@@ -234,7 +234,9 @@ public class Flow : MonoBehaviour
             Object.Instantiate(prefab);
         }
 
-        GameManager.Instance.LoadLevel(wLevel);
+        WorldLevel instantiatedWLevel = GameObject.Instantiate(wLevel);
+
+        instantiatedWLevel.Generate();
 
         PlayerController.Instance.SetMaxXPosition(20);
 

@@ -73,6 +73,7 @@ MonoBehaviour:
   length: 100
   chunks:
   - {fileID: 13150664811081505, guid: 5755cb9b9e493c346ba0dbe302606d22, type: 3}
+  - {fileID: 13150664811081505, guid: dd65bbd3bf159624cad0fde3e69a437f, type: 3}
   spawnedChunks:
   - {fileID: 6628064627331132802}
   currentLength: 40
