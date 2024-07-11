@@ -1,15 +1,12 @@
+using System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] public StackedNumber Value;
-    [Header("View")]
-    [SerializeField] ProgressBar healthBar;
-    [SerializeField] TextMeshPro healthLabel;
-    [Header("Events")]
+    [Space]
     [SerializeField] public UnityEvent onHeal;
     [SerializeField] public UnityEvent onTakeDamage;
     [SerializeField] public UnityEvent onDie;
@@ -32,15 +29,6 @@ public class Health : MonoBehaviour
                     Volume.Resize(Value.AsFloorInt());
             })
             .AddTo(this);
-
-        if (healthBar)
-            healthBar.Subscribe(gameObject, Volume);
-
-        if (healthLabel)
-            Volume
-                .current
-                .Subscribe(cur => healthLabel.text = $"{cur}")
-                .AddTo(this);
     }
 
     public void __TakeDamage(Bullet bullet) => TakeDamage(bullet.damage);

@@ -61,11 +61,11 @@ MonoBehaviour:
   attackRate:
     initial: 1
     result:
-      value: 1.4641001
+      value: 0
   attackRange:
     initial: 10
     result:
-      value: 10
+      value: 0
 --- !u!114 &6931430198559016198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,9 +133,7 @@ MonoBehaviour:
   Value:
     initial: 100
     result:
-      value: 100
-  healthBar: {fileID: 0}
-  healthLabel: {fileID: 0}
+      value: 0
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -165,7 +163,7 @@ MonoBehaviour:
   Value:
     initial: 10
     result:
-      value: 13.310001
+      value: 0
   onDoDamage:
     m_PersistentCalls:
       m_Calls: []
