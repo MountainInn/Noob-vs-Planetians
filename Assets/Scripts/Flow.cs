@@ -136,7 +136,7 @@ public class Flow : MonoBehaviour
 
         await RewardDispenser.instance.onResurrect.OnInvokeAsync(onAppQuitCancellation.Token);
 
-        PlayerCharacter.instance.Ressurect();
+        PlayerCharacter.instance.Resurrect();
 
         return Branch.LevelInProgress;
     }
@@ -144,6 +144,8 @@ public class Flow : MonoBehaviour
     async UniTask<Branch> Retry()
     {
         GameManager.Instance.Retry();
+
+        PlayerCharacter.instance.RefillHealth();
 
         return Branch.Preparation;
     }
@@ -252,8 +254,9 @@ public class Flow : MonoBehaviour
             PlayerController.Instance.SetMaxXPosition(20);
             PlayerController.Instance.ResetPlayer();
 
-            PCHealthBar.instance.Resubscribe();
+            PlayerCharacter.instance.RefillHealth();
 
+            PCHealthBar.instance.Resubscribe();
         }
         await splash.fade.FadeOut();
 

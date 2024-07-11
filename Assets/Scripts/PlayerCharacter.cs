@@ -62,6 +62,11 @@ public class PlayerCharacter : MonoBehaviour
         animator.SetTrigger("Shoot");
     }
 
+    public void RefillHealth()
+    {
+        health.Volume.Refill();
+    }
+
     public void Die()
     {
         FullStop();
@@ -77,8 +82,10 @@ public class PlayerCharacter : MonoBehaviour
         PlayerController.Instance.enableMovement = false;
     }
 
-    public void Ressurect()
+    public void Resurrect()
     {
+        RefillHealth();
+
         FullForward();
     }
 
