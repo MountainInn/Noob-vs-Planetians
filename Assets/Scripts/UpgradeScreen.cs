@@ -53,7 +53,6 @@ public class UpgradeScreen : View
     public override void Show()
     {
         upgradeViews
-            .GetUniqueRandoms(2)
             .Map(v => v.gameObject.SetActive(true))
             ;
 
