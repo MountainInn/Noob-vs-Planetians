@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4391841737281656418
+--- !u!1001 &3874747116397848925
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 314387739941697089, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_Name
-      value: Gate_Damage Big
+      value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 1021949262770465885, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
