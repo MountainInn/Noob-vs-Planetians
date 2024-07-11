@@ -43,9 +43,9 @@ public class LevelSegment : MonoBehaviour
             fields
             .Map(f => f.taken = false)
             .ToList()
+            .InfiniteStream()
             .Where(f => f.repeatable || !f.taken)
             .Where(f => UnityEngine.Random.value < f.probability)
-            .InfiniteStream()
             .Select(f =>
             {
                 currentLength += f.chunk.length;
