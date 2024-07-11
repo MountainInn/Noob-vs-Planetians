@@ -233,6 +233,8 @@ MonoBehaviour:
     initial: 10
     result:
       value: 0
+  healthBar: {fileID: 8468033570157944638}
+  healthLabel: {fileID: 1053102385269629002}
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -331,8 +333,6 @@ MonoBehaviour:
   animator: {fileID: 6915218558315733399}
   startRunning: 0
   ragdoll: {fileID: 1053102385753094078}
-  healthLabel: {fileID: 1053102385269629002}
-  healthBar: {fileID: 8468033570157944638}
   health: {fileID: 1053102385753094076}
   damage: {fileID: 1053102385753094077}
 --- !u!114 &1053102385753094065
