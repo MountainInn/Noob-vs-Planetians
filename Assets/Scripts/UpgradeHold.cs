@@ -17,7 +17,7 @@ public class UpgradeHold : MonoBehaviour
 
     PlayerCharacter pc;
 
-    void Start()
+    public void Initialize()
     {
         pc = PlayerCharacter.instance;
 

@@ -86,6 +86,10 @@ public class Flow : MonoBehaviour
             UniTask
             .WaitUntil(() => PlayerCharacter.instance != null);
 
+        UpgradeHold.instance.Initialize();
+
+        UIManager.Instance.GetView<UpgradeScreen>().Initialize();
+
         await UniTask.Yield(PlayerLoopTiming.Update);
 
         MainLoop().Forget();
