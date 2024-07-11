@@ -158,7 +158,7 @@ static public class IEnumerableExt
     }
     static public bool None<T>(this IEnumerable<T> source)
     {
-        return source == null || !source.Any();
+        return source == null || !source.Any() || source.Count() == 0;
     }
     static public bool None<T>(this IEnumerable<T> source, Func<T, bool> pred)
     {
@@ -193,6 +193,34 @@ static public class IEnumerableExt
     {
         return source.Zip(other, (a , b) => (a, b)).Zip(elseOther, (a, b) => (a.a, a.b, b));
     }
+
+    static public IEnumerable<T> InfiniteStream<T>(this IEnumerable<T> source)
+    {
+        if (source == null || source.Count() == 0)
+        {
+            Debug.Log($"NONE");
+            yield break;
+        }
+
+        int n = 0;
+
+        while (true)
+        {
+            foreach (var item in source)
+            {
+                yield return item;
+            }
+
+            n++;
+
+            if (n > 1000)
+            {
+                Debug.LogError($"----> Stream is too infinite!");
+                yield break;
+            }
+        };
+    }
+
     static public IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
     {
         return source.OrderBy(_ => UnityEngine.Random.value);
@@ -232,8 +260,7 @@ static public class IEnumerableExt
     static public IEnumerable<T> Log<T>(this IEnumerable<T> source, string prefixMessage="")
     {
         string str =
-            (!source.Any())
-            ? "Empty"
+            (!source.Any()) ? "Empty"
             : source
             .Select(item => item?.ToString() ?? "NULL")
             .Aggregate((a, b) => a + ", " + b);
