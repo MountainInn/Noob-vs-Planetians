@@ -30,8 +30,8 @@ public class FinishStepsParent : MonoBehaviour
 
             foreach (var (j, ufo) in step.GetComponentsInChildren<UFOMaterialScroller>().Enumerate())
             {
-                ufo.offsetX = (i + j) % 10;
-                ufo.offsetY = (i + j) % 2;
+                ufo.offsetX = (i) % 10;
+                ufo.offsetY = UnityEngine.Random.Range(0, 2);
 
                 ufo.mesh = ufoMeshes[i / ufoMeshesStrip % ufoMeshes.Length];
 
