@@ -169,16 +169,16 @@ static public class IEnumerableExt
     {
         if (source.None())
         {
-            return source;
+            yield break;
         }
 
         foreach (var item in source)
         {
             if (item == null) continue;
             action.Invoke(item);
-        }
 
-        return source;
+            yield return item;
+        }
     }
     static public void Split<T>(this IEnumerable<T> source, Func<T, bool> predicate, out IEnumerable<T> a, out IEnumerable<T> b)
     {
@@ -215,7 +215,7 @@ static public class IEnumerableExt
 
             if (n > 1000)
             {
-                Debug.LogError($"----> Stream is too infinite!");
+                Debug.LogWarning($"----> Stream is too infinite!");
                 yield break;
             }
         };

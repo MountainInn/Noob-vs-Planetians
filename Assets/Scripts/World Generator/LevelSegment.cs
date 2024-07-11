@@ -41,13 +41,7 @@ public class LevelSegment : MonoBehaviour
 
         var rolledChunks =
             fields
-            .Select(f => new Field
-            {
-                chunk = f.chunk,
-                repeatable = f.repeatable,
-                probability = f.probability,
-                taken = false
-            })
+            .Map(f => f.taken = false)
             .ToList()
             .Where(f => f.repeatable || !f.taken)
             .Where(f => UnityEngine.Random.value < f.probability)
