@@ -143,9 +143,7 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> Retry()
     {
-        GameManager.Instance.Retry();
-
-        PlayerCharacter.instance.RefillHealth();
+        await LoadLevel();
 
         return Branch.Preparation;
     }
@@ -257,6 +255,8 @@ public class Flow : MonoBehaviour
             PlayerCharacter.instance.RefillHealth();
 
             PCHealthBar.instance.Resubscribe();
+
+            GunBelt.instance.Reset();
         }
         await splash.fade.FadeOut();
 

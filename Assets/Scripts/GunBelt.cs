@@ -22,6 +22,11 @@ public class GunBelt : MonoBehaviour
             Add(item);
     }
 
+    public void Reset()
+    {
+        guns.DestroyAll();
+    }
+
     public void ToggleShooting(bool toggle)
     {
         foreach (var item in guns)

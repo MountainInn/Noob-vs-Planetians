@@ -27,7 +27,6 @@ namespace HyperCasual.Runner
         [Space]
         [SerializeField] public UnityEvent onWin;
         [SerializeField] public UnityEvent onLose;
-        [SerializeField] public UnityEvent onRetry;
         [SerializeField] public UnityEvent onStartGame;
 
         public LevelDefinition m_CurrentLevel;
@@ -353,15 +352,6 @@ namespace HyperCasual.Runner
 #endif
 
             onWin?.Invoke();
-        }
-
-        public void Retry()
-        {
-            m_LoseEvent.Raise();
-
-            ResetLevel();
-
-            onRetry?.Invoke();
         }
 
         public void Lose()
