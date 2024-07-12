@@ -10,7 +10,22 @@ PrefabInstance:
     - target: {fileID: 3135502108981075887, guid: 856d6a1cd66692b468b2f7e8a915db15,
         type: 3}
       propertyPath: m_Name
-      value: Chunk
+      value: Chunk Enemy 1 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178747326622729717, guid: 856d6a1cd66692b468b2f7e8a915db15,
+        type: 3}
+      propertyPath: width
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178747326622729717, guid: 856d6a1cd66692b468b2f7e8a915db15,
+        type: 3}
+      propertyPath: height
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178747326622729717, guid: 856d6a1cd66692b468b2f7e8a915db15,
+        type: 3}
+      propertyPath: length
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6935396357320683594, guid: 856d6a1cd66692b468b2f7e8a915db15,
         type: 3}

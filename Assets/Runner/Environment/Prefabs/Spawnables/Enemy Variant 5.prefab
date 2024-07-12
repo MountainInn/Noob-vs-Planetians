@@ -10,17 +10,17 @@ PrefabInstance:
     - target: {fileID: 2156813961028917316, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3471683728290771929, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4390037825794286902, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy Variant 5
       objectReference: {fileID: 0}
     - target: {fileID: 4390037825794286909, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
@@ -30,17 +30,17 @@ PrefabInstance:
     - target: {fileID: 4390037825794286909, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4390037825794286909, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4390037825794286909, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.480001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4390037825794286909, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}

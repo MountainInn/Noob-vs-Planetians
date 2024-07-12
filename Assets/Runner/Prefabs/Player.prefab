@@ -61,7 +61,7 @@ MonoBehaviour:
   attackRate:
     initial: 1
     result:
-      value: 1.4641001
+      value: 1
   attackRange:
     initial: 10
     result:
@@ -165,7 +165,7 @@ MonoBehaviour:
   Value:
     initial: 10
     result:
-      value: 13.310001
+      value: 10
   onDoDamage:
     m_PersistentCalls:
       m_Calls: []

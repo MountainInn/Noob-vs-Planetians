@@ -56,7 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startChunk: {fileID: 13150664811081505, guid: cc7f2c3e4475c6d44aa2871646415b5f,
     type: 3}
-  finishChunk: {fileID: 13150664811081505, guid: dd65bbd3bf159624cad0fde3e69a437f,
+  finishChunk: {fileID: 13150664811081505, guid: 12ea6ebf54e467343b6733696a08eaf3,
     type: 3}
 --- !u!114 &4307323676592054601
 MonoBehaviour:
@@ -70,10 +70,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec1a5fc3b07e0d489ee114d4b6d2c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 100
-  chunks:
-  - {fileID: 13150664811081505, guid: 5755cb9b9e493c346ba0dbe302606d22, type: 3}
-  - {fileID: 13150664811081505, guid: dd65bbd3bf159624cad0fde3e69a437f, type: 3}
+  length: 200
+  fields:
+  - chunk: {fileID: 6466019265818181767, guid: 1613d84b5ea30f442a0a31da609b3857, type: 3}
+    probability: 1
+    repeatable: 1
+  - chunk: {fileID: 8781741686680515195, guid: c789b9e7e4957f54981a1e7ee76da2bf, type: 3}
+    probability: 1
+    repeatable: 1
+  - chunk: {fileID: 8676160951290514420, guid: 2648750af4d6737419bb9d88d42c7fee, type: 3}
+    probability: 1
+    repeatable: 1
+  - chunk: {fileID: 7614576689480487667, guid: d2b90d1641e8b8f4dbbb318a294d98c9, type: 3}
+    probability: 1
+    repeatable: 1
+  - chunk: {fileID: 4301121505877266797, guid: 98ec515012e04f7408c5cf00c6becbfd, type: 3}
+    probability: 1
+    repeatable: 1
   spawnedChunks:
   - {fileID: 6628064627331132802}
   currentLength: 40

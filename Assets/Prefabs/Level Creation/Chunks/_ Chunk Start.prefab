@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 6091711128676669005}
   coll: {fileID: 7249314628372314542}
-  width: 20
-  length: 40
+  width: 15
+  length: 10
   height: 4
 --- !u!1001 &343663447014101095
 PrefabInstance:
