@@ -17,7 +17,7 @@ public class UpgradeHold : MonoBehaviour
 
     PlayerCharacter pc;
 
-    void Start()
+    public void Initialize()
     {
         pc = PlayerCharacter.instance;
 
@@ -32,7 +32,7 @@ public class UpgradeHold : MonoBehaviour
             upgradeAttackRate,
             upgradeAttackRange
         }
-            .Map(upg => upg.level.onBuy += (l) =>
+            .ForEach(upg => upg.level.onBuy += (l) =>
             {
                 WeaponExperience.instance.AddExpirience(1);
             });

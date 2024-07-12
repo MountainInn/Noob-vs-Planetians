@@ -117,6 +117,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button With Icon Variant Ad Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7317583381690879138, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317583381690879138, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8868854987889840222, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_Type

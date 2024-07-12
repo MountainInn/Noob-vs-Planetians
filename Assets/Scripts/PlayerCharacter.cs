@@ -47,19 +47,27 @@ public class PlayerCharacter : MonoBehaviour
             })
             .AddTo(this);
 
-        FindObjectsOfType<Gun>()
-            .Map(g => g.Initialize(this));
-
         gunSlot
-            .AddListeners(gun => gun.onShot.AddListener(SetTriggerShoot),
-                          gun => gun.onShot.RemoveListener(SetTriggerShoot));
-       
+            .AddListeners(
+                gun => {
+                    gun.Initialize(this);
+                    gun.onShot.AddListener(SetTriggerShoot);
+                },
+                gun => {
+                    gun.onShot.RemoveListener(SetTriggerShoot);
+                });
+
         FullStop();
     }
 
     void SetTriggerShoot()
     {
         animator.SetTrigger("Shoot");
+    }
+
+    public void RefillHealth()
+    {
+        health.Volume.Refill();
     }
 
     public void Die()
@@ -77,8 +85,10 @@ public class PlayerCharacter : MonoBehaviour
         PlayerController.Instance.enableMovement = false;
     }
 
-    public void Ressurect()
+    public void Resurrect()
     {
+        RefillHealth();
+
         FullForward();
     }
 

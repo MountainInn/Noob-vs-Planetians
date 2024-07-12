@@ -86,6 +86,10 @@ public class Flow : MonoBehaviour
             UniTask
             .WaitUntil(() => PlayerCharacter.instance != null);
 
+        UpgradeHold.instance.Initialize();
+
+        UIManager.Instance.GetView<UpgradeScreen>().OtherInitialize();
+
         await UniTask.Yield(PlayerLoopTiming.Update);
 
         MainLoop().Forget();
@@ -132,14 +136,14 @@ public class Flow : MonoBehaviour
 
         await RewardDispenser.instance.onResurrect.OnInvokeAsync(onAppQuitCancellation.Token);
 
-        PlayerCharacter.instance.Ressurect();
+        PlayerCharacter.instance.Resurrect();
 
         return Branch.LevelInProgress;
     }
 
     async UniTask<Branch> Retry()
     {
-        GameManager.Instance.Retry();
+        await LoadLevel();
 
         return Branch.Preparation;
     }
@@ -248,8 +252,11 @@ public class Flow : MonoBehaviour
             PlayerController.Instance.SetMaxXPosition(20);
             PlayerController.Instance.ResetPlayer();
 
+            PlayerCharacter.instance.RefillHealth();
+
             PCHealthBar.instance.Resubscribe();
 
+            GunBelt.instance.Reset();
         }
         await splash.fade.FadeOut();
 

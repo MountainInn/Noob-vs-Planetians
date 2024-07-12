@@ -22,6 +22,11 @@ public class GunBelt : MonoBehaviour
             Add(item);
     }
 
+    public void Reset()
+    {
+        guns.DestroyAll();
+    }
+
     public void ToggleShooting(bool toggle)
     {
         foreach (var item in guns)
@@ -36,6 +41,7 @@ public class GunBelt : MonoBehaviour
         gun.transform.forward = Vector3.forward;
         gun.transform.localScale = Vector3.one;
 
+        gun.Initialize(PlayerCharacter.instance);
         gun.ToggleShooting(true);
 
         angleStep = 360 / guns.Count;

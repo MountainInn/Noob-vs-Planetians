@@ -141,7 +141,7 @@ static public class IEnumerableExt
         other.Where(o =>
                     source.None(s =>
                                 fieldSelector.Invoke(o) == fieldSelector.Invoke(s)))
-            .Map(source.Add);
+            .ForEach(source.Add);
 
         return source;
     }
@@ -163,6 +163,11 @@ static public class IEnumerableExt
     static public bool None<T>(this IEnumerable<T> source, Func<T, bool> pred)
     {
         return !source.Any(pred);
+    }
+
+    static public IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
+    {
+        return source.Map(action).ToList();
     }
 
     static public IEnumerable<T> Map<T>(this IEnumerable<T> source, Action<T> action)
