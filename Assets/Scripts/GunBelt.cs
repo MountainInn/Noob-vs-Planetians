@@ -36,6 +36,7 @@ public class GunBelt : MonoBehaviour
         gun.transform.forward = Vector3.forward;
         gun.transform.localScale = Vector3.one;
 
+        gun.Initialize(PlayerCharacter.instance);
         gun.ToggleShooting(true);
 
         angleStep = 360 / guns.Count;
