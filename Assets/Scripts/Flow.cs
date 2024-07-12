@@ -88,7 +88,7 @@ public class Flow : MonoBehaviour
 
         UpgradeHold.instance.Initialize();
 
-        UIManager.Instance.GetView<UpgradeScreen>().Initialize();
+        UIManager.Instance.GetView<UpgradeScreen>().OtherInitialize();
 
         await UniTask.Yield(PlayerLoopTiming.Update);
 

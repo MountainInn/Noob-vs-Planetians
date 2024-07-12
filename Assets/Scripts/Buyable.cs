@@ -48,7 +48,7 @@ public class Buyable<T>
 
     public void Buy()
     {
-        prices.Map(price => price.Pay());
+        prices.ForEach(price => price.Pay());
         onBuy?.Invoke(ware);
     }
 

@@ -17,7 +17,7 @@ public class UpgradeScreen : View
     [Space]
     [SerializeField] UpgradeView prefabUpgradeView;
     [Space]
-    [SerializeField] HorizontalLayoutGroup layout;
+    [SerializeField] LayoutGroup layout;
     [Space]
     [SerializeField] public Button startLevelButton;
 
@@ -28,7 +28,7 @@ public class UpgradeScreen : View
         startLevelButton.onClick.AddListener(() => onStartLevelClicked?.Invoke());
     }
 
-    public override void Initialize()
+    public void OtherInitialize()
     {
         new []
         {
@@ -37,7 +37,7 @@ public class UpgradeScreen : View
             UpgradeHold.instance.upgradeAttackRate,
             UpgradeHold.instance.upgradeAttackRange,
         }
-            .Map(up =>
+            .ForEach(up =>
             {
                 UpgradeView view = Instantiate(prefabUpgradeView,
                                                default,
@@ -53,7 +53,7 @@ public class UpgradeScreen : View
     public override void Show()
     {
         upgradeViews
-            .Map(v => v.gameObject.SetActive(true))
+            .ForEach(v => v.gameObject.SetActive(true))
             ;
 
         base.Show();
@@ -62,7 +62,7 @@ public class UpgradeScreen : View
     public override void Hide()
     {
         upgradeViews
-            .Map(v => v.gameObject.SetActive(false))
+            .ForEach(v => v.gameObject.SetActive(false))
             ;
 
         base.Hide();

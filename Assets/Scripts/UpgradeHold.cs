@@ -32,7 +32,7 @@ public class UpgradeHold : MonoBehaviour
             upgradeAttackRate,
             upgradeAttackRange
         }
-            .Map(upg => upg.level.onBuy += (l) =>
+            .ForEach(upg => upg.level.onBuy += (l) =>
             {
                 WeaponExperience.instance.AddExpirience(1);
             });
