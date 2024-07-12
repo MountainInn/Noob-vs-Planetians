@@ -46,11 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95c73f43fd87954fa13d8a8a7c016f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 6091711128676669005}
-  coll: {fileID: 7249314628372314542}
   width: 15
   length: 10
   height: 4
+  floor: {fileID: 6091711128676669005}
 --- !u!1001 &343663447014101095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 7358928129119149721, guid: 021e1ce6e148542ccaa52b42d50df7df,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7358928129119149721, guid: 021e1ce6e148542ccaa52b42d50df7df,
         type: 3}
@@ -82,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 7358928129119149721, guid: 021e1ce6e148542ccaa52b42d50df7df,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.68
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 7358928129119149721, guid: 021e1ce6e148542ccaa52b42d50df7df,
         type: 3}
@@ -181,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 6663339242118504279, guid: 9c0b3fa952c747b4d875c021ac2d5435,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6663339242118504279, guid: 9c0b3fa952c747b4d875c021ac2d5435,
         type: 3}
@@ -234,12 +233,6 @@ Transform:
 --- !u!23 &6091711128676669005 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4442094415264053351, guid: 9c0b3fa952c747b4d875c021ac2d5435,
-    type: 3}
-  m_PrefabInstance: {fileID: 7579390681682964010}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7249314628372314542 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 987936022781417348, guid: 9c0b3fa952c747b4d875c021ac2d5435,
     type: 3}
   m_PrefabInstance: {fileID: 7579390681682964010}
   m_PrefabAsset: {fileID: 0}
