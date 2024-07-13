@@ -44,6 +44,8 @@ public class UpgradeScreen : View
                                                default,
                                                layout.transform);
 
+                view.transform.localPosition = view.transform.localPosition.WithZ(0);
+
                 upgradeViews.Add(view);
 
                 view.Subscribe(up);
