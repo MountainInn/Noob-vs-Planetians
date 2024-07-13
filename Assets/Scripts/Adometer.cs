@@ -10,6 +10,7 @@ public class Adometer : MonoBehaviour
     static Adometer _inst;
     Adometer(){ _inst = this; }
 
+    [SerializeField] Canvas rootCanvas;
     [SerializeField] int[] multipliers;
     [Space]
     [SerializeField] [Min(30)] int scrollSpeed;
@@ -65,17 +66,31 @@ public class Adometer : MonoBehaviour
 
     int GetCurrentMultiplier()
     {
-        var arrowScreenPosition = arrow.rectTransform.position.AddY(arrow.rectTransform.rect.height / 2);
+        Vector2 canvasScale = rootCanvas.transform.localScale.xy();
+
+        var arrowRect = GetWorldRect(arrow.rectTransform, canvasScale);
+
+        Vector2 arrowPoint = arrowRect.center + new Vector2(0, arrowRect.height / 2);
 
         int zoneIndex =
             zones
             .Enumerate()
-            .First(tup =>
-                   RectTransformUtility
-                   .RectangleContainsScreenPoint(tup.value,
-                                                 arrowScreenPosition))
+            .First(tup => GetWorldRect(tup.value, canvasScale).Contains(arrowPoint))
             .index;
 
         return multipliers[zoneIndex];
+
+        static Rect GetWorldRect(RectTransform rt, Vector2 scale)
+        {
+            Vector3[] corners = new Vector3[4];
+            rt.GetWorldCorners(corners);
+
+            Vector3 topLeft = corners[0];
+
+            Vector2 scaledSize = new Vector2(scale.x * rt.rect.size.x,
+                                             scale.y * rt.rect.size.y);
+
+            return new Rect(topLeft, scaledSize);
+        }
     }
 }

@@ -27,4 +27,6 @@ static public class Vector3Extensions
     {
         return new Vector3(v.x, v.y, z);
     }
+
+    static public Vector2 xy(this Vector3 v3) => new Vector2(v3.x, v3.y);
 }
