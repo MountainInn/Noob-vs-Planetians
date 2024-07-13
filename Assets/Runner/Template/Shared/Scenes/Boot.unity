@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skyboxMaterial: {fileID: 2100000, guid: d3363b642523c6c488778027545e1ca6, type: 2}
   levels:
-  - {fileID: 9080779998604626786, guid: 17da1d28c16c0de478a5eba470781b75, type: 3}
+  - {fileID: 9080779998604626786, guid: 56ad96d3f4cb32940bf54bca8ffd6de4, type: 3}
   m_SequenceManagerPrefab: {fileID: 4462145952910458180, guid: 6a3c13f7e2c6d42fe8c3f5029e1d0a98,
     type: 3}
   levelManagers:
@@ -837,6 +837,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 8701068580347915590, guid: 48e60f0845bd446d1962e2da252b92ea,
+        type: 3}
+      propertyPath: scrollSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8964213207106919504, guid: 48e60f0845bd446d1962e2da252b92ea,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1364,7 +1369,7 @@ PrefabInstance:
     - target: {fileID: 5237897444947184907, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09853762
+      value: 0.09853763
       objectReference: {fileID: 0}
     - target: {fileID: 5237897444947184907, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}

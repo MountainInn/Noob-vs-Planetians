@@ -45,12 +45,12 @@ public class Adometer : MonoBehaviour
 
     public void StartArrow()
     {
-        arrow.transform.localPosition = Vector3.zero;
+        arrow.rectTransform.anchoredPosition = Vector3.zero;
 
         arrowScrollTween =
             arrow
-            .transform
-            .DOLocalMoveX(arrowParent.sizeDelta.x, scrollSpeed)
+            .rectTransform
+            .DOAnchorPosX(arrowParent.rect.width, scrollSpeed)
             .SetSpeedBased(true)
             .SetLoops(-1, LoopType.Yoyo)
             .OnUpdate(() => labelCurrentMultiplier.text = $"Get x{GetCurrentMultiplier()}!");
@@ -65,12 +65,15 @@ public class Adometer : MonoBehaviour
 
     int GetCurrentMultiplier()
     {
+        var arrowScreenPosition = arrow.rectTransform.position.AddY(arrow.rectTransform.rect.height / 2);
+
         int zoneIndex =
             zones
             .Enumerate()
             .First(tup =>
                    RectTransformUtility
-                   .RectangleContainsScreenPoint(tup.value, arrow.rectTransform.position))
+                   .RectangleContainsScreenPoint(tup.value,
+                                                 arrowScreenPosition))
             .index;
 
         return multipliers[zoneIndex];
