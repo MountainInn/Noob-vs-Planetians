@@ -28,12 +28,12 @@ public class WeaponExperience : MonoBehaviour
 
     void OnEnable()
     {
-        YandexGame.GetDataEvent += Load;
+        // YandexGame.GetDataEvent += Load;
     }
 
     void OnDisable()
     {
-        YandexGame.GetDataEvent -= Load;
+        // YandexGame.GetDataEvent -= Load;
     }
 
     void OnApplicationQuit()
