@@ -215,16 +215,12 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> WaitForGameplayResult()
     {
+        await GameManager.Instance.onLose.OnInvokeAsync(onAppQuitCancellation.Token);
+
         Branch result =
-            await UniTask.WhenAny(
-                GameManager.Instance.onLose.OnInvokeAsync(onAppQuitCancellation.Token),
-                GameManager.Instance.onWin.OnInvokeAsync(onAppQuitCancellation.Token)
-            )
-            switch {
-                0 => Branch.Lose,
-                1 => Branch.Win,
-                _ => throw new System.ArgumentException()
-            };
+            FinishMult.instance.hasReachedFinish
+            ? Branch.Win
+            : Branch.Lose;
 
         return result;
     }
