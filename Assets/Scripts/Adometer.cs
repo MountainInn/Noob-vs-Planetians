@@ -2,64 +2,77 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Linq;
 
 public class Adometer : MonoBehaviour
 {
-    static public Adometer instance => _inst ??= FindObjectOfType<Adometer>();
+    static public Adometer instance => _inst;
     static Adometer _inst;
+    Adometer(){ _inst = this; }
 
-    [SerializeField] [Range(-180, 0)] int startingAngle;
-    [SerializeField] [Range(0, 180)] int endingAngle;
-    [SerializeField] [Min(30)] int rotationSpeed;
+    [SerializeField] int[] multipliers;
     [Space]
-    [SerializeField] [Min(1)] int numberOfZones = 5;
+    [SerializeField] [Min(30)] int scrollSpeed;
     [Space]
-    [SerializeField] Image scale;
+    [SerializeField] RectTransform zonesParent;
+    [SerializeField] RectTransform arrowParent;
     [SerializeField] Image arrow;
+    [Space]
     [SerializeField] TextMeshProUGUI labelCurrentMultiplier;
 
-    int scaleSize;
-    int zoneSize;
-    int arrowAngle;
-    int resultZone;
+    RectTransform[] zones;
 
-    Tween arrowRotation;
+    Tween arrowScrollTween;
 
-    public int StopArrow()
+    void OnValidate()
     {
-        arrowRotation?.Kill();
-
-        return resultZone;
+        foreach (var (label, mult) in
+                 GetComponentsInChildren<TextMeshProUGUI>()
+                 .Zip(multipliers))
+        {
+            label.text = $"x{mult}";
+        }
     }
 
-    int GetCurrentMultiplier()
+    void Awake()
     {
-        scaleSize = endingAngle - startingAngle;
-
-        zoneSize = scaleSize / numberOfZones;
-
-        arrowAngle = (int)arrow.transform.localRotation.eulerAngles.z - startingAngle;
-
-        resultZone = arrowAngle / zoneSize;
-
-        return resultZone;
+        zones =
+            zonesParent
+            .GetComponentsInChildren<RectTransform>()
+            .Where(rt => (rt.parent == zonesParent.transform))
+            .ToArray();
     }
 
-    void OnEnable()
+    public void StartArrow()
     {
-        arrow.transform.localRotation = Quaternion.Euler(0, 0, startingAngle);
+        arrow.transform.localPosition = Vector3.zero;
 
-        arrowRotation =
+        arrowScrollTween =
             arrow
             .transform
-            .DOLocalRotate(new Vector3(0, 0, endingAngle), rotationSpeed)
+            .DOLocalMoveX(arrowParent.sizeDelta.x, scrollSpeed)
             .SetSpeedBased(true)
             .SetLoops(-1, LoopType.Yoyo)
             .OnUpdate(() => labelCurrentMultiplier.text = $"Get x{GetCurrentMultiplier()}!");
     }
 
-    void OnDisable()
+    public int StopArrow()
     {
-        StopArrow();
+        arrowScrollTween?.Kill();
+
+        return GetCurrentMultiplier();
+    }
+
+    int GetCurrentMultiplier()
+    {
+        int zoneIndex =
+            zones
+            .Enumerate()
+            .First(tup =>
+                   RectTransformUtility
+                   .RectangleContainsScreenPoint(tup.value, arrow.rectTransform.position))
+            .index;
+
+        return multipliers[zoneIndex];
     }
 }

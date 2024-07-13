@@ -86,6 +86,13 @@ public class Volume
         return result;
     }
 
+    public bool SetCurrent(float val)
+    {
+        current.Value = Mathf.Clamp(val, 0, maximum.Value);
+
+        return current.Value >= maximum.Value;
+    }
+
     public bool Add(float amount, out float overflow)
     {
         overflow = 0;

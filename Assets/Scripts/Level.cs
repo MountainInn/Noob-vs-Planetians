@@ -3,14 +3,18 @@ using System.Linq;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
+[Serializable]
 public class Level : Buyable<Level>.IWare
 {
-    public int L => Mathf.FloorToInt(level.current.Value);
-    public Volume level = new();
+    [SerializeField] public Volume Volume = new();
+    [SerializeField] public UnityEvent<int> onSetLevel;
 
     protected List<Action<int>> statCalculations;
 
+
+    public int L => Mathf.FloorToInt(Volume.current.Value);
 
     public Level(int maximumLevel, Action<int> statsCalculation)
         : this(statsCalculation)
@@ -32,27 +36,30 @@ public class Level : Buyable<Level>.IWare
 
     public void Up()
     {
-        SetLevel((int)level.current.Value + 1);
+        SetLevel((int)Volume.current.Value + 1);
     }
 
     public void SetMaximum(int maximumLevel)
     {
-        level.Resize(maximumLevel);
+        Volume.Resize(maximumLevel);
     }
 
     public void SetLevel(int level)
     {
-        this.level.current.Value = level;
+        this.Volume.SetCurrent(level);
 
-        foreach (var item in statCalculations)
-        {
-            item.Invoke(level);
-        }
+        if (statCalculations != null && statCalculations.Any())
+            foreach (var item in statCalculations)
+            {
+                item.Invoke(level);
+            }
+
+        onSetLevel?.Invoke(level);
     }
 
     public IObservable<bool> ObserveIsAtMaxLevel()
     {
-        return level.ObserveFull();
+        return Volume.ObserveFull();
     }
 
     public IObservable<bool> ObserveIsAffordable()

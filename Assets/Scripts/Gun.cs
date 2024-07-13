@@ -24,14 +24,11 @@ public class Gun : MonoBehaviour
 
     [HideInInspector] public int totalDamage, totalRange;
 
-    void Awake()
-    {
-        attackTimer = new Volume(0, 1);
-    }
-
     public void Initialize(PlayerCharacter playerCharacter)
     {
         player = playerCharacter;
+
+        attackTimer = new Volume(0, 1);
 
         Observable
             .CombineLatest(player.attackRate.result, rate,

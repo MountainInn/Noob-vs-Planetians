@@ -150,7 +150,9 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> MultiplyMoney()
     {
-        RewardDispenser.instance.ShowMoneyMult();
+        int multiplier = Adometer.instance.StopArrow();
+
+        RewardDispenser.instance.ShowMoneyMult(multiplier);
 
         await RewardDispenser.instance.onClaimX5.OnInvokeAsync(onAppQuitCancellation.Token);
 
@@ -174,6 +176,8 @@ public class Flow : MonoBehaviour
         WinScreen winScreen = ShowScreen<WinScreen>();
 
         Vault.instance.Multiply(FinishMult.instance.currentMultiplier);
+
+        Adometer.instance.StartArrow();
 
         Branch result =
             await UniTask.WhenAny(

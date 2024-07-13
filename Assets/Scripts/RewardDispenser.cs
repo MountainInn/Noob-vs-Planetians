@@ -31,9 +31,9 @@ public class RewardDispenser : MonoBehaviour
         YandexGame.RewVideoShow(FREE_UPGRADE);
     }
 
-    public void ShowMoneyMult()
+    public void ShowMoneyMult(int multiplier)
     {
-        multiplier = Adometer.instance.StopArrow();
+        this.multiplier = multiplier;
 
         YandexGame.RewVideoShow(MONEY_MULTIPLIER);
     }

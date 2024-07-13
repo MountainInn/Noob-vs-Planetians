@@ -47,15 +47,14 @@ public class PlayerCharacter : MonoBehaviour
             })
             .AddTo(this);
 
+        FindObjectsOfType<Gun>(true)
+            .ForEach(g => g.Initialize(this));
+
         gunSlot
-            .AddListeners(
-                gun => {
-                    gun.Initialize(this);
-                    gun.onShot.AddListener(SetTriggerShoot);
-                },
-                gun => {
-                    gun.onShot.RemoveListener(SetTriggerShoot);
-                });
+            .AddListeners(gun => gun.onShot.AddListener(SetTriggerShoot),
+                          gun => gun.onShot.RemoveListener(SetTriggerShoot));
+
+        gunSlot.MaybeSwitchEquipment(WeaponExperience.instance.currentLevel);
 
         FullStop();
     }
