@@ -50,18 +50,9 @@ public class PlayerCharacter : MonoBehaviour
         FindObjectsOfType<Gun>(true)
             .ForEach(g => g.Initialize(this));
 
-        gunSlot
-            .AddListeners(gun => gun.onShot.AddListener(SetTriggerShoot),
-                          gun => gun.onShot.RemoveListener(SetTriggerShoot));
-
         gunSlot.MaybeSwitchEquipment(WeaponExperience.instance.currentLevel);
 
         FullStop();
-    }
-
-    void SetTriggerShoot()
-    {
-        animator.SetTrigger("Shoot");
     }
 
     public void RefillHealth()
