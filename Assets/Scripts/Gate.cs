@@ -84,29 +84,31 @@ public class Gate : InteractiveCollider
     public void __ActivateGate() => ActivateGate();
     public void ActivateGate()
     {
+        float multiplier = 1f + totalValue / 100f;
+
         switch (m_GateType)
         {
             case GateType.DamageBonus:
 
                 PlayerCharacter.instance.damage.Value
-                    .SetAddendUntil(nameof(GateType.DamageBonus),
-                                    totalValue,
+                    .SetMultiplierUntil("Gate Damage",
+                                    multiplier,
                                     GameManager.Instance.onStartGame);
                 break;
 
             case GateType.AttackRate:
 
                 PlayerCharacter.instance.attackRate
-                    .SetAddendUntil(nameof(GateType.AttackRate),
-                                    totalValue,
+                    .SetMultiplierUntil("Gate Rate",
+                                    multiplier,
                                     GameManager.Instance.onStartGame);
                 break;
 
             case GateType.Range:
 
                 PlayerCharacter.instance.attackRange
-                    .SetAddendUntil(nameof(GateType.Range),
-                                    totalValue,
+                    .SetMultiplierUntil("Gate Range",
+                                    multiplier,
                                     GameManager.Instance.onStartGame);
                 break;
 
