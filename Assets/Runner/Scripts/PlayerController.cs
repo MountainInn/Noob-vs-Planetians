@@ -123,7 +123,7 @@ namespace HyperCasual.Runner
         public void Initialize()
         {
             m_Transform = transform;
-            m_StartPosition = new Vector3(0, 2, 0);
+            m_StartPosition = new Vector3(0, 0, 0);
             m_DefaultScale = m_Transform.localScale;
             m_Scale = m_DefaultScale;
             m_TargetScale = m_Scale;
@@ -306,7 +306,7 @@ namespace HyperCasual.Runner
                 m_XPos += newPositionDifference;
             }
 
-            m_Transform.position = new Vector3(m_XPos, 2, m_ZPos);
+            m_Transform.position = new Vector3(m_XPos, m_StartPosition.y, m_ZPos);
 
             if (m_Animator != null && deltaTime > 0.0f)
             {
