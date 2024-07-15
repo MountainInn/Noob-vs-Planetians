@@ -8,10 +8,10 @@ using UniRx;
 public class StackedNumber
 {
     [SerializeField] public float initial;
+    [SerializeField] public FloatReactiveProperty result = new();
 
     public Action onRecalculated;
    
-    [HideInInspector] public FloatReactiveProperty result = new();
 
     Dictionary<string, float> multipliers = new();
     Dictionary<string, float> addends = new();
