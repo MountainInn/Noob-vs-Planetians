@@ -10,6 +10,8 @@ public class FinishStepsParent : MonoBehaviour
     [SerializeField] [Min(1)] int healthPerStep;
     [Space]
     [SerializeField] [Min(1)] int stepLength = 5;
+    [Space]
+    [SerializeField] [Range(0, 1f)] float cycleOffsetPerStep = .1f;
 
     int CalculateHealthOnStep(int step)
     {
@@ -36,6 +38,10 @@ public class FinishStepsParent : MonoBehaviour
                 ufo.mesh = ufoMeshes[i / ufoMeshesStrip % ufoMeshes.Length];
 
                 ufo.OnValidate();
+
+                ufo
+                    .GetComponentInChildren<CycleOffsetSetter>()
+                    .cycleOffset = i * cycleOffsetPerStep;
 
                 ufo
                     .GetComponent<Health>()
