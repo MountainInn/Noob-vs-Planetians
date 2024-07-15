@@ -5,16 +5,17 @@ public class Creator : MonoBehaviour
 {
     [SerializeField] GameObject objectToCreate;
     [Space]
-    [SerializeField] UnityEvent onCreation;
+    [SerializeField] UnityEvent<GameObject> onCreation;
 
     public void __Create() => Create();
     public void Create()
     {
-        Instantiate(objectToCreate,
-                    transform.position,
-                    transform.rotation,
-                    null);
+        var createdObject =
+            Instantiate(objectToCreate,
+                        transform.position,
+                        transform.rotation,
+                        null);
 
-        onCreation?.Invoke();
+        onCreation?.Invoke(createdObject);
     }
 }

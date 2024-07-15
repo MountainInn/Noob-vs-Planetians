@@ -9,6 +9,8 @@ public class Enemy : Spawnable
     [SerializeField] Animator animator;
     [SerializeField] bool startRunning = false;
     [Space]
+    [SerializeField] int moneyAmount;
+    [Space]
     [SerializeField] Ragdoll ragdoll;
 
 
@@ -40,6 +42,12 @@ public class Enemy : Spawnable
         transform.position = SavedPosition;
 
         health.Volume.Refill();
+    }
+
+    public void __InitializeMoneyPickup(GameObject GameObject) => InitializeMoneyPickup(GameObject.GetComponent<MoneyPickup>());
+    void InitializeMoneyPickup(MoneyPickup moneyPickup)
+    {
+        moneyPickup.SetAmount(moneyAmount);
     }
 
     public void __ReactOnDamage() => ReactOnDamage();

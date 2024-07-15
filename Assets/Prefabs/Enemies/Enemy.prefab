@@ -232,6 +232,8 @@ MonoBehaviour:
     initial: 0
     result:
       value: 0
+  healthBar: {fileID: 0}
+  healthLabel: {fileID: 0}
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -329,8 +331,8 @@ MonoBehaviour:
   m_SnapToGrid: 1
   animator: {fileID: 6915218558315733399}
   startRunning: 0
+  moneyAmount: 2
   ragdoll: {fileID: 1053102385753094078}
-  healthLabel: {fileID: 1053102385269629002}
   health: {fileID: 1053102385753094076}
   damage: {fileID: 1053102385753094077}
 --- !u!114 &1053102385753094065
@@ -454,7 +456,19 @@ MonoBehaviour:
     type: 3}
   onCreation:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1053102385753094079}
+        m_TargetAssemblyTypeName: Enemy, MyScripts
+        m_MethodName: __InitializeMoneyPickup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7883564174396279209
 MonoBehaviour:
   m_ObjectHideFlags: 0
