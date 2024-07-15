@@ -26,7 +26,7 @@ public class Upgrade
         this.stat = stat;
         this.bonusCalculation = bonusCalculation;
 
-        level = new Buyable<Level>(new(OnLevelUp),
+        level = new Buyable<Level>(new Level(OnLevelUp),
                                    OnBuy,
                                    price);
     }
@@ -38,7 +38,8 @@ public class Upgrade
 
     void OnLevelUp(int l)
     {
-        stat.SetMultiplier(name, bonusCalculation.Invoke(l));
+        float multiplier = bonusCalculation.Invoke(l);
+        stat.SetMultiplier(name, multiplier);
 
         price.amount.SetMultiplier(name, Mathf.Pow(1.1f, l));
     }

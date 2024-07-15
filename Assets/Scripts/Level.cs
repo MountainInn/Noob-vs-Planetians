@@ -16,17 +16,13 @@ public class Level : Buyable<Level>.IWare
 
     public int L => Mathf.FloorToInt(Volume.current.Value);
 
-    public Level(int maximumLevel, Action<int> statsCalculation)
-        : this(statsCalculation)
-    {
-        SetMaximum(maximumLevel);
-    }
-
-    public Level(Action<int> statsCalculation)
+    public Level(Action<int> statsCalculation, int maximumLevel = int.MaxValue)
     {
         statCalculations = new List<Action<int>>(){
             statsCalculation
         };
+
+        SetMaximum(maximumLevel);
     }
 
     public void AddCalculation(params Action<int>[] statCalculations)
