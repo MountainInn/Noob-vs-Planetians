@@ -12,6 +12,7 @@ public class Volume
     protected FloatReactiveProperty _current, _maximum;
 
     public float Unfilled => maximum.Value - current.Value;
+    public int CurrentInt => (int)current.Value;
 
 
     public Volume() {}

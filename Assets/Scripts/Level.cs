@@ -30,27 +30,34 @@ public class Level : Buyable<Level>.IWare
         this.statCalculations.AddRange(statCalculations);
     }
 
-    public void Up()
-    {
-        SetLevel((int)Volume.current.Value + 1);
-    }
-
     public void SetMaximum(int maximumLevel)
     {
         Volume.Resize(maximumLevel);
     }
 
+    public void Up()
+    {
+        SetLevel(Volume.CurrentInt + 1);
+    }
+
     public void SetLevel(int level)
     {
-        this.Volume.SetCurrent(level);
+        int cachedLevel = Volume.CurrentInt;
+
+        Volume.SetCurrent(level);
+
+        if (cachedLevel == Volume.CurrentInt)
+            return;
 
         if (statCalculations != null && statCalculations.Any())
+        {
             foreach (var item in statCalculations)
             {
-                item.Invoke(level);
+                item.Invoke(Volume.CurrentInt);
             }
+        }
 
-        onSetLevel?.Invoke(level);
+        onSetLevel?.Invoke(Volume.CurrentInt);
     }
 
     public IObservable<bool> ObserveIsAtMaxLevel()
