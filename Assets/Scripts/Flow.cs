@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using YG;
+using DG.Tweening;
 
 public class Flow : MonoBehaviour
 {
@@ -148,26 +149,8 @@ public class Flow : MonoBehaviour
         return Branch.Preparation;
     }
 
-    async UniTask<Branch> MultiplyMoney()
-    {
-        int multiplier = Adometer.instance.StopArrow();
-
-        RewardDispenser.instance.ShowMoneyMult(multiplier);
-
-        await RewardDispenser.instance.onClaimX5.OnInvokeAsync(onAppQuitCancellation.Token);
-
-        return await Continue();
-    }
-
-    async UniTask<Branch> Continue()
-    {
-        levelCount++;
-        currentLevelIndex++;
-
-        Vault.instance.Claim();
-
-        return Branch.StartLoadingLevel;
-    }
+    int moneyOnEnteringWinScreen;
+    int moneyAfterAdMult;
 
     async UniTask<Branch> ShowWinScreen()
     {
@@ -176,6 +159,9 @@ public class Flow : MonoBehaviour
         WinScreen winScreen = ShowScreen<WinScreen>();
 
         Vault.instance.Multiply(FinishMult.instance.currentMultiplier);
+
+        moneyOnEnteringWinScreen = Vault.instance.buffer;
+        winScreen.SetMoneyBufferText(moneyOnEnteringWinScreen);
 
         Adometer.instance.StartArrow();
 
@@ -191,6 +177,43 @@ public class Flow : MonoBehaviour
             };
 
         return result;
+    }
+
+    async UniTask<Branch> MultiplyMoney()
+    {
+        int multiplier = Adometer.instance.StopArrow();
+
+        RewardDispenser.instance.ShowMoneyMult(multiplier);
+
+        await RewardDispenser.instance.onClaimX5.OnInvokeAsync(onAppQuitCancellation.Token);
+
+        WinScreen winScreen = GetScreen<WinScreen>();
+
+        moneyAfterAdMult = Vault.instance.buffer;
+
+        await
+            DOVirtual
+            .Int(moneyOnEnteringWinScreen, moneyAfterAdMult, .75f,
+                 (val) => {
+                     winScreen.SetMoneyBufferText(val);
+                 }
+            )
+            .ToUniTask()
+            ;
+
+        await UniTask.WaitForSeconds(.75f);
+
+        return await Continue();
+    }
+
+    async UniTask<Branch> Continue()
+    {
+        levelCount++;
+        currentLevelIndex++;
+
+        Vault.instance.Claim();
+
+        return Branch.StartLoadingLevel;
     }
 
     async UniTask<Branch> ShowRetryScreen()

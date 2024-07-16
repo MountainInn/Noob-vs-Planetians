@@ -13,7 +13,8 @@
         "UniTask",
         "UniTask.Linq",
         "UniTask.TextMeshPro",
-        "WorldLevelGeneration"
+        "WorldLevelGeneration",
+        "UniTask.DOTween"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -749,7 +749,7 @@ PlayerSettings:
     PS4: DOTWEEN
     PS5: DOTWEEN
     Stadia: DOTWEEN
-    Standalone: DOTWEEN;YG_PLUGIN_YANDEX_GAME
+    Standalone: DOTWEEN;YG_PLUGIN_YANDEX_GAME;UNITASK_DOTWEEN_SUPPORT
     WebGL: DOTWEEN
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN

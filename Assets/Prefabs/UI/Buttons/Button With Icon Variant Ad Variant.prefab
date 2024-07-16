@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3372551086574041070, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
+        type: 3}
+      propertyPath: m_Name
+      value: Multiply Ad  Label
+      objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_Pivot.x
@@ -45,12 +50,12 @@ PrefabInstance:
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 188.7
+      value: 285
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 90.32
+      value: 100.29999
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
@@ -65,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.00016230992
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
@@ -75,17 +80,17 @@ PrefabInstance:
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
@@ -95,7 +100,7 @@ PrefabInstance:
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -277.6702
       objectReference: {fileID: 0}
     - target: {fileID: 3837158752915268623, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
@@ -115,12 +120,17 @@ PrefabInstance:
     - target: {fileID: 5473161913950767467, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_Name
-      value: Button With Icon Variant Ad Variant
+      value: Multiply Ad Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317583381690879138, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
+        type: 3}
+      propertyPath: m_text
+      value: Get x5
       objectReference: {fileID: 0}
     - target: {fileID: 7317583381690879138, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.3
+      value: 45.1
       objectReference: {fileID: 0}
     - target: {fileID: 7317583381690879138, guid: d431a6ed9ad3ea14dbb3ce7a61843e23,
         type: 3}
