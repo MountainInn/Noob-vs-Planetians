@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using YG;
 using UnityEngine.Events;
+using Zenject;
 
 public class WeaponExperience : MonoBehaviour
 {
@@ -17,6 +18,19 @@ public class WeaponExperience : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent onNewWeaponUnlocked;
 
+    [Inject] void SubToSaveSystem(YandexSaveSystem sv)
+    {
+        sv.Register(
+            save => {
+                save.lastWeaponIndex = level.L;
+                save.weaponExpirience = currentExpirience;
+            },
+            load => {
+                level.SetLevel(load.lastWeaponIndex);
+                expirienceVolume.current.Value = load.weaponExpirience;
+            });
+    }
+
     public int currentLevel => level.L;
     public int currentExpirience => (int)expirienceVolume.current.Value;
 
@@ -24,21 +38,6 @@ public class WeaponExperience : MonoBehaviour
     void OnValidate()
     {
         fields.ResizeDestructive((int)level.Volume.maximum.Value);
-    }
-
-    void OnEnable()
-    {
-        // YandexGame.GetDataEvent += Load;
-    }
-
-    void OnDisable()
-    {
-        // YandexGame.GetDataEvent -= Load;
-    }
-
-    void OnApplicationQuit()
-    {
-        Save();
     }
 
     public (Sprite, Sprite) GetWeaponSprites()
@@ -62,20 +61,6 @@ public class WeaponExperience : MonoBehaviour
 
         PlayerCharacter.instance.gunSlot
             .MaybeSwitchEquipment(l);
-    }
-
-    void Save()
-    {
-        YandexGame.savesData.lastWeaponIndex = level.L;
-        YandexGame.savesData.weaponExpirience = currentExpirience;
-
-        YandexGame.SaveProgress();
-    }
-
-    void Load()
-    {
-        level.SetLevel(YandexGame.savesData.lastWeaponIndex);
-        expirienceVolume.current.Value = YandexGame.savesData.weaponExpirience;
     }
 
     [System.Serializable]
