@@ -37,7 +37,12 @@ public class WeaponExperience : MonoBehaviour
 
     void OnValidate()
     {
-        fields.ResizeDestructive((int)level.Volume.maximum.Value);
+        fields.ResizeDestructive((int)level.Volume.maximum.Value + 1);
+    }
+
+    void Awake()
+    {
+        level.SetLevel(level.L);
     }
 
     public (Sprite, Sprite) GetWeaponSprites()

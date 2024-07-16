@@ -14,6 +14,7 @@ public class Level : Buyable<Level>.IWare
     protected List<Action<int>> statCalculations;
 
 
+    public bool MaxReached => ((int)Volume.Unfilled == 0);
     public int L => Mathf.FloorToInt(Volume.current.Value);
 
     public Level(Action<int> statsCalculation, int maximumLevel = int.MaxValue)
@@ -37,17 +38,15 @@ public class Level : Buyable<Level>.IWare
 
     public void Up()
     {
+        if (MaxReached)
+            return;
+
         SetLevel(Volume.CurrentInt + 1);
     }
 
     public void SetLevel(int level)
     {
-        int cachedLevel = Volume.CurrentInt;
-
         Volume.SetCurrent(level);
-
-        if (cachedLevel == Volume.CurrentInt)
-            return;
 
         if (statCalculations != null && statCalculations.Any())
         {

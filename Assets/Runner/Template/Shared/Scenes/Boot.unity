@@ -491,7 +491,7 @@ MonoBehaviour:
       _current:
         value: 0
       _maximum:
-        value: 5
+        value: 4
     onSetLevel:
       m_PersistentCalls:
         m_Calls:
