@@ -83,62 +83,57 @@ public class ProgressBar : MonoBehaviour
     {
         return
             volume
-            .ObserveAll()
+            .ObserveRatio()
             .TakeWhile(_ => volumeOwner != null && volumeOwner.activeSelf)
-            .Subscribe(tup =>
+            .Subscribe(ratio =>
             {
-                if (float.IsNaN(tup.ratio))
-                    return;
-
                 if (label)
                     label.text = volume.ToString();
 
-                QueueTween(slider.DOValue(tup.ratio, underFillDelay));
+                if (afterimage)
+                    QueueTween(afterimage.slider.DOValue(ratio, underFillDelay));
 
-                if (afterimage != null)
-                {
-                    var tween = afterimage.slider.DOValue(tup.ratio, underFillDelay);
-
-                    QueueTween(tween);
-                }
+                QueueTween(slider.DOValue(ratio, underFillDelay));
             });
     }
 
-    public void SetVolume(Volume volume)
-    {
-        this.volume = volume;
-    }
+    // public void SetVolume(Volume volume)
+    // {
+    //     this.volume = volume;
+    // }
 
-    void Update()
-    {
-        if (volume == null
-            || float.IsNaN(volume.Ratio))
-            return;
+    // void Update()
+    // {
+    //     if (volume == null
+    //         || float.IsNaN(volume.Ratio))
+    //         return;
 
-        if (label)
-            label.text = volume.ToString();
+    //     if (label)
+    //         label.text = volume.ToString();
 
-        /// TODO: Add Volume.HasChanged to update slider only when needed
-        slider.value = volume.Ratio;
+    //     /// TODO: Add Volume.HasChanged to update slider only when needed
+    //     slider.value = volume.Ratio;
 
-        if (afterimage != null)
-        {
-            var tween = afterimage.slider.DOValue(volume.Ratio, underFillDelay);
+    //     if (afterimage != null)
+    //     {
+    //         var tween = afterimage.slider.DOValue(volume.Ratio, underFillDelay);
 
-            QueueTween(tween);
-        }
-    }
+    //         QueueTween(tween);
+    //     }
+    // }
 
     protected void QueueTween(Tween tween)
     {
+        tween
+            .Pause()
+            .OnKill(() =>
+            {
+                queue.Dequeue();
+
+                queue.Peek()?.Play();
+            });
+
         queue.Enqueue(tween);
-
-        tween.OnKill(() =>
-        {
-            queue.Dequeue();
-
-            queue.Peek()?.Play();
-        });
 
         if (queue.Peek() == tween)
         {

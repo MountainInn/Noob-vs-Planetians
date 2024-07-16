@@ -33,6 +33,10 @@ public class Volume
             current, maximum,
             (cur , max) => (cur, max, Ratio));
 
+    public IObservable<float> ObserveRatio() =>
+        current
+        .Select(_ => ((float.IsNaN(Ratio)) ? 0f : Ratio));
+
     public IObservable<bool> ObserveFull() =>
         Observable.CombineLatest(
             current, maximum,
