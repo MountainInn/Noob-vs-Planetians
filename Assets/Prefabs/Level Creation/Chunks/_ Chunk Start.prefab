@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 15
-  length: 10
+  length: 25
   height: 4
   floor: {fileID: 6091711128676669005}
 --- !u!1001 &343663447014101095
@@ -171,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6663339242118504279, guid: 9c0b3fa952c747b4d875c021ac2d5435,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6663339242118504279, guid: 9c0b3fa952c747b4d875c021ac2d5435,
         type: 3}

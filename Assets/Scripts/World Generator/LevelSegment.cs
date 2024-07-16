@@ -17,7 +17,7 @@ public class LevelSegment : MonoBehaviour
     {
         [SerializeField] public Chunk chunk;
         [SerializeField] [Range(0, 1f)] public float probability = 1f;
-        [SerializeField] public bool repeatable = false;
+        [SerializeField] public bool repeatable = true;
         [NonSerialized] public bool taken = false;
 
     }
@@ -42,6 +42,7 @@ public class LevelSegment : MonoBehaviour
         var rolledChunks =
             fields
             .Map(f => f.taken = false)
+            .Shuffle()
             .ToList()
             .InfiniteStream()
             .Where(f => f.repeatable || !f.taken)
