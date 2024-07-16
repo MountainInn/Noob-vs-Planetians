@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4390037825794286896, guid: f01cabeb864bf904482374a05a5f3cff,
+        type: 3}
+      propertyPath: root
+      value: 
+      objectReference: {fileID: 7776430370528540193}
     - target: {fileID: 4390037825794286902, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_Name
@@ -79,3 +84,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f01cabeb864bf904482374a05a5f3cff, type: 3}
+--- !u!54 &7776430370528540193 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5904096854098393045, guid: f01cabeb864bf904482374a05a5f3cff,
+    type: 3}
+  m_PrefabInstance: {fileID: 4180746689908343284}
+  m_PrefabAsset: {fileID: 0}

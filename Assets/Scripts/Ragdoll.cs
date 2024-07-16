@@ -45,9 +45,6 @@ public class Ragdoll : MonoBehaviour
         }
 
         parentCollider.enabled = !toggle;
-
-        if (isToggled)
-            root.AddForce(storedForce, ForceMode.Impulse);
     }
 
     public void __StoreBulletForce(Bullet Bullet) => StoreBulletForce(Bullet);
@@ -55,6 +52,13 @@ public class Ragdoll : MonoBehaviour
     {
         storedForce =
             (transform.position - bullet.transform.position)
-            .WithY(0).normalized * bullet.force;
+            .AddX(.2f)
+            .WithY(0)
+            .normalized * bullet.force;
+
+        if (isToggled)
+        {
+            root.AddForce(storedForce, ForceMode.Impulse);
+        }
     }
 }

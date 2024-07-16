@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Variant 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1578533781646652758, guid: f225cabd183b3cc4588eef1d1aaee1ea,
+        type: 3}
+      propertyPath: root
+      value: 
+      objectReference: {fileID: 242260355975286357}
     - target: {fileID: 1578533781646652763, guid: f225cabd183b3cc4588eef1d1aaee1ea,
         type: 3}
       propertyPath: m_RootOrder
@@ -84,3 +89,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f225cabd183b3cc4588eef1d1aaee1ea, type: 3}
+--- !u!54 &242260355975286357 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8169593756019489750, guid: f225cabd183b3cc4588eef1d1aaee1ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 8231617762822944131}
+  m_PrefabAsset: {fileID: 0}
