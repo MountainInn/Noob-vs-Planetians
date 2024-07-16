@@ -17,6 +17,9 @@ public class FinishMult : MonoBehaviour
     {
         FinishStep.onStepped += (mult) =>
         {
+            if (!hasReachedFinish)
+                Vault.instance.GainMoney(10);
+           
             hasReachedFinish = true;
             currentMultiplier = mult;
         };
