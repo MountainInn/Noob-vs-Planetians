@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skyboxMaterial: {fileID: 2100000, guid: d3363b642523c6c488778027545e1ca6, type: 2}
   levels:
-  - {fileID: 9080779998604626786, guid: 56ad96d3f4cb32940bf54bca8ffd6de4, type: 3}
+  - {fileID: 9080779998604626786, guid: 17da1d28c16c0de478a5eba470781b75, type: 3}
   m_SequenceManagerPrefab: {fileID: 4462145952910458180, guid: 6a3c13f7e2c6d42fe8c3f5029e1d0a98,
     type: 3}
   levelManagers:
@@ -993,6 +993,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385550658356523659, guid: a199d962ca53e4a10ba285d5d34bf335,
+        type: 3}
+      propertyPath: subscribeToCurrency
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7712252100636157412, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}

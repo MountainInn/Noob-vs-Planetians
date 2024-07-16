@@ -86,13 +86,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.38
+  volume: 0.787
   clips:
-  - {fileID: 8300000, guid: db2ab44fffa42cf4188168f7955d6c78, type: 3}
-  - {fileID: 8300000, guid: b06bce481e4a2404a9a2ca3c79782d85, type: 3}
-  - {fileID: 8300000, guid: 443d519e80fdfc942ae2f9229a5b2bea, type: 3}
-  - {fileID: 8300000, guid: 38db3cd162b0473458104c042c19d299, type: 3}
-  - {fileID: 8300000, guid: 9a57f0f628ce2d74fbb6d9199e342518, type: 3}
+  - {fileID: 8300000, guid: d263316265e72bc49be2d07542dda28c, type: 3}
+  - {fileID: 8300000, guid: a8ab0e5521159584192250ef0d50ef0f, type: 3}
+  - {fileID: 8300000, guid: a979a02e2e3f4684f86160e1f4eb4bf7, type: 3}
+  - {fileID: 8300000, guid: 53876755cce8eac4d81f8ed16db596e9, type: 3}
+  - {fileID: 8300000, guid: 40d058ed1d9129246b8f1843d71970a2, type: 3}
 --- !u!1 &8514085993090144484
 GameObject:
   m_ObjectHideFlags: 0

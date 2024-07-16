@@ -79,6 +79,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5979819720108558467}
+        m_TargetAssemblyTypeName: MyAudioSource, MyScripts
+        m_MethodName: __PlayRandom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7684597557494361002}
         m_TargetAssemblyTypeName: Anihilator, MyScripts
         m_MethodName: __Anihilate
@@ -137,8 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.504
-  clips: []
+  volume: 0.694
+  clips:
+  - {fileID: 8300000, guid: ff4ed8f57aaf7a945a61ada47b2a64cd, type: 3}
+  - {fileID: 8300000, guid: 9b6557824935e19429494c38795427ad, type: 3}
+  - {fileID: 8300000, guid: f355c39ed62921845a745de4e70db076, type: 3}
 --- !u!114 &7684597557494361002
 MonoBehaviour:
   m_ObjectHideFlags: 0

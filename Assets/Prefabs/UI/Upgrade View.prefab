@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5563600120510118015}
   - component: {fileID: 5563600120510118012}
   - component: {fileID: 5563600120510118008}
+  - component: {fileID: 6584643390534612116}
   m_Layer: 0
   m_Name: Upgrade View
   m_TagString: Untagged
@@ -144,7 +145,37 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5563600120510118012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6584643390534612116}
+        m_TargetAssemblyTypeName: MyAudioSource, MyScripts
+        m_MethodName: __PlayRandom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6584643390534612116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563600120510118002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0.75
+  clips:
+  - {fileID: 8300000, guid: 981456b7e905e8f48b36ba013bb9e1e9, type: 3}
+  - {fileID: 8300000, guid: affd9860fe90b7348b74934f8d2217ac, type: 3}
+  - {fileID: 8300000, guid: 4bf6822e683253c49a39d364f60fd689, type: 3}
+  - {fileID: 8300000, guid: e77a2ad853566cf4f80aebb5a567258e, type: 3}
 --- !u!1 &5563600120580669332
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
+  subscribeToCurrency: 0
   icon: {fileID: 5563600122147399106}
   label: {fileID: 5563600121867276225}
 --- !u!114 &5563600120683490384
@@ -648,8 +680,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90.595, y: -22.319103}
-  m_SizeDelta: {x: 71.67, y: 36.638206}
+  m_AnchoredPosition: {x: 102.54, y: -22.319103}
+  m_SizeDelta: {x: 23.89, y: 36.638206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5563600121867276224
 CanvasRenderer:
@@ -679,7 +711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 260
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

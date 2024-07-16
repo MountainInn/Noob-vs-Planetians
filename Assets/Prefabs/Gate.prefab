@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7543757207440390361}
   - component: {fileID: 2104138902743592425}
   - component: {fileID: 9162852834870430779}
+  - component: {fileID: 4891950441810784040}
   m_Layer: 10
   m_Name: Gate
   m_TagString: Untagged
@@ -73,6 +74,18 @@ MonoBehaviour:
       - m_Target: {fileID: 9162852834870430779}
         m_TargetAssemblyTypeName: MyAnimation, MyScripts
         m_MethodName: __Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4891950441810784040}
+        m_TargetAssemblyTypeName: MyAudioSource, MyScripts
+        m_MethodName: __PlayRandom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -153,6 +166,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff310c2abb768fe46847234148449993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4891950441810784040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314387739941697089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0.75
+  clips:
+  - {fileID: 8300000, guid: 8b45f7e30396d2342be8bb1b705ddb18, type: 3}
+  - {fileID: 8300000, guid: 44e5c6b31f0e6904a94d77a618b53647, type: 3}
+  - {fileID: 8300000, guid: 8f128a4855e25ad449ace326003ab7a3, type: 3}
 --- !u!1 &1282791181104469815
 GameObject:
   m_ObjectHideFlags: 0
