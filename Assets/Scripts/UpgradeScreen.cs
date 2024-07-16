@@ -37,7 +37,7 @@ public class UpgradeScreen : View
             UpgradeHold.instance.upgradeAttackRate,
             UpgradeHold.instance.upgradeAttackRange,
         }
-            .ForEach(up =>
+            .ForEach(upgrade =>
             {
                 UpgradeView view = Instantiate(prefabUpgradeView,
                                                default,
@@ -48,7 +48,7 @@ public class UpgradeScreen : View
 
                 upgradeViews.Add(view);
 
-                view.Subscribe(up);
+                view.Subscribe(upgrade);
             });
     }
 

@@ -7,6 +7,7 @@ using DG.Tweening;
 public class CurrencyView : MonoBehaviour
 {
     [SerializeField] Currency currency;
+    [SerializeField] bool subscribeToCurrency;
     [Space]
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI label;
@@ -40,7 +41,8 @@ public class CurrencyView : MonoBehaviour
 
     void Start()
     {
-        InitAndSubscribe(currency);
+        if (subscribeToCurrency)
+            InitAndSubscribe(currency);
     }
 
     public void Clear()
