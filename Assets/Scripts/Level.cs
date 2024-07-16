@@ -11,11 +11,15 @@ public class Level : Buyable<Level>.IWare
     [SerializeField] public Volume Volume = new();
     [SerializeField] public UnityEvent<int> onSetLevel;
 
-    protected List<Action<int>> statCalculations;
+    protected List<Action<int>> statCalculations = new();
 
 
     public bool MaxReached => ((int)Volume.Unfilled == 0);
     public int L => Mathf.FloorToInt(Volume.current.Value);
+
+    public Level()
+    {
+    }
 
     public Level(Action<int> statsCalculation, int maximumLevel = int.MaxValue)
     {
@@ -26,9 +30,14 @@ public class Level : Buyable<Level>.IWare
         SetMaximum(maximumLevel);
     }
 
-    public void AddCalculation(params Action<int>[] statCalculations)
+    public void AddCalculation(params Action<int>[] newCalculations)
     {
-        this.statCalculations.AddRange(statCalculations);
+        this.statCalculations.AddRange(newCalculations);
+
+        foreach (var item in newCalculations)
+        {
+            item.Invoke(L);
+        }
     }
 
     public void SetMaximum(int maximumLevel)

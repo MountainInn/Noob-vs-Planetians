@@ -42,6 +42,7 @@ public class WeaponExperience : MonoBehaviour
 
     void Awake()
     {
+        level.AddCalculation(OnLevelUp);
         level.SetLevel(level.L);
     }
 
