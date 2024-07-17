@@ -9,6 +9,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using YG;
 using DG.Tweening;
+using Zenject;
 
 public class Flow : MonoBehaviour
 {
@@ -22,6 +23,19 @@ public class Flow : MonoBehaviour
     [Space]
     [SerializeField] SequenceManager m_SequenceManagerPrefab;
     [SerializeField] GameObject[] levelManagers;
+
+    [Inject] void Construct(YandexSaveSystem sv)
+    {
+        sv.Register(
+            save => {
+                YandexGame.savesData.levelCount = levelCount;
+                YandexGame.savesData.currentLevelIndex = currentLevelIndex;
+            },
+            load => {
+                levelCount = YandexGame.savesData.levelCount;
+                currentLevelIndex = YandexGame.savesData.currentLevelIndex;
+            });
+    }
 
     public Branch currentBranch => branch;
     Branch branch = Branch.NONE;
@@ -44,25 +58,6 @@ public class Flow : MonoBehaviour
         StartLoadingLevel
     }
 
-    void OnEnable()
-    {
-        YandexGame.GetDataEvent += Load;
-    }
-    void OnDisable()
-    {
-        YandexGame.GetDataEvent -= Load;
-    }
-    void Save()
-    {
-        YandexGame.savesData.levelCount = levelCount;
-        YandexGame.savesData.currentLevelIndex = currentLevelIndex;
-        YandexGame.SaveProgress();
-    }
-    void Load()
-    {
-        levelCount = YandexGame.savesData.levelCount;
-        currentLevelIndex = YandexGame.savesData.currentLevelIndex;
-    }
 
     void Awake()
     {
