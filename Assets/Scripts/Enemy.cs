@@ -37,6 +37,11 @@ public class Enemy : Spawnable
         health.Value.SetMultiplier("LevelMult", 1 + Flow.instance.CurrentLevel * .2f);
     }
 
+    void Start()
+    {
+        health.Value.ForceRecalculate();
+    }
+
     public override void ResetSpawnable()
     {
         ragdoll.Activate(false);

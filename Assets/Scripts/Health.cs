@@ -14,24 +14,11 @@ public class Health : MonoBehaviour
     [SerializeField] public UnityEvent onTakeDamage;
     [SerializeField] public UnityEvent onDie;
 
-    [HideInInspector] public Volume Volume;
-
+    [SerializeField] public Volume Volume;
 
     void Awake()
     {
         Volume = new (Value.initial);
-    }
-    void Start()
-    {
-        Value.result
-            .Subscribe((_) =>
-            {
-                if (Flow.instance.currentBranch == Flow.Branch.Preparation)
-                    Volume.ResizeAndRefill(Value.AsFloorInt());
-                else
-                    Volume.Resize(Value.AsFloorInt());
-            })
-            .AddTo(this);
 
         if (healthBar)
             healthBar.Subscribe(gameObject, Volume);
@@ -41,8 +28,15 @@ public class Health : MonoBehaviour
                 .current
                 .Subscribe(cur => healthLabel.text = $"{cur}")
                 .AddTo(this);
-    }
 
+        Value.result
+            .Subscribe((_) =>
+            {
+                Volume.ResizeAndRefill(Value.AsFloorInt());
+            })
+            .AddTo(this);
+    }
+    
     public void __TakeDamage(Bullet bullet) => TakeDamage(bullet.damage);
     public void __TakeDamage(Enemy enemy) => TakeDamage(enemy.damage);
     public void __TakeDamage(Damage harm) => TakeDamage(harm);
