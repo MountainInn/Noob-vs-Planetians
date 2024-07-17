@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec1a5fc3b07e0d489ee114d4b6d2c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 40
+  length: 20
   fields:
   - chunk: {fileID: 8774478289047047126, guid: 40d8f4e96ae07e64f93344eb5ab0a18a, type: 3}
     probability: 1
