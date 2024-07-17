@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using HyperCasual.Runner;
+using UnityEngine.Events;
 
 public class Gate : InteractiveCollider
 {
@@ -54,12 +55,33 @@ public class Gate : InteractiveCollider
             m_TextInitialScale = m_Text.localScale;
         }
 
+        labelType.text = m_GateType switch
+            {
+                GateType.DamageBonus => "Damage",
+                GateType.AttackRate => "Fire Rate",
+                GateType.Range => "Range",
+                _ => throw new System.ArgumentException()
+            };
+
+        RandomizeStats();
+
         totalValue = startingValue;
 
-        labelIncrement.text = $"{incrementPerHit:^#;v#;~#}";
+        labelIncrement.text = $"{incrementPerHit:+#;-#;~#}";
         labelTotalValue.text = $"{totalValue}";
 
         initialScale = transform.localScale;
+    }
+
+    void RandomizeStats()
+    {
+        float initialValueRoll = UnityEngine.Random.value;
+
+        float incrementRoll = UnityEngine.Random.value / initialValueRoll;
+
+        incrementPerHit = (int)(incrementRoll * 10);
+
+        startingValue = (int)(initialValueRoll * 20);
     }
 
     Tween punchScaleTween;
@@ -78,41 +100,36 @@ public class Gate : InteractiveCollider
     }
 
     enum GateType {
-            DamageBonus, AttackRate, Range
-        }
+        DamageBonus, AttackRate, Range
+    }
 
     public void __ActivateGate() => ActivateGate();
     public void ActivateGate()
     {
-        float multiplier = 1f + totalValue / 100f;
+        float multiplier = totalValue / 100f;
 
-        switch (m_GateType)
-        {
-            case GateType.DamageBonus:
+        StackedNumber stat = m_GateType switch
+            {
+                GateType.DamageBonus => PlayerCharacter.instance.damage.Value,
+                GateType.AttackRate => PlayerCharacter.instance.attackRate,
+                GateType.Range => PlayerCharacter.instance.attackRange,
+                _ => throw new System.ArgumentException()
+            };
 
-                PlayerCharacter.instance.damage.Value
-                    .SetMultiplierUntil("Gate Damage",
-                                    multiplier,
-                                    GameManager.Instance.onStartGame);
-                break;
+        string modifierName = m_GateType switch
+            {
+                GateType.DamageBonus => "Gate: Damage",
+                GateType.AttackRate => "Gate: Fire Rate",
+                GateType.Range => "Gate: Range",
+                _ => throw new System.ArgumentException()
+            };
 
-            case GateType.AttackRate:
-
-                PlayerCharacter.instance.attackRate
-                    .SetMultiplierUntil("Gate Rate",
-                                    multiplier,
-                                    GameManager.Instance.onStartGame);
-                break;
-
-            case GateType.Range:
-
-                PlayerCharacter.instance.attackRange
-                    .SetMultiplierUntil("Gate Range",
-                                    multiplier,
-                                    GameManager.Instance.onStartGame);
-                break;
-
-        }
+        stat
+            .GetModifier(modifierName)
+            .Add(multiplier)
+            .Until(GameManager.Instance.onStartGame)
+            .Log()
+            .Apply();
 
         LevelUpPS.instance.Fire(transform.position, 1);
 

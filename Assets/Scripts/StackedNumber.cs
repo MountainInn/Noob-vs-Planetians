@@ -152,4 +152,79 @@ public class StackedNumber
 
         result.Value = tempResult;
     }
+
+    public StatMutation GetModifier(string name)
+    {
+        multipliers.TryAdd(name, 1);
+
+        return new StatMutation(multipliers, name);
+    }
+
+    public struct StatMutation
+    {
+        private float val;
+
+        Dictionary<string, float> dict;
+        string key;
+
+        public StatMutation(Dictionary<string, float> dict, string key)
+        {
+            this.dict = dict;
+            this.key = key;
+
+            this.val = dict[key];
+        }
+
+        public StatMutation Set(float value)
+        {
+            val = value;
+
+            return this;
+        }
+
+        public StatMutation Until(UnityEvent until)
+        {
+            until.AddListener(Reset);
+            until.AddListener(UnSub);
+
+            void UnSub()
+            {
+                until.RemoveListener(Reset);
+                until.RemoveListener(UnSub);
+            }
+
+            return this;
+        }
+
+        void Reset()
+        {
+            dict[key] = 1;
+        }
+
+        public StatMutation Add(float addition)
+        {
+            val += addition;
+
+            return this;
+        }
+
+        public StatMutation Clamp(float min, float max)
+        {
+            val = Mathf.Clamp(val, min, max);
+
+            return this;
+        }
+
+        public StatMutation Log()
+        {
+            Debug.Log($"{key}: {val}");
+
+            return this;
+        }
+
+        public void Apply()
+        {
+            dict[key] = this.val;
+        }
+    }
 }
