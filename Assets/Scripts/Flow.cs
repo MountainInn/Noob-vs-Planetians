@@ -33,6 +33,8 @@ public class Flow : MonoBehaviour
         levelCount,
         currentLevelIndex;
 
+    public int CurrentLevel => currentLevelIndex + 1;
+
     public enum Branch {
         NONE,
         Preparation,
@@ -280,6 +282,8 @@ public class Flow : MonoBehaviour
             PCHealthBar.instance.Resubscribe();
 
             GunBelt.instance.Reset();
+
+            LevelCounterLabel.instance.SetCount(CurrentLevel);
         }
         await splash.fade.FadeOut();
 
