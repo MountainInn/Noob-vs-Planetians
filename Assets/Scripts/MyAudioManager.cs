@@ -10,18 +10,23 @@ public class MyAudioManager : MonoBehaviour
     Dictionary<string, AudioSource> sources = new();
     Dictionary<AudioSource, float> lastPlaytime = new();
 
-    public void Play(AudioClip clip, float volume, float interval)
+    public void Register(string id, float interval)
     {
-        if (!sources.TryGetValue(clip.name, out AudioSource source))
+        if (!sources.TryGetValue(id, out AudioSource source))
         {
-            source = new GameObject($"Source: {clip.name}").AddComponent<AudioSource>();
-
-            sources.Add(clip.name, source);
+            source = new GameObject($"Source: {id}").AddComponent<AudioSource>();
 
             source.transform.SetParent(transform);
 
             lastPlaytime.Add(source, -interval);
+
+            sources.Add(id, source);
         }
+    }
+
+    public void Play(AudioClip clip, string id, float volume, float interval)
+    {
+        AudioSource source = sources[id];
 
         if (Time.time - lastPlaytime[source] >= interval)
         {
