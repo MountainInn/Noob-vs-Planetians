@@ -39,6 +39,18 @@ public class FinishStepsParent : MonoBehaviour
 
                 ufo.OnValidate();
 
+                var healthMults = ufo.GetComponent<Health>().Value.serializedMultipliers;
+
+                float stepMult = 1 + Mathf.Pow(i, 1.3f);
+
+                if (healthMults.Count == 0)
+                {
+                    healthMults.Add(stepMult);
+                }
+                else
+                    healthMults[0] = stepMult;
+
+
                 ufo
                     .GetComponentInChildren<CycleOffsetSetter>()
                     .cycleOffset = i * cycleOffsetPerStep;

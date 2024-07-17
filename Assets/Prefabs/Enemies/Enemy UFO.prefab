@@ -251,6 +251,8 @@ MonoBehaviour:
     initial: 10
     result:
       value: 0
+    serializedAddends: []
+    serializedMultipliers: []
   healthBar: {fileID: 8468033570157944638}
   healthLabel: {fileID: 1053102385269629002}
   onHeal:
@@ -331,6 +333,8 @@ MonoBehaviour:
     initial: 99999
     result:
       value: 0
+    serializedAddends: []
+    serializedMultipliers: []
   onDoDamage:
     m_PersistentCalls:
       m_Calls: []
