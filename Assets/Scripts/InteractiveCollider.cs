@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using HyperCasual.Runner;
 using System;
 
-public class InteractiveCollider : Spawnable
+public class InteractiveCollider : Spawnable, RaycastCollider.ICollidable
 {
     [SerializeField] public UnityEvent<PlayerCharacter> onPlayerEnter;
     [SerializeField] public OnEnemyEnter onEnemyEnter;
@@ -30,6 +30,14 @@ public class InteractiveCollider : Spawnable
         else
         {
             onOtherEnter?.Invoke();
+        }
+    }
+
+    public void OnRaycastCollide(RaycastCollider raycastCollider)
+    {
+        if (raycastCollider.TryGetComponent(out Bullet bullet))
+        {
+            onBulletEnter?.Invoke(bullet);
         }
     }
 }

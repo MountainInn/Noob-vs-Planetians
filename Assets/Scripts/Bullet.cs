@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
             .OnComplete(Despawn);
     }
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         onTriggerEnter?.Invoke();
        

@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573182875057461191}
+  - component: {fileID: 3331881638196635724}
   - component: {fileID: 5657988443677001600}
   - component: {fileID: 573182875057461189}
   - component: {fileID: 573182875057461188}
   - component: {fileID: 2831550322338682978}
   - component: {fileID: 2720549681592981740}
-  m_Layer: 9
+  m_Layer: 31
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,6 +38,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3331881638196635724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573182875057461186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea612d074822d4c419450ec770453a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  capsulePointOne: {x: 0, y: 0, z: 1}
+  capsulePointTwo: {x: 0, y: 0, z: -1}
+  radius: 0.4
+  startRaycasting: 1
+  onCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 573182875057461188}
+        m_TargetAssemblyTypeName: Bullet, MyScripts
+        m_MethodName: OnTriggerEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  col: {fileID: 2720549681592981740}
+  rb: {fileID: 573182875057461189}
 --- !u!114 &5657988443677001600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +160,8 @@ MonoBehaviour:
     initial: 1
     result:
       value: 0
+    serializedAddends: []
+    serializedMultipliers: []
   onDoDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -151,7 +190,7 @@ GameObject:
   - component: {fileID: 573182875232897270}
   - component: {fileID: 573182875232897275}
   - component: {fileID: 573182875232897272}
-  m_Layer: 9
+  m_Layer: 31
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
