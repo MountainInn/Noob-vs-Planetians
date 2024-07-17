@@ -72,6 +72,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1053102385753094076, guid: 51c2bc47b597a594eabca2771f4ba731,
+        type: 3}
+      propertyPath: Value.serializedMultipliers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053102385753094076, guid: 51c2bc47b597a594eabca2771f4ba731,
+        type: 3}
+      propertyPath: Value.serializedMultipliers.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1053102385753094078, guid: 51c2bc47b597a594eabca2771f4ba731,
         type: 3}
       propertyPath: root

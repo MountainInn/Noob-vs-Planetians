@@ -17,6 +17,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5610550001649026221, guid: 9a05677d5e5fa814c99b40dc54bd7440,
+        type: 3}
+      propertyPath: m_Height
+      value: 6.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610550001649026221, guid: 9a05677d5e5fa814c99b40dc54bd7440,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878080660281462112, guid: 9a05677d5e5fa814c99b40dc54bd7440,
+        type: 3}
+      propertyPath: Value.result.value
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878080660281462112, guid: 9a05677d5e5fa814c99b40dc54bd7440,
+        type: 3}
+      propertyPath: Value.serializedMultipliers.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5878080660281462114, guid: 9a05677d5e5fa814c99b40dc54bd7440,
         type: 3}
       propertyPath: root

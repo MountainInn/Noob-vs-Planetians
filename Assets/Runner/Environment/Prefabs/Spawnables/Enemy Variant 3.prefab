@@ -42,6 +42,16 @@ PrefabInstance:
       propertyPath: root
       value: 
       objectReference: {fileID: 1792715299156227047}
+    - target: {fileID: 7481746316102189271, guid: 8c05859b0fbcce74b87e6dfd5ac6ec0f,
+        type: 3}
+      propertyPath: Value.result.value
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7481746316102189271, guid: 8c05859b0fbcce74b87e6dfd5ac6ec0f,
+        type: 3}
+      propertyPath: Value.serializedMultipliers.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7481746316102189272, guid: 8c05859b0fbcce74b87e6dfd5ac6ec0f,
         type: 3}
       propertyPath: m_RootOrder
@@ -101,6 +111,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906728175055915290, guid: 8c05859b0fbcce74b87e6dfd5ac6ec0f,
+        type: 3}
+      propertyPath: m_Height
+      value: 8.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906728175055915290, guid: 8c05859b0fbcce74b87e6dfd5ac6ec0f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 2.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c05859b0fbcce74b87e6dfd5ac6ec0f, type: 3}

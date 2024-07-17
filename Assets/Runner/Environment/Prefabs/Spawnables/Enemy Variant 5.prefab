@@ -22,6 +22,16 @@ PrefabInstance:
       propertyPath: root
       value: 
       objectReference: {fileID: 7776430370528540193}
+    - target: {fileID: 4390037825794286898, guid: f01cabeb864bf904482374a05a5f3cff,
+        type: 3}
+      propertyPath: Value.result.value
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390037825794286898, guid: f01cabeb864bf904482374a05a5f3cff,
+        type: 3}
+      propertyPath: Value.serializedMultipliers.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4390037825794286902, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
       propertyPath: m_Name

@@ -9,6 +9,8 @@ public class StackedNumber
 {
     [SerializeField] public float initial;
     [SerializeField] public FloatReactiveProperty result = new();
+    [SerializeField] public List<float> serializedAddends = new();
+    [SerializeField] public List<float> serializedMultipliers = new();
 
     public Action onRecalculated;
    
@@ -130,11 +132,19 @@ public class StackedNumber
 
         float tempResult = initial;
 
+        foreach (var val in serializedMultipliers)
+        {
+            tempResult *= val;
+        }
         foreach (var (key, val) in multipliers)
         {
             tempResult *= val;
         }
 
+        foreach (var val in serializedAddends)
+        {
+            tempResult += val;
+        }
         foreach (var (key, val) in addends)
         {
             tempResult += val;
