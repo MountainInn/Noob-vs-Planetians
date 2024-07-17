@@ -79,9 +79,13 @@ public class Gate : InteractiveCollider
 
         float incrementRoll = UnityEngine.Random.value / initialValueRoll;
 
-        incrementPerHit = (int)(incrementRoll * 10);
+        incrementPerHit = Mathf.Clamp((int)(incrementRoll * 10),
+                                      1,
+                                      10);
 
-        startingValue = (int)(initialValueRoll * 20);
+        startingValue = Mathf.Clamp((int)(initialValueRoll * 20),
+                                    3,
+                                    30);
     }
 
     Tween punchScaleTween;
