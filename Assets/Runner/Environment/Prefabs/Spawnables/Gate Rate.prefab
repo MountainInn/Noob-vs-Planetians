@@ -17,6 +17,21 @@ PrefabInstance:
       propertyPath: m_GateType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: totalValue
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: startingValue
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: incrementPerHit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1021949262770465885, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_RootOrder
@@ -72,11 +87,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2839673960529044872, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_text
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386877948463056395, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386877948463056395, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386877948463056395, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 4523699066140166400, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 140398e933b9d400489aad46fc2f82ca,
+      objectReference: {fileID: 21300000, guid: f2ceefd9e8e214e4594540933e7520d0,
         type: 3}
+    - target: {fileID: 7054953240803746697, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_text
+      value: +10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295731719642658160, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_text
+      value: Fire Rate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a99093d5b4bea40affd9efde2a2932, type: 3}
