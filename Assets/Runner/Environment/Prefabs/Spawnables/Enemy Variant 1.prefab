@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053102385753094076, guid: 51c2bc47b597a594eabca2771f4ba731,
         type: 3}
+      propertyPath: Value.result.value
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053102385753094076, guid: 51c2bc47b597a594eabca2771f4ba731,
+        type: 3}
       propertyPath: Value.serializedMultipliers.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -87,6 +92,11 @@ PrefabInstance:
       propertyPath: root
       value: 
       objectReference: {fileID: 1931654271397826757}
+    - target: {fileID: 1053102385753094079, guid: 51c2bc47b597a594eabca2771f4ba731,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2905281789456666761}
     - target: {fileID: 7966609403650052769, guid: 51c2bc47b597a594eabca2771f4ba731,
         type: 3}
       propertyPath: m_IsActive
@@ -97,6 +107,12 @@ PrefabInstance:
 --- !u!54 &1931654271397826757 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 124929008476738093, guid: 51c2bc47b597a594eabca2771f4ba731,
+    type: 3}
+  m_PrefabInstance: {fileID: 1978570169830425320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2905281789456666761 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3685327076016296545, guid: 51c2bc47b597a594eabca2771f4ba731,
     type: 3}
   m_PrefabInstance: {fileID: 1978570169830425320}
   m_PrefabAsset: {fileID: 0}

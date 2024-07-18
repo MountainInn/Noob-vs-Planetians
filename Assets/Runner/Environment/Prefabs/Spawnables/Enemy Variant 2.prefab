@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1578533781646652756, guid: f225cabd183b3cc4588eef1d1aaee1ea,
         type: 3}
       propertyPath: Value.result.value
-      value: 2
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1578533781646652756, guid: f225cabd183b3cc4588eef1d1aaee1ea,
         type: 3}
@@ -27,6 +27,11 @@ PrefabInstance:
       propertyPath: root
       value: 
       objectReference: {fileID: 242260355975286357}
+    - target: {fileID: 1578533781646652759, guid: f225cabd183b3cc4588eef1d1aaee1ea,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6968985930429651657}
     - target: {fileID: 1578533781646652763, guid: f225cabd183b3cc4588eef1d1aaee1ea,
         type: 3}
       propertyPath: m_RootOrder
@@ -87,6 +92,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3519202969615770178, guid: f225cabd183b3cc4588eef1d1aaee1ea,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6968985930429651657}
     - target: {fileID: 5702022229519413130, guid: f225cabd183b3cc4588eef1d1aaee1ea,
         type: 3}
       propertyPath: m_IsActive
@@ -97,11 +107,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8951771250888011179, guid: f225cabd183b3cc4588eef1d1aaee1ea,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6968985930429651657}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f225cabd183b3cc4588eef1d1aaee1ea, type: 3}
 --- !u!54 &242260355975286357 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8169593756019489750, guid: f225cabd183b3cc4588eef1d1aaee1ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 8231617762822944131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6968985930429651657 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1335980818143588170, guid: f225cabd183b3cc4588eef1d1aaee1ea,
     type: 3}
   m_PrefabInstance: {fileID: 8231617762822944131}
   m_PrefabAsset: {fileID: 0}
