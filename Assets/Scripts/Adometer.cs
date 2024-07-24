@@ -8,12 +8,12 @@ public class Adometer : MonoBehaviour
 {
     static public Adometer instance => _inst;
     static Adometer _inst;
-    Adometer(){ _inst = this; }
+    Adometer() { _inst = this; }
 
     [SerializeField] Canvas rootCanvas;
     [SerializeField] int[] multipliers;
     [Space]
-    [SerializeField] [Min(30)] int scrollSpeed;
+    [SerializeField][Min(30)] int scrollSpeed;
     [Space]
     [SerializeField] RectTransform zonesParent;
     [SerializeField] RectTransform arrowParent;

@@ -141,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -8}
+  m_AnchoredPosition: {x: 8, y: 351.99997}
   m_SizeDelta: {x: 80, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2418144166394300183
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -960,6 +960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSize
       value: 35.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5054368430503398171, guid: 5a03a3a59cfb547b5b913cde3282c131,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5321908480584742034, guid: 5a03a3a59cfb547b5b913cde3282c131,
         type: 3}
