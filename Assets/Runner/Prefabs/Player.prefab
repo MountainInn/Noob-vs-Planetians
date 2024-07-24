@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772645ebc958145c092d6949f827e632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
+  m_Animator: {fileID: 8817013454123339767}
   m_SkinnedMeshRenderer: {fileID: 0}
   m_PlayerSpeed: 3
   m_CustomPlayerSpeed: 10

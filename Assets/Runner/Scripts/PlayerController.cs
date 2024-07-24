@@ -270,9 +270,6 @@ namespace HyperCasual.Runner
                 m_Transform.localScale = m_Scale;
             }
 
-            if (!enableMovement)
-                return;
-
             // Update Speed
 
             if (!m_AutoMoveForward && !m_HasInput)
@@ -289,6 +286,9 @@ namespace HyperCasual.Runner
             }
 
             float speed = m_Speed * deltaTime;
+
+            if (!enableMovement)
+                speed = 0;
 
             // Update position
 
