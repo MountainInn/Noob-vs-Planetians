@@ -23,7 +23,7 @@ public class RandomClipsAnimator : MonoBehaviour
         {
             var anim = a.name switch
                 {
-                    "Idle" => idle,
+                    "Offensive Idle" => idle,
                     _ => throw new System.ArgumentException()
                 };
 
