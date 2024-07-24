@@ -97,6 +97,11 @@ public class ProgressBar : MonoBehaviour
             });
     }
 
+    public void SetFull()
+    {
+        slider.value = 1f;
+    }
+
     // public void SetVolume(Volume volume)
     // {
     //     this.volume = volume;

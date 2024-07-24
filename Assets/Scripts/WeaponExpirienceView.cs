@@ -1,27 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using System;
+using TMPro;
 
 public class WeaponExpirienceView : MonoBehaviour
 {
     [SerializeField] ProgressBar progressBar;
     [SerializeField] Image currentWeaponImage;
     [SerializeField] Image nextWeaponImage;
+    [SerializeField] TextMeshProUGUI labelMax;
 
+    IDisposable progressBarSub;
+    
     void Awake()
     {
-        progressBar
+        progressBarSub =
+            progressBar
             .Subscribe(WeaponExperience.instance.gameObject,
-                       WeaponExperience.instance.expirienceVolume)
-            .AddTo(this);
+                       WeaponExperience.instance.expirienceVolume);
+        
+        labelMax.enabled = false;
+    }
 
+    void Start()
+    {
         UpdateWeaponSprites();
 
         WeaponExperience.instance
-            .onNewWeaponUnlocked.AddListener(() =>
+            .level.onSetLevel.AddListener((_) =>
             {
                 UpdateWeaponSprites();
+
+                if (nextWeaponImage.sprite == null)
+                {
+                    nextWeaponImage.enabled = false;
+
+                    progressBarSub?.Dispose();
+                    progressBarSub = null;
+                    
+                    labelMax.enabled = true;
+
+                    progressBar.SetFull();
+                }
             });
     }
 
