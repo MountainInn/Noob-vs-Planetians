@@ -232,6 +232,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 2905281789456666761}
+    - target: {fileID: 1053102385753094079, guid: 51c2bc47b597a594eabca2771f4ba731,
+        type: 3}
+      propertyPath: moneyAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1215539821189732376, guid: 51c2bc47b597a594eabca2771f4ba731,
         type: 3}
       propertyPath: m_LocalRotation.w

@@ -353,7 +353,7 @@ MonoBehaviour:
   m_SnapToGrid: 1
   animator: {fileID: 0}
   startRunning: 0
-  moneyAmount: 10
+  moneyAmount: 1
   ragdoll: {fileID: 0}
   health: {fileID: 1053102385753094076}
   damage: {fileID: 1053102385753094077}
@@ -591,6 +591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4837244634722319066}
   cycleOffset: 0
+  randomOffset: 0
 --- !u!1 &7816007183137020551
 GameObject:
   m_ObjectHideFlags: 0
