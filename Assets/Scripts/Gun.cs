@@ -32,9 +32,9 @@ public class Gun : MonoBehaviour
 
         Observable
             .CombineLatest(upgradeHold.upgradeAttackRate.stat.result, rate,
-                           (playerRate, rate) => playerRate + rate)
+                           (playerRate, rate) => playerRate / 2f + rate)
             .Subscribe(r =>
-                       attackTimer.Resize(RateToSeconds(r)))
+                       attackTimer.Resize(Mathf.Max(RateToSeconds(r), .1f)))
             .AddTo(this);
 
         Observable
