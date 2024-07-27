@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraAnglePreset: 0
-  m_Offset: {x: 0, y: 0, z: 0}
-  m_LookAtOffset: {x: 0, y: 0, z: 0}
+  m_Offset: {x: 0, y: 0, z: 2}
+  m_LookAtOffset: {x: 0, y: 0, z: 2}
   m_LockCameraPosition: 0
   m_SmoothCameraFollow: 1
   m_SmoothCameraFollowStrength: 8
@@ -384,7 +384,7 @@ PrefabInstance:
     - target: {fileID: 4547021636574929630, guid: 3c7a51309061d411eb5591ed1fd837f3,
         type: 3}
       propertyPath: m_text
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4551566987298327254, guid: 3c7a51309061d411eb5591ed1fd837f3,
         type: 3}
