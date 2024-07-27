@@ -110,6 +110,13 @@ public class RaycastCollider : MonoBehaviour
             (ICollidable)closestValidHit.rigidbody?.GetComponent(typeof(ICollidable))
             ;
 
+        
+        bool isEqualsNull = (collidable?.Equals(null) ?? true);
+
+        if (isEqualsNull)
+            return;
+
+        
         collidable.OnRaycastCollide(this);
 
         onCollision?.Invoke(closestValidHit.collider);
