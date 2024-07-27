@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startChunk: {fileID: 13150664811081505, guid: cc7f2c3e4475c6d44aa2871646415b5f,
     type: 3}
-  finishChunk: {fileID: 13150664811081505, guid: dd65bbd3bf159624cad0fde3e69a437f,
+  finishChunk: {fileID: 13150664811081505, guid: 12ea6ebf54e467343b6733696a08eaf3,
     type: 3}
 --- !u!114 &925968566120649576
 MonoBehaviour:
