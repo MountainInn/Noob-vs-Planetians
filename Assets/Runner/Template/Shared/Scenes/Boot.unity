@@ -418,7 +418,7 @@ MonoBehaviour:
         serializedAddends: []
         serializedMultipliers: []
     stat:
-      initial: 100
+      initial: 10
       result:
         value: 1
       serializedAddends: []
@@ -1016,7 +1016,7 @@ PrefabInstance:
     - target: {fileID: 5237897444947184907, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09853752
+      value: 0.09853762
       objectReference: {fileID: 0}
     - target: {fileID: 5237897444947184907, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
