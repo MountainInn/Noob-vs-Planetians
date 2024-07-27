@@ -399,6 +399,11 @@ PrefabInstance:
       objectReference: {fileID: 8809472223654336880}
     - target: {fileID: 4390037825794286898, guid: f01cabeb864bf904482374a05a5f3cff,
         type: 3}
+      propertyPath: Value.initial
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390037825794286898, guid: f01cabeb864bf904482374a05a5f3cff,
+        type: 3}
       propertyPath: Value.result.value
       value: 72
       objectReference: {fileID: 0}
