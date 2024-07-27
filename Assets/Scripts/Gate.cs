@@ -131,7 +131,7 @@ public class Gate : InteractiveCollider
         stat
             .GetModifier(modifierName)
             .Add(multiplier)
-            .Until(GameManager.Instance.onStartGame)
+            .Until(Flow.instance.OnPreparation)
             .Log()
             .Apply();
 

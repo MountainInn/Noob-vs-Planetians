@@ -200,8 +200,10 @@ public class StackedNumber
 
         void Reset()
         {
-            dict[key] = 1;
-            stat.ForceRecalculate();
+            val = 1;
+            
+            Log();
+            Apply();
         }
 
         public StatMutation Add(float addition)

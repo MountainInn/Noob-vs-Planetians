@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using HyperCasual.Core;
 using HyperCasual.Runner;
 using HyperCasual.Gameplay;
@@ -23,6 +24,8 @@ public class Flow : MonoBehaviour
     [Space]
     [SerializeField] SequenceManager m_SequenceManagerPrefab;
     [SerializeField] GameObject[] levelManagers;
+
+    public UnityEvent OnPreparation;
 
     [Inject] void Construct(YandexSaveSystem sv)
     {
@@ -288,6 +291,8 @@ public class Flow : MonoBehaviour
 
     async UniTask<Branch> ShowUpgradeScreen()
     {
+        OnPreparation?.Invoke();
+            
         UpgradeScreen upgradeScreen = ShowScreen<UpgradeScreen>();
 
         await upgradeScreen .startLevelButton .OnClickAsync();
