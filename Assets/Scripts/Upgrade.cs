@@ -10,9 +10,8 @@ public class Upgrade
     [SerializeField] public string name;
     [SerializeField] public Sprite icon;
     [SerializeField] public Price price;
-
-    [NonSerialized] public StackedNumber stat;
-    [NonSerialized] public Buyable<Level> level;
+    [SerializeField] public StackedNumber stat;
+    [SerializeField] public Buyable<Level> level;
 
     Func<int,float> bonusCalculation;
 
@@ -21,14 +20,14 @@ public class Upgrade
 
     }
 
-    public void Inject(StackedNumber stat, Func<int, float> bonusCalculation)
+    public void Inject(Func<int, float> bonusCalculation)
     {
-        this.stat = stat;
         this.bonusCalculation = bonusCalculation;
 
-        level = new Buyable<Level>(new Level(OnLevelUp),
-                                   OnBuy,
-                                   price);
+        level.ware.Volume.maximum.Value = int.MaxValue;
+        level.ware.AddCalculation(OnLevelUp);
+        level.onBuy = OnBuy;
+        level.prices = new List<Price>() { price };
     }
 
     void OnBuy(Level level)

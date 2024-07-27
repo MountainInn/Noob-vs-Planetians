@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent onShot;
 
-    Volume attackTimer;
+    [SerializeField] Volume attackTimer = new(0,1);
     public bool isShooting;
 
     PlayerCharacter player;
@@ -28,10 +28,10 @@ public class Gun : MonoBehaviour
     {
         player = playerCharacter;
 
-        attackTimer = new Volume(0, 1);
+        var upgradeHold = FindObjectOfType<UpgradeHold>();
 
         Observable
-            .CombineLatest(player.attackRate.result, rate,
+            .CombineLatest(upgradeHold.upgradeAttackRate.stat.result, rate,
                            (playerRate, rate) => playerRate + rate)
             .Subscribe(r =>
                        attackTimer.Resize(RateToSeconds(r)))
@@ -45,7 +45,7 @@ public class Gun : MonoBehaviour
             .AddTo(this);
 
         Observable
-            .CombineLatest(player.attackRange.result, range,
+            .CombineLatest(upgradeHold.upgradeAttackRange.stat.result, range,
                            (prange, range) => prange + range)
             .Subscribe(r =>
                        totalRange = Mathf.FloorToInt(r))

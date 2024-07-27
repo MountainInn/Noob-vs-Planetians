@@ -2,14 +2,21 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
 
+[Serializable]
 public class Buyable<T>
     where T : Buyable<T>.IWare
 {
-    public List<Price> prices;
-    public Action<T> onBuy;
-    public T ware;
+    [SerializeField] public T ware;
+    [SerializeField] public List<Price> prices;
 
+    public Action<T> onBuy;
+
+    public Buyable()
+    {
+        
+    }
     public Buyable(T ware, Action<T> onBuy, params Price[] prices)
     {
         this.prices = prices.ToList();

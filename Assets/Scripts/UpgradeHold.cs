@@ -1,5 +1,6 @@
 using UnityEngine;
 using YG;
+using Zenject;
 
 public class UpgradeHold : MonoBehaviour
 {
@@ -15,16 +16,30 @@ public class UpgradeHold : MonoBehaviour
         upgradeAttackRate,
         upgradeAttackRange;
 
-    PlayerCharacter pc;
+    [Inject] void Construct(YandexSaveSystem sv)
+    {
+        //         sv.Register(
+        //             save => {
+        // // YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
+        //                 YandexGame.savesData.damageUpgradeLevel = upgradeDamage.level.ware.L;
+        //                 YandexGame.savesData.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
+        //                 YandexGame.savesData.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
+                
+        //             },
+        //             load => {
+        // // upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
+        //                 upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
+        //                 upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
+        //                 upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);
+        //             });
+    }
 
     public void Initialize()
     {
-        pc = PlayerCharacter.instance;
-
-        upgradeHealth      .Inject(pc.health.Value,   l => Mathf.Pow(1.1f, l));
-        upgradeDamage      .Inject(pc.damage.Value,   l => Mathf.Pow(1.1f, l));
-        upgradeAttackRate  .Inject(pc.attackRate,     l => Mathf.Pow(1.1f, l));
-        upgradeAttackRange .Inject(pc.attackRange,    l => Mathf.Pow(1.1f, l));
+        upgradeHealth      .Inject(l => Mathf.Pow(1.1f, l));
+        upgradeDamage      .Inject(l => Mathf.Pow(1.1f, l));
+        upgradeAttackRate  .Inject(l => Mathf.Pow(1.1f, l));
+        upgradeAttackRange .Inject(l => Mathf.Pow(1.1f, l));
 
         new [] {
             upgradeHealth,
@@ -32,34 +47,14 @@ public class UpgradeHold : MonoBehaviour
             upgradeAttackRate,
             upgradeAttackRange
         }
-            .ForEach(upg => upg.level.onBuy += (l) =>
+            .ForEach(upg =>
             {
-                WeaponExperience.instance.AddExpirience(1);
+                upg.stat.ForceRecalculate();
+                upg.level.onBuy += (l) =>
+                {
+                    WeaponExperience.instance.AddExpirience(1);
+                };
             });
-
-        Load();
     }
 
-    void OnApplicationQuit()
-    {
-        Save();
-    }
-
-    void Save()
-    {
-        // YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
-        YandexGame.savesData.damageUpgradeLevel = upgradeDamage.level.ware.L;
-        YandexGame.savesData.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
-        YandexGame.savesData.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
-
-        YandexGame.SaveProgress();
-    }
-
-    void Load()
-    {
-        // upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
-        upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
-        upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
-        upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);
-    }
 }

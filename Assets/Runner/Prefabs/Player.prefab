@@ -58,18 +58,6 @@ MonoBehaviour:
   rb: {fileID: 2926604082106359834}
   health: {fileID: 511791635737475232}
   damage: {fileID: 5568838679517214165}
-  attackRate:
-    initial: 1
-    result:
-      value: 1
-    serializedAddends: []
-    serializedMultipliers: []
-  attackRange:
-    initial: 10
-    result:
-      value: 10
-    serializedAddends: []
-    serializedMultipliers: []
 --- !u!114 &6931430198559016198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,10 +73,10 @@ MonoBehaviour:
   m_Animator: {fileID: 8817013454123339767}
   m_SkinnedMeshRenderer: {fileID: 0}
   m_PlayerSpeed: 3
-  m_CustomPlayerSpeed: 10
+  m_CustomPlayerSpeed: 7.5
   m_AccelerationSpeed: 10
   m_DecelerationSpeed: 20
-  m_HorizontalSpeedFactor: 1.5
+  m_HorizontalSpeedFactor: 1.8
   m_ScaleVelocity: 2
   m_AutoMoveForward: 1
   enableMovement: 1

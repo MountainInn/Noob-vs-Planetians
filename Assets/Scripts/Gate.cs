@@ -115,8 +115,8 @@ public class Gate : InteractiveCollider
         StackedNumber stat = m_GateType switch
             {
                 GateType.DamageBonus => PlayerCharacter.instance.damage.Value,
-                GateType.AttackRate => PlayerCharacter.instance.attackRate,
-                GateType.Range => PlayerCharacter.instance.attackRange,
+                GateType.AttackRate => UpgradeHold.instance.upgradeAttackRate.stat,
+                GateType.Range => UpgradeHold.instance.upgradeAttackRange.stat,
                 _ => throw new System.ArgumentException()
             };
 

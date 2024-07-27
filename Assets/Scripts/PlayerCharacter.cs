@@ -21,9 +21,6 @@ public class PlayerCharacter : MonoBehaviour
     public Rigidbody rb;
     public Health health;
     public Damage damage;
-    public StackedNumber attackRate;
-    public StackedNumber attackRange;
-
 
     void Awake()
     {
@@ -32,13 +29,20 @@ public class PlayerCharacter : MonoBehaviour
         damage = GetComponent<Damage>();
 
 
-        damage.Value.ForceRecalculate();
-        attackRate.ForceRecalculate();
-        attackRange.ForceRecalculate();
+        var upgradeHold = FindObjectOfType<UpgradeHold>();
+        
+        upgradeHold.upgradeDamage.stat.result
+            .Subscribe(d => damage.Value.SetInitial(d))
+            .AddTo(this);
+
+        upgradeHold.upgradeHealth.stat.result
+            .Subscribe(h => health.Value.SetInitial(h))
+            .AddTo(this);
     }
 
     void Start()
     {
+        
         health.Volume.ObserveEmpty()
             .Subscribe(b =>
             {

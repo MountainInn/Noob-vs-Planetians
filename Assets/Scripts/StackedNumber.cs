@@ -157,7 +157,7 @@ public class StackedNumber
     {
         multipliers.TryAdd(name, 1);
 
-        return new StatMutation(multipliers, name);
+        return new StatMutation(multipliers, name, this);
     }
 
     public struct StatMutation
@@ -166,11 +166,13 @@ public class StackedNumber
 
         Dictionary<string, float> dict;
         string key;
+        StackedNumber stat;
 
-        public StatMutation(Dictionary<string, float> dict, string key)
+        public StatMutation(Dictionary<string, float> dict, string key, StackedNumber stat)
         {
             this.dict = dict;
             this.key = key;
+            this.stat = stat;
 
             this.val = dict[key];
         }
@@ -199,6 +201,7 @@ public class StackedNumber
         void Reset()
         {
             dict[key] = 1;
+            stat.ForceRecalculate();
         }
 
         public StatMutation Add(float addition)
@@ -225,6 +228,8 @@ public class StackedNumber
         public void Apply()
         {
             dict[key] = this.val;
+
+            stat.ForceRecalculate();
         }
     }
 }
