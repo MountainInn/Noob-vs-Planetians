@@ -24,6 +24,8 @@ public class Gun : MonoBehaviour
 
     [HideInInspector] public int totalDamage, totalRange;
 
+    public float damageMult = 1f, rateMult = 1f, rangeMult = 1f;
+
     public void Initialize(PlayerCharacter playerCharacter)
     {
         player = playerCharacter;
@@ -32,21 +34,21 @@ public class Gun : MonoBehaviour
 
         Observable
             .CombineLatest(upgradeHold.upgradeAttackRate.stat.result, rate,
-                           (playerRate, rate) => playerRate / 2f + rate)
+                           (playerRate, rate) => (playerRate / 2f + rate) * rateMult)
             .Subscribe(r =>
                        attackTimer.Resize(Mathf.Max(RateToSeconds(r), .1f)))
             .AddTo(this);
 
         Observable
             .CombineLatest(player.damage.Value.result, damage,
-                           (pdamage, damage) => pdamage + damage)
+                           (pdamage, damage) => (pdamage + damage) * damageMult)
             .Subscribe(d =>
                        totalDamage = Mathf.FloorToInt(d))
             .AddTo(this);
 
         Observable
             .CombineLatest(upgradeHold.upgradeAttackRange.stat.result, range,
-                           (prange, range) => prange + range)
+                           (prange, range) => (prange + range) * rangeMult)
             .Subscribe(r =>
                        totalRange = Mathf.FloorToInt(r))
             .AddTo(this);

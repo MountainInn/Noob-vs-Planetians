@@ -41,6 +41,10 @@ public class GunBelt : MonoBehaviour
         gun.transform.forward = Vector3.forward;
         gun.transform.localScale = Vector3.one;
 
+        gun.rangeMult =
+            gun.rateMult =
+            gun.damageMult = .5f;
+
         gun.Initialize(PlayerCharacter.instance);
         gun.ToggleShooting(true);
 
@@ -56,6 +60,10 @@ public class GunBelt : MonoBehaviour
         droppedGun.ToggleShooting(false);
 
         guns.Remove(droppedGun);
+
+        droppedGun.rangeMult =
+            droppedGun.rateMult =
+            droppedGun.damageMult = 1f;
     }
 
     float T = 0;
