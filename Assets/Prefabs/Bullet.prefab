@@ -56,6 +56,7 @@ MonoBehaviour:
   capsulePointOne: {x: 0, y: 0, z: 1}
   capsulePointTwo: {x: 0, y: 0, z: -1}
   radius: 0.4
+  offset: {x: 0, y: 0, z: -1.5}
   startRaycasting: 1
   onCollision:
     m_PersistentCalls:

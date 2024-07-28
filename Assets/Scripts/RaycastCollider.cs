@@ -11,6 +11,7 @@ public class RaycastCollider : MonoBehaviour
     [SerializeField] Vector3 capsulePointOne;
     [SerializeField] Vector3 capsulePointTwo;
     [SerializeField] float radius;
+    [SerializeField] Vector3 offset;
     [Space]
     [SerializeField] bool startRaycasting;
     [Space]
@@ -20,6 +21,7 @@ public class RaycastCollider : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     Vector3 previousPosition;
+    Vector3 startPosition => transform.position + offset;
 
     RaycastHit[] hits = new RaycastHit[3];
     RaycastHit closestValidHit;
@@ -32,13 +34,18 @@ public class RaycastCollider : MonoBehaviour
         raycasting = startRaycasting;
     }
 
+    void OnEnable()
+    {
+        previousPosition = startPosition;
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
        
-        Vector3 to = transform.position + transform.forward * 10f;
+        Vector3 to = startPosition + transform.forward * 10f;
        
-        Gizmos.DrawLine(transform.position, to);
+        Gizmos.DrawLine(startPosition, to);
 
         Gizmos.DrawSphere(to, radius);
     }
