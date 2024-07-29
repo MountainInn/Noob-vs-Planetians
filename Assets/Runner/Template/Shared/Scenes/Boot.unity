@@ -169,11 +169,18 @@ MonoBehaviour:
   skyboxMaterial: {fileID: 2100000, guid: d3363b642523c6c488778027545e1ca6, type: 2}
   levels:
   - {fileID: 8630671998615480508, guid: 6e126b483278cba4eac81aefcfdf2ab3, type: 3}
+  - {fileID: 6758588480601703726, guid: 34911ad8e932ca34596513a16ae29ce9, type: 3}
+  - {fileID: 8270451506611940632, guid: 585901741670e3d4cb02e1f9aeeea603, type: 3}
+  - {fileID: 1942834828816756855, guid: 5118e56d9c756194aba0496040e419ec, type: 3}
+  - {fileID: 8688687572603385406, guid: 972400839ef98d242ae46c0c13a93c2d, type: 3}
   m_SequenceManagerPrefab: {fileID: 4462145952910458180, guid: 6a3c13f7e2c6d42fe8c3f5029e1d0a98,
     type: 3}
   levelManagers:
   - {fileID: 9183922748988270725, guid: cdf45adc9574e4d54bb0716214b8f1c6, type: 3}
   - {fileID: 168254820557207646, guid: 6dc42ad68cc8044df837a14ff82a63dc, type: 3}
+  OnPreparation:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &258715994
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,15 +628,15 @@ MonoBehaviour:
     _maximum:
       value: 5
   fields:
-  - expirience: 1
+  - expirience: 6
     icon: {fileID: -536223356, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 1
+  - expirience: 6
     icon: {fileID: 191722921, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 1
+  - expirience: 8
     icon: {fileID: -1583076733, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 1
+  - expirience: 8
     icon: {fileID: 2124023354, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 1
+  - expirience: 12
     icon: {fileID: 544490436, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
   onNewWeaponUnlocked:
     m_PersistentCalls:

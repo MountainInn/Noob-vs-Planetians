@@ -8,8 +8,7 @@ public class Volume
     public FloatReactiveProperty maximum => _maximum ??= new();
     public FloatReactiveProperty current => _current ??= new();
 
-    [SerializeField]
-    protected FloatReactiveProperty _current, _maximum;
+    [SerializeField] protected FloatReactiveProperty _current, _maximum;
 
     public float Unfilled => maximum.Value - current.Value;
     public int CurrentInt => (int)current.Value;
@@ -42,7 +41,7 @@ public class Volume
             current, maximum,
             (cur , max) => IsFull);
 
-    public IObservable<bool> ObserveEmpty() =>
+    public IObservable<bool> ObserveIsEmpty() =>
         current
         .Select(v => IsEmpty);
 

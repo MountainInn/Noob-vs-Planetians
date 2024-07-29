@@ -43,7 +43,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         
-        health.Volume.ObserveEmpty()
+        health.Volume.ObserveIsEmpty()
             .Subscribe(b =>
             {
                 if (b)

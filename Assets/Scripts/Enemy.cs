@@ -33,8 +33,6 @@ public class Enemy : Spawnable
                 animator.SetTrigger("run");
             else
                 animator.SetTrigger("idle");
-
-        health.Value.SetMultiplier("LevelMult", 1 + Flow.instance.CurrentLevel * .2f);
     }
 
     void Start()

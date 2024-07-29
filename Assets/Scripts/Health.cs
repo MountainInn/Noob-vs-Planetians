@@ -7,8 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] public StackedNumber Value;
     [Header("View")]
-    [SerializeField] ProgressBar healthBar;
-    [SerializeField] TextMeshPro healthLabel;
+    [SerializeField] public ProgressBar healthBar;
+    [SerializeField] public TextMeshPro healthLabel;
     [Header("Events")]
     [SerializeField] public UnityEvent onHeal;
     [SerializeField] public UnityEvent onTakeDamage;
@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] public Volume Volume;
 
-    void Awake()
+    protected void Awake()
     {
         Volume = new (Value.initial);
 
