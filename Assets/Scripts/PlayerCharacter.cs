@@ -42,7 +42,6 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
-        
         health.Volume.ObserveIsEmpty()
             .Subscribe(b =>
             {

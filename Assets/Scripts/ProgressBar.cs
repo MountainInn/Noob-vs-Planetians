@@ -135,12 +135,17 @@ public class ProgressBar : MonoBehaviour
             {
                 queue.Dequeue();
 
-                queue.Peek()?.Play();
+                if (queue.TryPeek(out Tween next)
+                    && next != null)
+                {
+                    next.Play();
+                }
             });
 
         queue.Enqueue(tween);
 
-        if (queue.Peek() == tween)
+        if (queue.TryPeek(out Tween next)
+            && next == tween)
         {
             tween.Play();
         }

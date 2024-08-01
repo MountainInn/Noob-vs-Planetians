@@ -181,6 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1053102385753094067}
+  - component: {fileID: 4303510535658260403}
   - component: {fileID: 3731395143068151090}
   - component: {fileID: 1053102385753094076}
   - component: {fileID: 1053102385753094077}
@@ -221,6 +222,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4303510535658260403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053102385753094072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb9f65ee06620d47a3d3a503bb088db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: {fileID: 1053102385753094077}
 --- !u!114 &3731395143068151090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    initial: 1
+    initial: 0
     result:
       value: 0
     serializedAddends: []
@@ -424,18 +438,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1053102385753094064}
         m_TargetAssemblyTypeName: Repeler, MyScripts
         m_MethodName: __Repel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1053102385753094077}
-        m_TargetAssemblyTypeName: Damage, MyScripts
-        m_MethodName: __DoDamage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

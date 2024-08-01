@@ -27,6 +27,8 @@ public class Flow : MonoBehaviour
 
     public UnityEvent OnPreparation;
 
+    MySplashScreen splash;
+
     [Inject] void Construct(YandexSaveSystem sv)
     {
         sv.Register(
@@ -255,8 +257,8 @@ public class Flow : MonoBehaviour
         currentLevelIndex %= levels.Length;
 
         WorldLevel wLevel = levels[currentLevelIndex];
-
-        MySplashScreen splash = ShowScreen<MySplashScreen>();
+        
+        splash = ShowScreen<MySplashScreen>();
 
         await splash.fade.FadeIn();
         {
@@ -284,7 +286,6 @@ public class Flow : MonoBehaviour
 
             LevelCounterLabel.instance.SetCount(LevelCount);
         }
-        await splash.fade.FadeOut();
 
         return Branch.Preparation;
     }
@@ -295,6 +296,8 @@ public class Flow : MonoBehaviour
         OnPreparation?.Invoke();
             
         UpgradeScreen upgradeScreen = ShowScreen<UpgradeScreen>();
+
+        await splash.fade.FadeOut();
 
         await upgradeScreen .startLevelButton .OnClickAsync();
 

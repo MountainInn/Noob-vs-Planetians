@@ -37,8 +37,7 @@ public class StackedNumber
     public void SetInitial(float initial)
     {
         this.initial = initial;
-        recalculated = false;
-        MaybeRecalculate();
+        ForceRecalculate();
     }
 
     public int AsFloorInt() => Mathf.FloorToInt(AsFloat());

@@ -27,12 +27,6 @@ public class Enemy : Spawnable
 
         health = GetComponent<Health>();
         damage = GetComponent<Damage>();
-
-        if (animator)
-            if (startRunning)
-                animator.SetTrigger("run");
-            else
-                animator.SetTrigger("idle");
     }
 
     void Start()

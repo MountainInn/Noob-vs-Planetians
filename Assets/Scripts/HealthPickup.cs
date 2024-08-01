@@ -15,7 +15,9 @@ public class HealthPickup : MonoBehaviour
 
     void Start()
     {
-        healing.Value = (int)(PlayerCharacter.instance.health.Value.AsFloat() * healthPercent);
+        float playerMaxHealth = UpgradeHold.instance.upgradeHealth.stat.AsFloat();
+        
+        healing.Value = (int)(playerMaxHealth * healthPercent);
 
         UpdateLabel();
     }
