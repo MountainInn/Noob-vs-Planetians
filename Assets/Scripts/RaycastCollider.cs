@@ -29,14 +29,18 @@ public class RaycastCollider : MonoBehaviour
     bool raycasting;
     bool hasValidHits;
 
-    void Awake()
-    {
-        raycasting = startRaycasting;
-    }
-
     void OnEnable()
     {
         previousPosition = startPosition;
+
+        raycasting = true;
+    }
+
+    void OnDisable()
+    {
+        raycasting = false;
+
+        hasValidHits = false;
     }
 
     void OnDrawGizmos()

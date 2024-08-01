@@ -9,6 +9,6 @@ public class HealthLevelMultiplier : MonoBehaviour
     {
         GetComponent<Health>()
             .Value
-            .SetMultiplier("Level Mult", 1 + Flow.instance.CurrentLevel * multPerLevel);
+            .SetMultiplier("Level Mult", 1 + Flow.instance.LevelCount * multPerLevel);
     }
 }

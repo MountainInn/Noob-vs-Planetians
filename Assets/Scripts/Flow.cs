@@ -51,6 +51,7 @@ public class Flow : MonoBehaviour
         currentLevelIndex;
 
     public int CurrentLevel => currentLevelIndex + 1;
+    public int LevelCount => levelCount + 1;
 
     public enum Branch {
         NONE,
@@ -281,7 +282,7 @@ public class Flow : MonoBehaviour
 
             GunBelt.instance.Reset();
 
-            LevelCounterLabel.instance.SetCount(CurrentLevel);
+            LevelCounterLabel.instance.SetCount(LevelCount);
         }
         await splash.fade.FadeOut();
 

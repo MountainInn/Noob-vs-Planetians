@@ -509,7 +509,7 @@ MonoBehaviour:
         serializedAddends: []
         serializedMultipliers: []
     stat:
-      initial: 10
+      initial: 12
       result:
         value: 0
       serializedAddends: []
@@ -628,16 +628,16 @@ MonoBehaviour:
     _maximum:
       value: 5
   fields:
-  - expirience: 6
+  - expirience: 16
     icon: {fileID: -536223356, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 6
+  - expirience: 13
     icon: {fileID: 191722921, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 8
-    icon: {fileID: -1583076733, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 8
-    icon: {fileID: 2124023354, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
-  - expirience: 12
+  - expirience: 10
     icon: {fileID: 544490436, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
+  - expirience: 12
+    icon: {fileID: -1583076733, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
+  - expirience: 12
+    icon: {fileID: 2124023354, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
   onNewWeaponUnlocked:
     m_PersistentCalls:
       m_Calls: []

@@ -41,7 +41,7 @@ public class FinishStepsParent : MonoBehaviour
 
                 var healthMults = ufo.GetComponent<Health>().Value.serializedMultipliers;
 
-                float stepMult = 1 + Mathf.Pow(i, 1.3f);
+                float stepMult = 1 + Mathf.Pow(i, 1.1f);
 
                 if (healthMults.Count == 0)
                 {

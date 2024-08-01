@@ -170,7 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   volume: 0.75
+  minSoundInterval: 0.1
   clips:
   - {fileID: 8300000, guid: 981456b7e905e8f48b36ba013bb9e1e9, type: 3}
   - {fileID: 8300000, guid: affd9860fe90b7348b74934f8d2217ac, type: 3}
@@ -275,7 +277,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -544,8 +546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.102857135, y: 0.765602}
   m_AnchorMax: {x: 0.8938219, y: 0.8745702}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -0.00000047683716}
+  m_AnchoredPosition: {x: 0, y: -1.5950058}
+  m_SizeDelta: {x: 0, y: 13.250011}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5563600121710729075
 CanvasRenderer:
@@ -584,8 +586,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278255453
+  m_fontColor: {r: 0.36418962, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -602,13 +604,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.5
+  m_fontSize: 31.35
   m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -744,7 +746,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
   m_fontSizeMax: 42.8
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535

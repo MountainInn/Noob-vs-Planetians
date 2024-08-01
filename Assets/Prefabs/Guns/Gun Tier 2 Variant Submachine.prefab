@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 8514085991465822905, guid: e5fc43bbe1e43db488cd363744cd5386,
         type: 3}
       propertyPath: rate.value
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8514085991465822905, guid: e5fc43bbe1e43db488cd363744cd5386,
         type: 3}

@@ -14,7 +14,7 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
     [SerializeField] T[] equipments;
     T current;
 
-    protected virtual int maxAvailableIndex => equipments.Length;
+    protected int maxAvailableIndex;
 
     public void OnValidate()
     {
@@ -44,17 +44,19 @@ public abstract class EquipmentSlot<T> : MonoBehaviour
 
     public T RandomEquip()
     {
-        MaybeSwitchEquipment(UnityEngine.Random.Range(0, maxAvailableIndex));
+        maxAvailableIndex = WeaponExperience.instance.level.Volume.CurrentInt;
+
+        int i = UnityEngine.Random.Range(0, maxAvailableIndex+1);
+
+        Debug.Log($"---GunSlot index: {i}");
+
+        MaybeSwitchEquipment(i);
 
         return current;
     }
 
     public void MaybeSwitchEquipment(int i)
     {
-        if (current == equipments[i]
-            || maxAvailableIndex < i)
-            return;
-
         T previous = current;
         current = equipments[i];
 

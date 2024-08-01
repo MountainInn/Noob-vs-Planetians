@@ -9,12 +9,15 @@ namespace HyperCasual.Core
         public bool UsePositionBasedOffset = true;
         public float PositionBasedScale = 2.0f;
 
+        [Header("Bob")]
         public bool Bob = true;
         public float BobSpeed = 5.0f;
         public float BobHeight = 0.2f;
 
+        [Header("Spin")]
         public bool Spin = true;
         public float SpinSpeed = 180.0f;
+        public Transform spinTarget;
 
         Transform m_Transform;
         Vector3 m_StartPosition;
@@ -24,7 +27,7 @@ namespace HyperCasual.Core
         {
             m_Transform = transform;
             m_StartPosition = m_Transform.position;
-            m_StartRotation = m_Transform.rotation;
+            m_StartRotation = spinTarget.rotation;
         }
 
         void Update()
@@ -38,7 +41,7 @@ namespace HyperCasual.Core
 
             if (Spin)
             {
-                m_Transform.rotation = m_StartRotation * Quaternion.AngleAxis(offset * SpinSpeed, Vector3.up);
+                spinTarget.rotation = m_StartRotation * Quaternion.AngleAxis(offset * SpinSpeed, Vector3.up);
             }
         }
     }

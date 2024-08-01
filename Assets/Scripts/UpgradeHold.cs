@@ -36,10 +36,17 @@ public class UpgradeHold : MonoBehaviour
 
     public void Initialize()
     {
-        upgradeHealth      .Inject(l => Mathf.Pow(1.1f, l));
-        upgradeDamage      .Inject(l => Mathf.Pow(1.1f, l));
-        upgradeAttackRate  .Inject(l => Mathf.Pow(1.1f, l));
-        upgradeAttackRange .Inject(l => Mathf.Pow(1.1f, l));
+        upgradeHealth      .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                                   priceCalculation: l => Mathf.Pow(1.3f, l));
+
+        upgradeDamage      .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                                   priceCalculation: l => Mathf.Pow(1.3f, l));
+        
+        upgradeAttackRate  .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                                   priceCalculation: l => Mathf.Pow(1.3f, l));
+
+        upgradeAttackRange .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                                   priceCalculation: l => Mathf.Pow(1.3f, l));
 
         new [] {
             upgradeHealth,

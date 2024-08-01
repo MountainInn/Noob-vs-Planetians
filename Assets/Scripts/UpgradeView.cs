@@ -24,7 +24,7 @@ public class UpgradeView : MonoBehaviour
         currencyView.InitAndSubscribe(upgrade.price);
 
         upgrade.stat.result
-            .Subscribe(_ => labelCurrentStatValue.text = $"{upgrade.stat.AsFloorInt()}")
+            .Subscribe(_ => labelCurrentStatValue.text = $"+{upgrade.GetIncrease() * 10:F0}")
             .AddTo(this);
 
         upgrade.price
