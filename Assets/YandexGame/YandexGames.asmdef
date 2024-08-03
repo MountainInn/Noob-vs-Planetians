@@ -1,16 +1,3 @@
 {
-    "name": "YandexGames",
-    "rootNamespace": "",
-    "references": [
-        "GUID:8c4c000e275fa4e4da9288d8748f6f19"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+	"name": "YandexGames"
 }
