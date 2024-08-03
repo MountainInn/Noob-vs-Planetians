@@ -1,12 +1,11 @@
 {
-    "name": "WorldLevelGenerationEditor",
+    "name": "YGGRA",
     "rootNamespace": "",
     "references": [
-        "GUID:7a730b6b0574634478d21ccf79158e36"
+        "GUID:3195a896b8243f84d9c9d3b8bd065086",
+        "GUID:39b6fb1ea781ca1419ce498f6021c395"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

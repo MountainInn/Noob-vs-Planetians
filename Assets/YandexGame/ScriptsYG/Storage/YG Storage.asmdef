@@ -1,12 +1,12 @@
 {
-    "name": "WorldLevelGenerationEditor",
+    "name": "YGStorage",
     "rootNamespace": "",
     "references": [
-        "GUID:7a730b6b0574634478d21ccf79158e36"
+        "GUID:1c88bcd957d607c4b90aef45d55ba028",
+        "GUID:3195a896b8243f84d9c9d3b8bd065086",
+        "GUID:795831077f11e984abbfe0c32643872a"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

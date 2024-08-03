@@ -1,7 +1,8 @@
 {
-    "name": "WorldLevelGenerationEditor",
+    "name": "RunnerTemplateEditor",
     "rootNamespace": "",
     "references": [
+        "GUID:9b9d098aef5e4db49bc357b9ea2bb1fd",
         "GUID:7a730b6b0574634478d21ccf79158e36"
     ],
     "includePlatforms": [
