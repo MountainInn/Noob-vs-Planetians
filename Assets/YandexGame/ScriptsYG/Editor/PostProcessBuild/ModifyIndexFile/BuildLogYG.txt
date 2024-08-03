@@ -1,2 +1,0 @@
-Build path: C:/Users/User/Builds/Plunger Hero WebGL Release Speed
-Build number: 253

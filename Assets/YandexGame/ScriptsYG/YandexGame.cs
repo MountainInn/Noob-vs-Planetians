@@ -3,8 +3,6 @@ using System.Runtime.InteropServices;
 using UnityEngine.Events;
 using System;
 using UnityEngine.SceneManagement;
-using YG.Utils.LB;
-using YG.Utils.Pay;
 
 namespace YG
 {
@@ -38,7 +36,6 @@ namespace YG
         #region Data Fields
         public static bool auth { get => _auth; }
         public static bool SDKEnabled { get => _SDKEnabled; }
-        public static bool initializedLB { get => _initializedLB; }
 
         public static bool nowAdsShow
         {
@@ -53,11 +50,9 @@ namespace YG
 
         private static bool _auth;
         private static bool _SDKEnabled;
-        private static bool _initializedLB;
 
         public static bool nowFullAd;
         public static bool nowVideoAd;
-        public static JsonEnvironmentData EnvironmentData = new JsonEnvironmentData();
         public static YandexGame Instance;
         public static Action onAdNotification;
         public static Action GetDataEvent;
@@ -68,11 +63,17 @@ namespace YG
         {
             if (singleton)
                 SceneManager.sceneLoaded += OnSceneLoaded;
+#if UNITY_EDITOR
+            Application.focusChanged += OnVisibilityGameWindow;
+#endif
         }
         private void OnDisable()
         {
             if (singleton)
                 SceneManager.sceneLoaded -= OnSceneLoaded;
+#if UNITY_EDITOR
+            Application.focusChanged -= OnVisibilityGameWindow;
+#endif
         }
 
         private void Awake()
@@ -98,37 +99,23 @@ namespace YG
             }
 
             if (!_SDKEnabled)
+            {
+                CallInitBaisYG();
                 CallInitYG();
+                GetPayments();
+            }
         }
 
         [DllImport("__Internal")]
         private static extern void InitGame_js();
-
-        [DllImport("__Internal")]
-        private static extern void StaticRBTDeactivate();
 
         private void Start()
         {
             if (infoYG.AdWhenLoadingScene)
                 FullscreenShow();
 
-#if !UNITY_EDITOR
-            if (!infoYG.staticRBTInGame)
-                StaticRBTDeactivate();
-#endif
             if (!_SDKEnabled)
             {
-                if (infoYG.leaderboardEnable)
-                {
-#if !UNITY_EDITOR
-                    Debug.Log("Init Leaderbords inGame");
-                    _InitLeaderboard();
-#else
-                    InitializedLB();
-#endif
-                }
-                GetPayments();
-
                 CallStartYG();
                 _SDKEnabled = true;
                 GetDataInvoke();
@@ -138,9 +125,11 @@ namespace YG
             }
         }
 
-        static void Message(string message)
+        private static void Message(string message)
         {
-            if (Instance.infoYG.debug) 
+#if UNITY_EDITOR
+            if (Instance.infoYG.debug)
+#endif
                 Debug.Log(message);
         }
 
@@ -157,7 +146,7 @@ namespace YG
                 firstSceneLoad = false;
             else if (infoYG.AdWhenLoadingScene)
                 _FullscreenShow();
-        }  
+        }
 
         #region For ECS
 #if UNITY_EDITOR
@@ -166,16 +155,13 @@ namespace YG
         {
             _SDKEnabled = false;
             _auth = false;
-            _initializedLB = false;
-            _playerName = "unauthorized";
+            playerName = "unauthorized";
             _playerId = null;
-            _playerPhoto = null;
-            _photoSize = "medium";
+            playerPhoto = null;
+            photoSize = "medium";
             nowFullAd = false;
             nowVideoAd = false;
             savesData = new SavesYG();
-            EnvironmentData = new JsonEnvironmentData();
-            purchases = new Purchase[0];
             Instance = null;
             timerShowAd = 0;
             GetDataEvent = null;
@@ -189,9 +175,6 @@ namespace YG
             RewardVideoEvent = null;
             ErrorVideoEvent = null;
             onGetLeaderboard = null;
-            GetPaymentsEvent = null;
-            PurchaseSuccessEvent = null;
-            PurchaseFailedEvent = null;
             ReviewSentEvent = null;
             PromptSuccessEvent = null;
             PromptFailEvent = null;
@@ -202,24 +185,8 @@ namespace YG
 
         #endregion Methods
 
-        
 
         // Sending messages
-
-        #region Init Leaderboard
-        [DllImport("__Internal")]
-        private static extern void InitLeaderboard();
-
-        public void _InitLeaderboard()
-        {
-#if !UNITY_EDITOR
-            InitLeaderboard();
-#endif
-#if UNITY_EDITOR
-            Message("Initialization Leaderboards");
-#endif
-        }
-        #endregion Init Leaderboard
 
         #region Fullscren Ad Show
         [DllImport("__Internal")]
@@ -240,7 +207,10 @@ namespace YG
             }
             else
             {
-                Message($"До запроса к показу рекламы в середине игры {(infoYG.fullscreenAdInterval - timerShowAd).ToString("00.0")} сек.");
+                if (nowAdsShow)
+                    Message($"Реклама не может быть открыта во время показа другой рекламы!");
+                else
+                    Message($"До запроса к показу рекламы в середине игры {(infoYG.fullscreenAdInterval - timerShowAd).ToString("00.0")} сек.");
             }
         }
 
@@ -332,192 +302,6 @@ namespace YG
         }
         #endregion URL
 
-        #region Leaderboard
-        [DllImport("__Internal")]
-        private static extern void SetLeaderboardScores(string nameLB, int score);
-
-        public static void NewLeaderboardScores(string nameLB, int score)
-        {
-            if (Instance.infoYG.leaderboardEnable && auth)
-            {
-                if (Instance.infoYG.saveScoreAnonymousPlayers == false &&
-                    playerName == "anonymous")
-                    return;
-
-#if !UNITY_EDITOR
-                Message("New Liderboard Record: " + score);
-                SetLeaderboardScores(nameLB, score);
-#else
-                Message($"New Liderboard '{nameLB}' Record: {score}");
-#endif
-            }
-        }
-
-        public static void NewLBScoreTimeConvert(string nameLB, float secondsScore)
-        {
-            if (Instance.infoYG.leaderboardEnable && auth)
-            {
-                if (Instance.infoYG.saveScoreAnonymousPlayers == false &&
-                    playerName == "anonymous")
-                    return;
-
-                int result;
-                int indexComma = secondsScore.ToString().IndexOf(",");
-
-                if (secondsScore < 1)
-                {
-                    Debug.LogError("You can't record a record below zero!");
-                    return;
-                }
-                else if (indexComma <= 0)
-                {
-                    result = (int)(secondsScore);
-                }
-                else
-                {
-                    string rec = secondsScore.ToString();
-                    string sec = rec.Remove(indexComma);
-                    string milSec = rec.Remove(0, indexComma + 1);
-                    if (milSec.Length > 3) milSec = milSec.Remove(3);
-                    else if (milSec.Length == 2) milSec += "0";
-                    else if (milSec.Length == 1) milSec += "00";
-                    rec = sec + milSec;
-                    result = int.Parse(rec);
-                }
-
-                NewLeaderboardScores(nameLB, result);
-            }
-        }
-
-        [DllImport("__Internal")]
-        private static extern void GetLeaderboardScores(string nameLB, int maxQuantityPlayers, int quantityTop, int quantityAround, string photoSizeLB, bool auth);
-
-        public static void GetLeaderboard(string nameLB, int maxQuantityPlayers, int quantityTop, int quantityAround, string photoSizeLB)
-        {
-            void NoData()
-            {
-                LBData lb = new LBData()
-                {
-                    technoName = nameLB,
-                    entries = "no data",
-                    players = new LBPlayerData[1]
-                    {
-                        new LBPlayerData()
-                        {
-                            name = "no data",
-                            photo = null
-                        }
-                    }
-                };
-                onGetLeaderboard?.Invoke(lb);
-            }
-
-#if !UNITY_EDITOR
-            if (Instance.infoYG.leaderboardEnable)
-            {
-                Message("Get Leaderboard");
-                GetLeaderboardScores(nameLB, maxQuantityPlayers, quantityTop, quantityAround, photoSizeLB, _auth);
-            }
-            else
-            {
-                NoData();
-            }
-#else
-            Message("Get Leaderboard - " + nameLB);
-
-            if (Instance.infoYG.leaderboardEnable)
-            {
-                int indexLB = -1;
-                LBData[] lb = Instance.infoYG.leaderboardSimulation;
-                for (int i = 0; i < lb.Length; i++)
-                {
-                    if (nameLB == lb[i].technoName)
-                    {
-                        indexLB = i;
-                        break;
-                    }
-                }
-
-                if (indexLB >= 0)
-                    onGetLeaderboard?.Invoke(lb[indexLB]);
-                else
-                    NoData();
-            }
-            else
-            {
-                NoData();
-            }
-#endif
-        }
-        #endregion Leaderboard
-
-        #region Payments
-        [DllImport("__Internal")]
-        private static extern void BuyPaymentsInternal(string id);
-
-        public static void BuyPayments(string id)
-        {
-#if !UNITY_EDITOR
-            BuyPaymentsInternal(id);
-#else
-            Message($"Buy Payment. ID: {id}");
-            Instance.OnPurchaseSuccess(id);
-#endif
-        }
-
-        public void _BuyPayments(string id) => BuyPayments(id);
-
-
-        [DllImport("__Internal")]
-        private static extern void GetPaymentsInternal();
-
-        public static void GetPayments()
-        {
-            Message("Get Payments");
-#if !UNITY_EDITOR
-            GetPaymentsInternal();
-#else
-            Instance.PaymentsEntries("");
-#endif
-        }
-
-        public void _GetPayments() => GetPayments();
-
-        public static Purchase PurchaseByID(string ID)
-        {
-            for (int i = 0; i < purchases.Length; i++)
-            {
-                if (purchases[i].id == ID)
-                {
-                    return purchases[i];
-                }
-            }
-
-            return null;
-        }
-
-        [DllImport("__Internal")]
-        private static extern void ConsumePurchaseInternal(string id);
-
-        public static void ConsumePurchaseByID(string id)
-        {
-#if !UNITY_EDITOR
-            ConsumePurchaseInternal(id);
-#endif
-        }
-
-        [DllImport("__Internal")]
-        private static extern void ConsumePurchasesInternal();
-
-        public static void ConsumePurchases()
-        {
-#if !UNITY_EDITOR
-            ConsumePurchasesInternal();
-#endif
-        }
-
-        #endregion Payments
-
         #region Review Show
         [DllImport("__Internal")]
         private static extern void ReviewInternal();
@@ -579,6 +363,130 @@ namespace YG
         public void _StickyAdActivity(bool activity) => StickyAdActivity(activity);
         #endregion Sticky Ad
 
+        #region Gameplay Start/Stop
+        private static bool gamePlaying;
+        public static bool isGamePlaying { get { return gamePlaying; } }
+        private static bool saveGameplayState;
+
+        [DllImport("__Internal")]
+        private static extern void GameplayStart_js();
+
+        public static void GameplayStart(bool useSaveGameplayState = false)
+        {
+            if (useSaveGameplayState && (!saveGameplayState || nowAdsShow || !isVisibilityWindowGame))
+                return;
+
+            if (!gamePlaying)
+            {
+                gamePlaying = true;
+                Message("Gameplay Start");
+#if !UNITY_EDITOR
+                GameplayStart_js();
+#endif
+            }
+        }
+        public void _GameplayStart() => GameplayStart();
+
+        [DllImport("__Internal")]
+        private static extern void GameplayStop_js();
+
+        public static void GameplayStop(bool useSaveGameplayState = false)
+        {
+            if (useSaveGameplayState && !nowAdsShow && isVisibilityWindowGame)
+                saveGameplayState = gamePlaying;
+
+            if (gamePlaying)
+            {
+                gamePlaying = false;
+                Message("Gameplay Stop");
+#if !UNITY_EDITOR
+                GameplayStop_js();
+#endif
+            }
+        }
+        public void _GameplayStop() => GameplayStop();
+        #endregion Gameplay Start/Stop
+
+        #region Visibility Window Game
+        public static bool isVisibilityWindowGame { get { return visibilityWindowGame; } }
+        private static bool visibilityWindowGame = true;
+
+        public static Action<bool> onVisibilityWindowGame;
+        public static Action onShowWindowGame, onHideWindowGame;
+
+        public void OnVisibilityGameWindow(string visible)
+        {
+            if (visible == "true")
+            {
+                visibilityWindowGame = true;
+                GameplayStart(true);
+
+                onVisibilityWindowGame?.Invoke(true);
+                onShowWindowGame?.Invoke();
+            }
+            else
+            {
+                onVisibilityWindowGame?.Invoke(false);
+                onHideWindowGame?.Invoke();
+
+                GameplayStop(true);
+                visibilityWindowGame = false;
+            }
+        }
+        public void OnVisibilityGameWindow(bool visible) => OnVisibilityGameWindow(visible ? "true" : "false");
+        #endregion Visibility Window Game
+
+        #region Server Time
+
+        [DllImport("__Internal")]
+        private static extern long ServerTime_js();
+
+        public static long ServerTime()
+        {
+#if UNITY_EDITOR
+            return Instance.infoYG.playerInfoSimulation.serverTime;
+#else
+            return ServerTime_js();
+#endif
+        }
+        #endregion Server Time
+
+        #region Fullscreen
+#if UNITY_EDITOR
+        private static bool isFullscreenEditor;
+#endif
+        [DllImport("__Internal")]
+        private static extern long SetFullscreen_js(bool fullscreen);
+        public static void SetFullscreen(bool fullscreen)
+        {
+            if (isFullscreen != fullscreen)
+            {
+                Message("Set Fullscreen: " + fullscreen);
+#if UNITY_EDITOR
+                isFullscreenEditor = fullscreen;
+#else
+                SetFullscreen_js(fullscreen);
+#endif
+            }
+        }
+        public void _SetFullscreen(bool fullscreen) => SetFullscreen(fullscreen);
+
+        [DllImport("__Internal")]
+        private static extern bool IsFullscreen_js();
+        public static bool isFullscreen
+        {
+            get
+            {
+#if UNITY_EDITOR
+                return isFullscreenEditor;
+#else
+                return IsFullscreen_js();
+#endif
+            }
+        }
+
+        #endregion Fullscreen
+
 
         // Receiving messages
 
@@ -586,6 +494,7 @@ namespace YG
         public static Action OpenFullAdEvent;
         public void OpenFullAd()
         {
+            GameplayStop(true);
             OpenFullscreenAd.Invoke();
             OpenFullAdEvent?.Invoke();
             nowFullAd = true;
@@ -613,6 +522,7 @@ namespace YG
                 else Message("Реклама не была показана. Следующий запрос через: " + infoYG.fullscreenAdInterval);
             }
 #endif
+            GameplayStart(true);
         }
         public void CloseFullAd() => CloseFullAd("true");
 
@@ -635,17 +545,17 @@ namespace YG
         public static Action OpenVideoEvent;
         public void OpenVideo()
         {
+            GameplayStop(true);
             OpenVideoEvent?.Invoke();
             OpenVideoAd.Invoke();
             nowVideoAd = true;
-            timeOnOpenRewardedAds = Time.unscaledTime;
+            timeOnOpenRewardedAds = Time.realtimeSinceStartup;
         }
 
         public static Action CloseVideoEvent;
         public void CloseVideo()
         {
             nowVideoAd = false;
-
             CloseVideoAd.Invoke();
             CloseVideoEvent?.Invoke();
 
@@ -660,6 +570,7 @@ namespace YG
             }
 
             rewardAdResult = RewardAdResult.None;
+            GameplayStart(true);
         }
 
         public static Action<int> RewardVideoEvent;
@@ -671,12 +582,14 @@ namespace YG
         {
             lastRewardAdID = id;
 #if UNITY_EDITOR
-            if (!Instance.infoYG.testErrorOfRewardedAdsInEditor)
-                timeOnOpenRewardedAds -= 3;
+            if (Instance.infoYG.testErrorOfRewardedAdsInEditor)
+                timeOnOpenRewardedAds += Time.realtimeSinceStartup + 1;
+            else
+                timeOnOpenRewardedAds = 0;
 #endif
             rewardAdResult = RewardAdResult.None;
 
-            if (Time.unscaledTime > timeOnOpenRewardedAds + 2)
+            if (Time.realtimeSinceStartup > timeOnOpenRewardedAds + 0.5f)
             {
                 if (Instance.infoYG.rewardedAfterClosing)
                 {
@@ -704,100 +617,6 @@ namespace YG
             ErrorVideoEvent?.Invoke();
         }
         #endregion Rewarded Video
-
-        #region Leaderboard
-        public static Action<LBData> onGetLeaderboard;
-
-        public void LeaderboardEntries(string data)
-        {
-            JsonLB jsonLB = JsonUtility.FromJson<JsonLB>(data);
-
-            LBData lbData = new LBData()
-            {
-                technoName = jsonLB.technoName,
-                isDefault = jsonLB.isDefault,
-                isInvertSortOrder = jsonLB.isInvertSortOrder,
-                decimalOffset = jsonLB.decimalOffset,
-                type = jsonLB.type,
-                entries = jsonLB.entries,
-                players = new LBPlayerData[jsonLB.names.Length],
-                thisPlayer = null
-            };
-
-            for (int i = 0; i < jsonLB.names.Length; i++)
-            {
-                lbData.players[i] = new LBPlayerData();
-                lbData.players[i].name = jsonLB.names[i];
-                lbData.players[i].rank = jsonLB.ranks[i];
-                lbData.players[i].score = jsonLB.scores[i];
-                lbData.players[i].photo = jsonLB.photos[i];
-                lbData.players[i].uniqueID = jsonLB.uniqueIDs[i];
-
-                if (jsonLB.uniqueIDs[i] == playerId)
-                {
-                    lbData.thisPlayer = new LBThisPlayerData
-                    {
-                        rank = jsonLB.ranks[i],
-                        score = jsonLB.scores[i]
-                    };
-                }
-            }
-
-            onGetLeaderboard?.Invoke(lbData);
-        }
-
-        public void InitializedLB()
-        {
-            LBData lb = new LBData()
-            {
-                entries = "initialized"
-            };
-            onGetLeaderboard?.Invoke(lb);
-            _initializedLB = true;
-        }
-        #endregion Leaderboard
-
-        #region Payments
-        public static Action GetPaymentsEvent;
-        public static Purchase[] purchases = new Purchase[0];
-
-        public void PaymentsEntries(string data)
-        {
-#if !UNITY_EDITOR
-            JsonPayments paymentsData = JsonUtility.FromJson<JsonPayments>(data);
-            purchases = new Purchase[paymentsData.id.Length];
-
-            for (int i = 0; i < purchases.Length; i++)
-            {
-                purchases[i] = new Purchase();
-                purchases[i].id = paymentsData.id[i];
-                purchases[i].title = paymentsData.title[i];
-                purchases[i].description = paymentsData.description[i];
-                purchases[i].imageURI = paymentsData.imageURI[i];
-                purchases[i].priceValue = paymentsData.priceValue[i];
-                purchases[i].consumed = paymentsData.consumed[i];
-            }
-#else
-            purchases = Instance.infoYG.purshasesSimulation;
-#endif
-            GetPaymentsEvent?.Invoke();
-        }
-
-        public static Action<string> PurchaseSuccessEvent;
-        public void OnPurchaseSuccess(string id)
-        {
-            PurchaseByID(id).consumed = true;
-            PurchaseSuccess?.Invoke();
-            PurchaseSuccessEvent?.Invoke(id);
-        }
-
-        public static Action<string> PurchaseFailedEvent;
-        public void OnPurchaseFailed(string id)
-        {
-            PurchaseFailed?.Invoke();
-            PurchaseFailedEvent?.Invoke(id);
-        }
-        #endregion Payments
 
         #region Review
         public static Action<bool> ReviewSentEvent;
@@ -868,16 +687,6 @@ namespace YG
             public string[] names;
             public int[] scores;
             public string[] uniqueIDs;
-        }
-
-        public class JsonPayments
-        {
-            public string[] id;
-            public string[] title;
-            public string[] description;
-            public string[] imageURI;
-            public string[] priceValue;
-            public bool[] consumed;
         }
         #endregion Json
     }
