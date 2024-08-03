@@ -5,6 +5,18 @@ using System.Collections.Generic;
 
 static public class ListExtension
 {
+        public static void Deconstruct<T1, T2>(this List<(T1, T2)> source, out List<T1> list1, out List<T2> list2)
+    {
+        list1 = new List<T1>();
+        list2 = new List<T2>();
+
+        foreach (var (item1, item2) in source)
+        {
+            list1.Add(item1);
+            list2.Add(item2);
+        }
+    }
+
     public static void DestroyAll<T>(this List<T> list)
         where T : Component
     {

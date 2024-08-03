@@ -6,6 +6,77 @@ using System.Collections.Generic;
 
 static public class IEnumerableExt
 {
+    static public IEnumerable<(T1, T2)> Zip<T1, T2>(this (IEnumerable<T1>, IEnumerable<T2>) tuple)
+    {
+        return tuple.Zip((a, b) => (a, b));
+    }
+    static public IEnumerable<TResult> Zip<T1, T2, TResult>(this (IEnumerable<T1>, IEnumerable<T2>) tuple, Func<T1, T2, TResult> func)
+    {
+        using (var e1 = tuple.Item1.GetEnumerator())
+        using (var e2 = tuple.Item2.GetEnumerator())
+        {
+            bool next1 = false;
+            bool next2 = false;
+
+            while (true)
+            {
+                next1 = e1.MoveNext();
+                next2 = e2.MoveNext();
+
+                if (next1 || next2)
+                    yield return
+                        func.Invoke(
+                            (next1) ? e1.Current : default,
+                            (next2) ? e2.Current : default
+                        );
+                else
+                    yield break;
+            }
+        }
+    }
+    static public IEnumerable<(T1, T2, T3)> Zip<T1, T2, T3>(this (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>) tuple)
+    {
+        return tuple.Zip((a, b, c) => (a, b, c));
+    }
+    static public IEnumerable<TResult> Zip<T1, T2, T3, TResult>(this (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>) tuple, Func<T1, T2, T3, TResult> func)
+    {
+        using (var e1 = tuple.Item1.GetEnumerator())
+        using (var e2 = tuple.Item2.GetEnumerator())
+        using (var e3 = tuple.Item3.GetEnumerator())
+        {
+            bool next1 = false;
+            bool next2 = false;
+            bool next3 = false;
+
+            while (true)
+            {
+                next1 = e1.MoveNext();
+                next2 = e2.MoveNext();
+                next3 = e3.MoveNext();
+
+                if (next1 || next2 || next3)
+                    yield return
+                        func.Invoke(
+                            (next1) ? e1.Current : default,
+                            (next2) ? e2.Current : default,
+                            (next3) ? e3.Current : default
+                        );
+                else
+                    yield break;
+            }
+        }
+    }
+
+
+    static public string JoinAsString(this IEnumerable<string> strs, string delimeter)
+    {
+        return string.Join(delimeter, strs);
+    }
+    static public string JoinAsString(this IEnumerable<char> chars)
+    {
+        return string.Join("", chars);
+    }
+
     public static IEnumerable<float> FloatRange(Func<float> step, float max)
     {
         for (float f = step.Invoke(); f < max; f += step.Invoke())
@@ -170,6 +241,7 @@ static public class IEnumerableExt
         return source.Map(action).ToList();
     }
 
+
     static public IEnumerable<T> Map<T>(this IEnumerable<T> source, Action<T> action)
     {
         if (source.None())
@@ -197,6 +269,14 @@ static public class IEnumerableExt
     static public IEnumerable<(T, O, E)> Zip<T, O, E>(this IEnumerable<T> source, IEnumerable<O> other, IEnumerable<E> elseOther)
     {
         return source.Zip(other, (a , b) => (a, b)).Zip(elseOther, (a, b) => (a.a, a.b, b));
+    }
+
+    static public IEnumerable<IEnumerable<T>> Windows<T>(this IEnumerable<T> source, int length)
+    {
+        for (int i = 0; i < source.Count() - length; i+=length)
+        {
+            yield return source.Take(length);
+        }
     }
 
     static public IEnumerable<T> InfiniteStream<T>(this IEnumerable<T> source)
@@ -273,6 +353,11 @@ static public class IEnumerableExt
         Debug.Log(prefixMessage + $" {source.Count()}: " + str);
 
         return source;
+    }
+
+    static public IEnumerable<int> ToRange(this int i, int startIndex = 0)
+    {
+        return Enumerable.Range(startIndex, i);
     }
 
 }

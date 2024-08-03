@@ -5,8 +5,6 @@ using HyperCasual.Runner;
 using HyperCasual.Gameplay;
 using Cysharp.Threading.Tasks;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Collections;
 using UnityEngine.SceneManagement;
 using YG;
 using DG.Tweening;

@@ -628,7 +628,7 @@ MonoBehaviour:
     _maximum:
       value: 5
   fields:
-  - expirience: 16
+  - expirience: 12
     icon: {fileID: -536223356, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
   - expirience: 13
     icon: {fileID: 191722921, guid: 33820e1722eec9445a0c241ad3d75cdd, type: 3}
