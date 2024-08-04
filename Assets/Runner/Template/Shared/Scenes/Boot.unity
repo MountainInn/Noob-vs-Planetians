@@ -471,7 +471,7 @@ MonoBehaviour:
       prices: []
   upgradeAttackRate:
     name: Fire Rate
-    icon: {fileID: 21300000, guid: f2ceefd9e8e214e4594540933e7520d0, type: 3}
+    icon: {fileID: 21300000, guid: d0177c9e2ef73e04ea7ef12c24257988, type: 3}
     price:
       currency: {fileID: 11400000, guid: f4ed67d48569d3242a4a26ead75fb46f, type: 2}
       amount:
@@ -805,6 +805,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 887171131383179268, guid: a199d962ca53e4a10ba285d5d34bf335,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -232
+      objectReference: {fileID: 0}
     - target: {fileID: 887171131383179268, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_AnchoredPosition.y
