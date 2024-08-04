@@ -18,33 +18,16 @@ namespace HyperCasual.Runner
         public static InputManager Instance => s_Instance;
         static InputManager s_Instance;
 
-        [SerializeField]
-        float m_InputSensitivity = 1.5f;
+        [SerializeField] float m_InputSensitivity = 1.5f;
 
         bool m_HasInput;
         Vector3 m_InputPosition;
         Vector3 m_PreviousInputPosition;
 
-        void Awake()
-        {
-            if (s_Instance != null && s_Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            s_Instance = this;
-        }
-
-        void OnEnable()
-        {
-            EnhancedTouchSupport.Enable();
-        }
-
-        void OnDisable()
-        {
-            EnhancedTouchSupport.Disable();
-        }
+        bool
+            keyboardInput,
+            pressingLeft,
+            pressingRight;
 
         void Update()
         {
@@ -53,7 +36,6 @@ namespace HyperCasual.Runner
                 return;
             }
 
-#if UNITY_EDITOR
             m_InputPosition = Mouse.current.position.ReadValue();
 
             if (Mouse.current.leftButton.isPressed)
@@ -62,34 +44,33 @@ namespace HyperCasual.Runner
                 {
                     m_PreviousInputPosition = m_InputPosition;
                 }
-                m_HasInput = true;
-            }
-            else
-            {
-                m_HasInput = false;
-            }
-#else
-            if (Touch.activeTouches.Count > 0)
-            {
-                m_InputPosition = Touch.activeTouches[0].screenPosition;
 
-                if (!m_HasInput)
-                {
-                    m_PreviousInputPosition = m_InputPosition;
-                }
-                
+                m_HasInput = true;
+            }
+            else if ((pressingLeft = (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed))
+                     ||
+                     (pressingRight = (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)))
+            {
+
+                keyboardInput = true;
                 m_HasInput = true;
             }
             else
             {
                 m_HasInput = false;
             }
-#endif
 
             if (m_HasInput)
             {
-                float normalizedDeltaPosition = (m_InputPosition.x - m_PreviousInputPosition.x) / Screen.width * m_InputSensitivity;
-                PlayerController.Instance.SetDeltaPosition(normalizedDeltaPosition);
+                if (keyboardInput)
+                {
+                    PlayerController.Instance.SetDeltaPosition(pressingLeft ? -100 : 100);
+                }
+                else
+                {
+                    float normalizedDeltaPosition = (m_InputPosition.x - m_PreviousInputPosition.x) / Screen.width * m_InputSensitivity;
+                    PlayerController.Instance.SetDeltaPosition(normalizedDeltaPosition);
+                }
             }
             else
             {
@@ -97,6 +78,8 @@ namespace HyperCasual.Runner
             }
 
             m_PreviousInputPosition = m_InputPosition;
+
+            keyboardInput = false;
         }
     }
 }
