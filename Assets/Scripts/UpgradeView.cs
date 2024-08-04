@@ -2,6 +2,7 @@ using UniRx;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UpgradeView : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class UpgradeView : MonoBehaviour
             {
                 RewardDispenser.instance.ShowFreeUpgrade(upgrade);
             }
+
+            transform.DOPunchScale(Vector3.one * 0.1f, .15f);
         });
     }
 }

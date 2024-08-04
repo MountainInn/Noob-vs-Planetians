@@ -34,6 +34,8 @@ public class RaycastCollider : MonoBehaviour
         previousPosition = startPosition;
 
         raycasting = true;
+
+        Raycast();
     }
 
     void OnDisable()
@@ -70,6 +72,13 @@ public class RaycastCollider : MonoBehaviour
 
         hasValidHits = false;
 
+        Raycast();
+
+        previousPosition = transform.position;
+    }
+
+    void Raycast()
+    {
         if (raycasting)
         {
             var infos =
@@ -109,8 +118,6 @@ public class RaycastCollider : MonoBehaviour
             if (closestValidHit.point == Vector3.zero)
                 hasValidHits = false;
         }
-
-        previousPosition = transform.position;
     }
 
     void Collide()
