@@ -69,6 +69,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5215427841407275189}
     m_Modifications:
+    - target: {fileID: 8009942269030263706, guid: d4b89b20cfa3675458544ada3b2b6304,
+        type: 3}
+      propertyPath: range.value
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8009942269030263707, guid: d4b89b20cfa3675458544ada3b2b6304,
         type: 3}
       propertyPath: m_Name
@@ -161,6 +166,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5215427841407275189}
     m_Modifications:
+    - target: {fileID: 8009942269030263706, guid: 816c1f36eec8c254494f9661b33c31af,
+        type: 3}
+      propertyPath: range.value
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8009942269030263706, guid: 816c1f36eec8c254494f9661b33c31af,
         type: 3}
       propertyPath: damage.value
@@ -258,6 +268,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5215427841407275189}
     m_Modifications:
+    - target: {fileID: 8009942269030263706, guid: df65c0fa71d5ecd4eb0c757ac1110491,
+        type: 3}
+      propertyPath: range.value
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 8009942269030263707, guid: df65c0fa71d5ecd4eb0c757ac1110491,
         type: 3}
       propertyPath: m_Name
@@ -360,6 +375,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8514085991465822905, guid: e5fc43bbe1e43db488cd363744cd5386,
+        type: 3}
+      propertyPath: range.value
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8514085991465822910, guid: e5fc43bbe1e43db488cd363744cd5386,
         type: 3}
       propertyPath: m_RootOrder
@@ -442,6 +462,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5215427841407275189}
     m_Modifications:
+    - target: {fileID: 8009942269030263706, guid: 647c5355663044b49a8d7aa485e5a833,
+        type: 3}
+      propertyPath: rate.value
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009942269030263706, guid: 647c5355663044b49a8d7aa485e5a833,
+        type: 3}
+      propertyPath: range.value
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8009942269030263707, guid: 647c5355663044b49a8d7aa485e5a833,
         type: 3}
       propertyPath: m_Name
