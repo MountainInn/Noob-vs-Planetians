@@ -78,8 +78,6 @@ public class Flow : MonoBehaviour
         Instantiate(m_SequenceManagerPrefab);
         SequenceManager.Instance.Initialize();
 
-        currentLevelIndex = 0;
-
         UIManager.Instance.Initialize();
 
         await LoadLevel();

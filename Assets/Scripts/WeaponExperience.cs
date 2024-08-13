@@ -20,15 +20,15 @@ public class WeaponExperience : MonoBehaviour
 
     [Inject] void SubToSaveSystem(YandexSaveSystem sv)
     {
-        // sv.Register(
-        //     save => {
-        //         save.lastWeaponIndex = level.L;
-        //         save.weaponExpirience = currentExpirience;
-        //     },
-        //     load => {
-        //         level.SetLevel(load.lastWeaponIndex);
-        //         expirienceVolume.current.Value = load.weaponExpirience;
-        //     });
+        sv.Register(
+            save => {
+                save.lastWeaponIndex = level.L;
+                save.weaponExpirience = currentExpirience;
+            },
+            load => {
+                level.SetLevel(load.lastWeaponIndex);
+                expirienceVolume.current.Value = load.weaponExpirience;
+            });
     }
 
     public int currentLevel => level.L;
