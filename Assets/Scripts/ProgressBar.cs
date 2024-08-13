@@ -9,6 +9,8 @@ using UniRx;
 
 public class ProgressBar : MonoBehaviour
 {
+    [SerializeField] protected bool negateRatio;
+    [Space]
     [SerializeField] protected Sprite borderSprite;
     [SerializeField] protected Sprite maskSprite;
     [SerializeField] protected Sprite fillSprite;
@@ -87,6 +89,9 @@ public class ProgressBar : MonoBehaviour
             .TakeWhile(_ => volumeOwner != null && volumeOwner.activeSelf)
             .Subscribe(ratio =>
             {
+                if (negateRatio)
+                    ratio = (1f - ratio);
+
                 if (label)
                     label.text = volume.ToString();
 
