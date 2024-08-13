@@ -271,7 +271,7 @@ public class Flow : MonoBehaviour
 
             instantiatedWLevel.Generate();
 
-            PlayerController.Instance.SetMaxXPosition(15);
+            PlayerController.Instance.SetMaxXPosition(14);
             PlayerController.Instance.ResetPlayer();
 
             PlayerCharacter.instance.RefillHealth();
