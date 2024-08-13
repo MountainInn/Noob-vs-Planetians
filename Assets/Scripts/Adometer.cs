@@ -49,12 +49,22 @@ public class Adometer : MonoBehaviour
         arrow.rectTransform.anchoredPosition = Vector3.zero;
 
         arrowScrollTween =
-            arrow
-            .rectTransform
-            .DOAnchorPosX(arrowParent.rect.width, scrollSpeed)
-            .SetSpeedBased(true)
+            DOTween
+            .Sequence()
+            .Join(arrow.rectTransform.DOAnchorMin(new Vector2(1, 0), 1f))
+            .Join(arrow.rectTransform.DOAnchorMax(new Vector2(1, 0), 1f))
             .SetLoops(-1, LoopType.Yoyo)
-            .OnUpdate(() => labelCurrentMultiplier.text = $"Get x{GetCurrentMultiplier()}!");
+            .OnStart(() =>
+            {
+                arrow.rectTransform.anchorMin = Vector2.zero;
+                arrow.rectTransform.anchorMax = Vector2.zero;
+                arrow.rectTransform.anchoredPosition = Vector2.zero;
+            })
+            .OnUpdate(() =>
+            {
+                arrow.rectTransform.anchoredPosition = Vector2.zero;
+                labelCurrentMultiplier.text = $"Get x{GetCurrentMultiplier()}!";
+            });
     }
 
     public int StopArrow()
