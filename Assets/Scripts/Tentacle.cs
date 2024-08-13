@@ -1,8 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class Tentacle : MonoBehaviour
 {
+    [Header("Events")]
+    [SerializeField] public UnityEvent onSwing;
+    [SerializeField] public UnityEvent onHit;
     [Header("Parent")]    
     [SerializeField] InteractiveCollider parentEnemyInterCollider;
     [SerializeField] Damage parentEnemyDamage;
@@ -28,6 +32,8 @@ public class Tentacle : MonoBehaviour
                 tentacleRenderer.material.DOFade(1, fadeDuration);
 
                 tentacleAnimation.Play();
+
+                onSwing?.Invoke();
             });
 
         parentEnemyInterCollider
@@ -64,6 +70,8 @@ public class Tentacle : MonoBehaviour
         parentEnemyDamage.__DoDamage(player);
 
         FadeOut();
+
+        onHit?.Invoke();
     }
 
     void FadeOut()

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7652638571191106707}
   - component: {fileID: 7652638571191106716}
   - component: {fileID: 7652638571191106706}
+  - component: {fileID: 276125530764755270}
+  - component: {fileID: 8776249009603929895}
   m_Layer: 0
   m_Name: Tentacle
   m_TagString: Untagged
@@ -62,11 +64,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5377e69451c5c0408fe42a311eedd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSwing:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276125530764755270}
+        m_TargetAssemblyTypeName: MyAudioSource, Assembly-CSharp
+        m_MethodName: __PlayFirst
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8776249009603929895}
+        m_TargetAssemblyTypeName: MyAudioSource, Assembly-CSharp
+        m_MethodName: __PlayFirst
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   parentEnemyInterCollider: {fileID: 0}
   parentEnemyDamage: {fileID: 0}
   tentacleFbx: {fileID: 7906380587743783835}
   tentacleRenderer: {fileID: 8708761156958559689}
   tentacleAnimation: {fileID: 7652638571191106716}
+  fadeDuration: 0.08
+--- !u!114 &276125530764755270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652638571191106717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  volume: 1
+  minSoundInterval: 0.1
+  clips:
+  - {fileID: 8300000, guid: f0b6ccd0133287b4ba5eab9cdc348b9b, type: 3}
+--- !u!114 &8776249009603929895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652638571191106717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515bbd4195431ee43906c36055f5c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  volume: 1
+  minSoundInterval: 0.1
+  clips:
+  - {fileID: 8300000, guid: d53cf2ce8b263f94e96a1510b1ed147f, type: 3}
 --- !u!1001 &7652638571643161712
 PrefabInstance:
   m_ObjectHideFlags: 0
