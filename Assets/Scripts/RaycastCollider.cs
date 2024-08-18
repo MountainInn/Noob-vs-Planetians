@@ -34,11 +34,9 @@ public class RaycastCollider : MonoBehaviour
         hits = new RaycastHit[raycastBufferSize];
     }
 
-    void OnEnable()
+    public void Reinitialize(Vector3 initialPosition)
     {
-        previousPosition = startPosition;
-        
-        hasValidHits = false;
+        previousPosition = initialPosition + offset;
 
         raycasting = true;
     }
@@ -46,8 +44,6 @@ public class RaycastCollider : MonoBehaviour
     void OnDisable()
     {
         raycasting = false;
-
-        hasValidHits = false;
     }
 
     void OnDrawGizmos()

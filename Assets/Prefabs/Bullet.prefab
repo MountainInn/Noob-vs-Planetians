@@ -57,7 +57,7 @@ MonoBehaviour:
   radius: 0.45
   offset: {x: 0, y: 0, z: -1.5}
   startRaycasting: 1
-  raycastBufferSize: 8
+  raycastBufferSize: 12
   onCollision:
     m_PersistentCalls:
       m_Calls:

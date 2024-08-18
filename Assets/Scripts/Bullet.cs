@@ -19,10 +19,12 @@ public class Bullet : MonoBehaviour
     Tween moveTween;
 
     TrailRenderer trail;
+    RaycastCollider raycastCollider;
 
     void Awake()
     {
         damage = GetComponent<Damage>();
+        raycastCollider = GetComponent<RaycastCollider>();
     }
 
     public void Initialize(int gunDamage, int range, float bulletSpeed)
@@ -68,6 +70,8 @@ public class Bullet : MonoBehaviour
             item.transform.forward = Vector3.forward;
 
             item.Initialize(gun.totalDamage, gun.totalRange, gun.bulletSpeed);
+
+            item.raycastCollider.Reinitialize(muzzle.position);
         }
     }
 }
