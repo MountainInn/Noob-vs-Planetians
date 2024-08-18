@@ -25,14 +25,14 @@ public class YandexSaveSystem : MonoBehaviour
         YandexGame.GetDataEvent -= Load;
     }
 
-    void OnApplicationQuit()
-    {
-        Save();
-    }
-
     void Load()
     {
         loaders.ForEach(l => l.Invoke(YandexGame.savesData));
+    }
+
+    void OnApplicationQuit()
+    {
+        Save();
     }
 
     public void Save()

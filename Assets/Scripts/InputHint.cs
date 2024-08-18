@@ -12,7 +12,7 @@ public class InputHint : MonoBehaviour
                 
                 },
             load => {
-                isFirstSession = load.isFirstSession;
+                isFirstSession = (load.levelCount == 0);
             });
     }
 
