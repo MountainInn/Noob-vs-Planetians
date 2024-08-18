@@ -18,6 +18,10 @@ public class UpgradeScreen : View
     [SerializeField] UpgradeView prefabUpgradeView;
     [Space]
     [SerializeField] LayoutGroup layout;
+    [SerializeField] UpgradeView healthUpgradeView;
+    [SerializeField] UpgradeView damageUpgradeView;
+    [SerializeField] UpgradeView attackRateUpgradeView;
+    [SerializeField] UpgradeView attackRangeUpgradeView;
     [Space]
     [SerializeField] public Button startLevelButton;
 
@@ -32,18 +36,15 @@ public class UpgradeScreen : View
     {
         new []
         {
-            UpgradeHold.instance.upgradeHealth,
-            UpgradeHold.instance.upgradeDamage,
-            UpgradeHold.instance.upgradeAttackRate,
-            UpgradeHold.instance.upgradeAttackRange,
+            (UpgradeHold.instance.upgradeHealth, healthUpgradeView),
+            (UpgradeHold.instance.upgradeDamage, damageUpgradeView),
+            (UpgradeHold.instance.upgradeAttackRate, attackRateUpgradeView),
+            (UpgradeHold.instance.upgradeAttackRange, attackRangeUpgradeView),
         }
-            .ForEach(upgrade =>
+            .ForEach(tuple =>
             {
-                UpgradeView view = Instantiate(prefabUpgradeView,
-                                               default,
-                                               default,
-                                               layout.transform);
-
+                var (upgrade, view) = tuple;
+                
                 view.transform.localPosition = view.transform.localPosition.WithZ(0);
 
                 upgradeViews.Add(view);

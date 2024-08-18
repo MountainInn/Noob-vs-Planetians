@@ -11,6 +11,6 @@ public class LevelCounterLabel : MonoBehaviour
 
     public void SetCount(int levelCount)
     {
-        label.text = $"Level {levelCount}";
+        label.text = $"{levelCount}";
     }
 }

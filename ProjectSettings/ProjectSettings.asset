@@ -138,8 +138,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1.0
-  preloadedAssets:
-  - {fileID: 11400000, guid: 7abe46dede6624a60a115c533b19a2a8, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -754,7 +753,7 @@ PlayerSettings:
     PS5: DOTWEEN
     Stadia: DOTWEEN
     Standalone: DOTWEEN;YG_PLUGIN_YANDEX_GAME;UNITASK_DOTWEEN_SUPPORT
-    WebGL: DOTWEEN;UNITASK_DOTWEEN_SUPPORT;YG_PLUGIN_YANDEX_GAME
+    WebGL: DOTWEEN;UNITASK_DOTWEEN_SUPPORT;YG_PLUGIN_YANDEX_GAME;YG_TEXT_MESH_PRO
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN

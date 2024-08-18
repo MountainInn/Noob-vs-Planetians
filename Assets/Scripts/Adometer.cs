@@ -63,7 +63,7 @@ public class Adometer : MonoBehaviour
             .OnUpdate(() =>
             {
                 arrow.rectTransform.anchoredPosition = Vector2.zero;
-                labelCurrentMultiplier.text = $"Get x{GetCurrentMultiplier()}!";
+                labelCurrentMultiplier.text = $"x{GetCurrentMultiplier()}!";
             });
     }
 
