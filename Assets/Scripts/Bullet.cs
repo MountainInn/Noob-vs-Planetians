@@ -73,5 +73,12 @@ public class Bullet : MonoBehaviour
 
             item.raycastCollider.Reinitialize(muzzle.position);
         }
+
+        protected override void OnDespawned(Bullet item)
+        {
+            item.transform.position = new Vector3(0, -100, 0);
+            
+            base.OnDespawned(item);
+        }
     }
 }
