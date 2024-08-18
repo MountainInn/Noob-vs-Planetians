@@ -39,7 +39,6 @@ public class YandexSaveSystem : MonoBehaviour
     {
         savers.ForEach(s => s.Invoke(YandexGame.savesData));
 
-        YandexGame.ResetSaveProgress();
         YandexGame.SaveProgress();
     }
 }
