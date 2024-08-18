@@ -1,6 +1,7 @@
 using HyperCasual.Runner;
 using UnityEngine;
 using YG;
+using Zenject;
 
 public class Vault : MonoBehaviour
 {
@@ -12,17 +13,15 @@ public class Vault : MonoBehaviour
 
     [HideInInspector] public int buffer;
 
-    void OnEnable()
+    [Inject] void Construct(YandexSaveSystem sv)
     {
-        YandexGame.GetDataEvent += Load;
-    }
-    void OnDisable()
-    {
-        YandexGame.GetDataEvent -= Load;
-    }
-
-    void Start()
-    {
+        sv.Register(
+            save => {
+                save.money = money.react.Value;
+            },
+            load => {
+                money.react.Value = load.money;
+            });
     }
 
     public void GainMoney(int amount)
@@ -40,16 +39,5 @@ public class Vault : MonoBehaviour
     {
         money.react.Value += buffer;
         buffer = 0;
-    }
-
-
-    void Save()
-    {
-        YandexGame.savesData.money = money.react.Value;
-        YandexGame.SaveProgress();
-    }
-    void Load()
-    {
-        money.react.Value = YandexGame.savesData.money;
     }
 }
