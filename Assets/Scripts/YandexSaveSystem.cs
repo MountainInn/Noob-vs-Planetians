@@ -35,7 +35,7 @@ public class YandexSaveSystem : MonoBehaviour
         loaders.ForEach(l => l.Invoke(YandexGame.savesData));
     }
 
-    void Save()
+    public void Save()
     {
         savers.ForEach(s => s.Invoke(YandexGame.savesData));
 
