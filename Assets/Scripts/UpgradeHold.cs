@@ -18,37 +18,38 @@ public class UpgradeHold : MonoBehaviour
 
     [Inject] void Construct(YandexSaveSystem sv)
     {
-        //         sv.Register(
-        //             save => {
-        // // YandexGame.savesData.healthUpgradeLevel = upgradeHealth.level.ware.L;
-        //                 YandexGame.savesData.damageUpgradeLevel = upgradeDamage.level.ware.L;
-        //                 YandexGame.savesData.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
-        //                 YandexGame.savesData.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
-                
-        //             },
-        //             load => {
-        // // upgradeHealth.level.ware.SetLevel(YandexGame.savesData.healthUpgradeLevel);
-        //                 upgradeDamage.level.ware.SetLevel(YandexGame.savesData.damageUpgradeLevel);
-        //                 upgradeAttackRate.level.ware.SetLevel(YandexGame.savesData.attackRateUpgradeLevel);
-        //                 upgradeAttackRange.level.ware.SetLevel(YandexGame.savesData.attackRangeUpgradeLevel);
-        //             });
+        sv.Register(
+            save =>
+            {
+                save.healthUpgradeLevel = upgradeHealth.level.ware.L;
+                save.damageUpgradeLevel = upgradeDamage.level.ware.L;
+                save.attackRateUpgradeLevel = upgradeAttackRate.level.ware.L;
+                save.attackRangeUpgradeLevel = upgradeAttackRange.level.ware.L;
+            },
+            load =>
+            {
+                upgradeHealth.level.ware.SetLevel(load.healthUpgradeLevel);
+                upgradeDamage.level.ware.SetLevel(load.damageUpgradeLevel);
+                upgradeAttackRate.level.ware.SetLevel(load.attackRateUpgradeLevel);
+                upgradeAttackRange.level.ware.SetLevel(load.attackRangeUpgradeLevel);
+            });
     }
 
     public void Initialize()
     {
-        upgradeHealth      .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
-                                   priceCalculation: l => Mathf.Pow(1.3f, l));
+        upgradeHealth.Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                             priceCalculation: l => Mathf.Pow(1.3f, l));
 
-        upgradeDamage      .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
-                                   priceCalculation: l => Mathf.Pow(1.3f, l));
-        
-        upgradeAttackRate  .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
-                                   priceCalculation: l => Mathf.Pow(1.3f, l));
+        upgradeDamage.Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                             priceCalculation: l => Mathf.Pow(1.3f, l));
 
-        upgradeAttackRange .Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
-                                   priceCalculation: l => Mathf.Pow(1.3f, l));
+        upgradeAttackRate.Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                                 priceCalculation: l => Mathf.Pow(1.3f, l));
 
-        new [] {
+        upgradeAttackRange.Inject(bonusCalculation: l => Mathf.Pow(1.1f, l),
+                                  priceCalculation: l => Mathf.Pow(1.3f, l));
+
+        new[] {
             upgradeHealth,
             upgradeDamage,
             upgradeAttackRate,

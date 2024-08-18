@@ -969,7 +969,7 @@ MonoBehaviour:
           _current:
             value: 0
           _maximum:
-            value: 0
+            value: 1e+11
         onSetLevel:
           m_PersistentCalls:
             m_Calls: []
@@ -997,7 +997,7 @@ MonoBehaviour:
           _current:
             value: 0
           _maximum:
-            value: 0
+            value: 1e+11
         onSetLevel:
           m_PersistentCalls:
             m_Calls: []
@@ -1025,7 +1025,7 @@ MonoBehaviour:
           _current:
             value: 0
           _maximum:
-            value: 0
+            value: 1e+11
         onSetLevel:
           m_PersistentCalls:
             m_Calls: []
@@ -1053,7 +1053,7 @@ MonoBehaviour:
           _current:
             value: 0
           _maximum:
-            value: 0
+            value: 1e+11
         onSetLevel:
           m_PersistentCalls:
             m_Calls: []
@@ -1677,7 +1677,7 @@ PrefabInstance:
     - target: {fileID: 2936167624244292077, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 23.89
+      value: 77.66
       objectReference: {fileID: 0}
     - target: {fileID: 2936167624244292077, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -1687,7 +1687,7 @@ PrefabInstance:
     - target: {fileID: 2936167624244292077, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 105.780464
+      value: 92.33795
       objectReference: {fileID: 0}
     - target: {fileID: 2936167624244292077, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -1972,7 +1972,7 @@ PrefabInstance:
     - target: {fileID: 5237897444947184907, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0985376
+      value: 0.09853762
       objectReference: {fileID: 0}
     - target: {fileID: 5237897444947184907, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -2042,7 +2042,7 @@ PrefabInstance:
     - target: {fileID: 5331038013834440150, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 23.89
+      value: 77.66
       objectReference: {fileID: 0}
     - target: {fileID: 5331038013834440150, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -2052,7 +2052,7 @@ PrefabInstance:
     - target: {fileID: 5331038013834440150, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 105.780464
+      value: 92.33795
       objectReference: {fileID: 0}
     - target: {fileID: 5331038013834440150, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -2303,7 +2303,7 @@ PrefabInstance:
     - target: {fileID: 7902180778741156609, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 23.89
+      value: 77.66
       objectReference: {fileID: 0}
     - target: {fileID: 7902180778741156609, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -2313,7 +2313,7 @@ PrefabInstance:
     - target: {fileID: 7902180778741156609, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 105.780464
+      value: 92.33795
       objectReference: {fileID: 0}
     - target: {fileID: 7902180778741156609, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -2463,7 +2463,7 @@ PrefabInstance:
     - target: {fileID: 8798137017956417291, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 23.89
+      value: 77.66
       objectReference: {fileID: 0}
     - target: {fileID: 8798137017956417291, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
@@ -2473,7 +2473,7 @@ PrefabInstance:
     - target: {fileID: 8798137017956417291, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 105.780464
+      value: 92.33795
       objectReference: {fileID: 0}
     - target: {fileID: 8798137017956417291, guid: a199d962ca53e4a10ba285d5d34bf335,
         type: 3}
