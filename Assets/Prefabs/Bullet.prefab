@@ -53,11 +53,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  capsulePointOne: {x: 0, y: 0, z: 1}
-  capsulePointTwo: {x: 0, y: 0, z: -1}
-  radius: 0.4
+  raycastLength: 5
+  radius: 0.45
   offset: {x: 0, y: 0, z: -1.5}
   startRaycasting: 1
+  raycastBufferSize: 8
   onCollision:
     m_PersistentCalls:
       m_Calls:
@@ -175,7 +175,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 573182875057461186}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 2

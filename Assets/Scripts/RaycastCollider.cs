@@ -8,12 +8,12 @@ public class RaycastCollider : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
     [Space]
-    [SerializeField] Vector3 capsulePointOne;
-    [SerializeField] Vector3 capsulePointTwo;
+    [SerializeField] float raycastLength = 20f;
     [SerializeField] float radius;
     [SerializeField] Vector3 offset;
     [Space]
     [SerializeField] bool startRaycasting;
+    [SerializeField] int raycastBufferSize = 6;
     [Space]
     [SerializeField] UnityEvent<Collider> onCollision;
     [Space]
@@ -23,19 +23,24 @@ public class RaycastCollider : MonoBehaviour
     Vector3 previousPosition;
     Vector3 startPosition => transform.position + offset;
 
-    RaycastHit[] hits = new RaycastHit[3];
+    RaycastHit[] hits;
     RaycastHit closestValidHit;
 
     bool raycasting;
     bool hasValidHits;
 
+    void Awake()
+    {
+        hits = new RaycastHit[raycastBufferSize];
+    }
+
     void OnEnable()
     {
         previousPosition = startPosition;
+        
+        hasValidHits = false;
 
         raycasting = true;
-
-        Raycast();
     }
 
     void OnDisable()
@@ -49,11 +54,15 @@ public class RaycastCollider : MonoBehaviour
     {
         Gizmos.color = Color.red;
        
-        Vector3 to = startPosition + transform.forward * 10f;
+        Vector3 to = previousPosition + transform.forward * raycastLength;
        
-        Gizmos.DrawLine(startPosition, to);
+        Gizmos.DrawLine(previousPosition, to);
 
         Gizmos.DrawSphere(to, radius);
+        
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawRay(previousPosition, Vector3.up);
     }
 
     void FixedUpdate()
@@ -70,8 +79,6 @@ public class RaycastCollider : MonoBehaviour
             }
         }
 
-        hasValidHits = false;
-
         Raycast();
 
         previousPosition = transform.position;
@@ -79,20 +86,23 @@ public class RaycastCollider : MonoBehaviour
 
     void Raycast()
     {
+        hasValidHits = false;
+
+        int hitCount = 0;
+
         if (raycasting)
         {
-            var infos =
+            hitCount = 
                 Physics
-                .SphereCastAll(previousPosition,
-                               radius,
-                               transform.forward,
-                               10f,
-                               layerMask,
-                               QueryTriggerInteraction.Collide);
+                .SphereCastNonAlloc(previousPosition,
+                                    radius,
+                                    transform.forward,
+                                    hits,
+                                    raycastLength,
+                                    layerMask,
+                                    QueryTriggerInteraction.Collide);
 
-            hasValidHits = infos != null;
-
-            hits = infos;
+            hasValidHits = (hitCount > 0);
         }
 
         if (hasValidHits)
@@ -101,11 +111,12 @@ public class RaycastCollider : MonoBehaviour
             {
                 var (index, hit) =
                     hits
+                    .Take(hitCount)
                     .Enumerate()
                     .OrderBy(tuple => tuple.value.distance)
-                    .First();
+                    .First(tuple => tuple.value.point != Vector3.zero);
 
-                this.closestValidHit = hit;
+                closestValidHit = hit;
             }
             catch (System.Exception e)
             {
@@ -116,7 +127,9 @@ public class RaycastCollider : MonoBehaviour
             }
 
             if (closestValidHit.point == Vector3.zero)
+            {
                 hasValidHits = false;
+            }
         }
     }
 
@@ -133,7 +146,6 @@ public class RaycastCollider : MonoBehaviour
 
         if (isEqualsNull)
             return;
-
         
         collidable.OnRaycastCollide(this);
 
