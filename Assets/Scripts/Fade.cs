@@ -24,10 +24,8 @@ public class Fade : MonoBehaviour
 
     void Awake()
     {
-        if (visible)
-            FadeIn();
-        else
-            FadeOut();
+        canvasGroup.alpha = (visible) ? 1 : 0;
+        ToggleInteractable();
     }
 
     public void Toggle()
