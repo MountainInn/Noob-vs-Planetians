@@ -92,6 +92,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -3.75
       objectReference: {fileID: 0}
+    - target: {fileID: 4816684602025297818, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816684602025297818, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952137432066916901, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 5.91
+      objectReference: {fileID: 0}
     - target: {fileID: 7543757207440390361, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_Size.x

@@ -71,6 +71,9 @@ public class Gate : InteractiveCollider
         labelTotalValue.text = $"{totalValue}";
 
         initialScale = transform.localScale;
+
+        GetComponentInChildren<YG.LanguageYG>()
+            .SwitchLanguage();
     }
 
     void RandomizeStats()

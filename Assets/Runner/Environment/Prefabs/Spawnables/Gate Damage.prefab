@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 314387739941697089, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_Name
-      value: Gate
+      value: Gate Damage
       objectReference: {fileID: 0}
     - target: {fileID: 1021949262770465885, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
@@ -66,6 +66,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: en
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: ru
+      value: "\u0423\u0440\u043E\u043D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: tr
+      value: Zarar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a99093d5b4bea40affd9efde2a2932, type: 3}

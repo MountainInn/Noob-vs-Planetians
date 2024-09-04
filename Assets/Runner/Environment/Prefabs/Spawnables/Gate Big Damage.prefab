@@ -7,10 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1345821554987912405, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3573940567726006044, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: m_Name
-      value: Gate Big
+      value: Gate Big Damage
       objectReference: {fileID: 0}
     - target: {fileID: 4317664006563890432, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
@@ -66,6 +71,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: totalValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: startingValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: incrementPerHit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065758677376551636, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: m_text
+      value: +10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: en
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: ru
+      value: "\u0423\u0440\u043E\u043D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: tr
+      value: Zarar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: componentTextField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 654f83e8c8fb4a14fb89b459d15b64de, type: 3}

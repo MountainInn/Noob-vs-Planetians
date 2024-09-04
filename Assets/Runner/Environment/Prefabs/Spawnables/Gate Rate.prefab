@@ -20,17 +20,17 @@ PrefabInstance:
     - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: totalValue
-      value: 5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: startingValue
-      value: 5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: incrementPerHit
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1021949262770465885, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 2839673960529044872, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_text
-      value: 5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2839673960529044872, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
@@ -123,10 +123,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d0177c9e2ef73e04ea7ef12c24257988,
         type: 3}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: en
+      value: Attack Rate
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: ru
+      value: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0410\u0442\u0430\u043A\u0438"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: tr
+      value: "Sald\u0131r\u0131 Oran\u0131"
+      objectReference: {fileID: 0}
     - target: {fileID: 7054953240803746697, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_text
-      value: +1
+      value: +10
       objectReference: {fileID: 0}
     - target: {fileID: 7295731719642658160, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}

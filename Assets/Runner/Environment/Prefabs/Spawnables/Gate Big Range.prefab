@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 3573940567726006044, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: m_Name
-      value: Gate Big
+      value: Gate Big Range
       objectReference: {fileID: 0}
     - target: {fileID: 4317664006563890432, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
@@ -77,6 +77,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_GateType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: totalValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: startingValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: incrementPerHit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835108900877458477, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: m_text
+      value: Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: en
+      value: Attack Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: ru
+      value: "\u0414\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u044C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: tr
+      value: "Sald\u0131r\u0131 Menzili"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 654f83e8c8fb4a14fb89b459d15b64de, type: 3}

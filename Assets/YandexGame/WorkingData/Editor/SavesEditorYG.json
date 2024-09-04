@@ -1,15 +1,15 @@
 {
-    "idSave": 62,
+    "idSave": 95,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "healthUpgradeLevel": 0,
-    "damageUpgradeLevel": 0,
-    "attackRateUpgradeLevel": 0,
-    "attackRangeUpgradeLevel": 0,
-    "lastWeaponIndex": 1,
-    "weaponExpirience": 0,
-    "money": 0,
-    "levelCount": 2,
-    "currentLevelIndex": 2
+    "healthUpgradeLevel": 3,
+    "damageUpgradeLevel": 15,
+    "attackRateUpgradeLevel": 13,
+    "attackRangeUpgradeLevel": 8,
+    "lastWeaponIndex": 3,
+    "weaponExpirience": 4,
+    "money": 16,
+    "levelCount": 9,
+    "currentLevelIndex": 4
 }

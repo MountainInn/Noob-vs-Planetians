@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: 1345821554987912405, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: m_text
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1345821554987912405, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
@@ -136,17 +136,17 @@ PrefabInstance:
     - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: totalValue
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: startingValue
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4511641042368827556, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: incrementPerHit
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5835108900877458477, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
@@ -156,7 +156,22 @@ PrefabInstance:
     - target: {fileID: 6065758677376551636, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}
       propertyPath: m_text
-      value: +1
+      value: +5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: en
+      value: Attack Rate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: ru
+      value: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0410\u0442\u0430\u043A\u0438"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311758190994966889, guid: 654f83e8c8fb4a14fb89b459d15b64de,
+        type: 3}
+      propertyPath: tr
+      value: "Sald\u0131r\u0131 Oran\u0131"
       objectReference: {fileID: 0}
     - target: {fileID: 7440208311151275548, guid: 654f83e8c8fb4a14fb89b459d15b64de,
         type: 3}

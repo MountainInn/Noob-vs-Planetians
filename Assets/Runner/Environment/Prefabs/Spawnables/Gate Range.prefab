@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 314387739941697089, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
       propertyPath: m_Name
-      value: Gate
+      value: Gate Range
       objectReference: {fileID: 0}
     - target: {fileID: 817768811790563833, guid: 05a99093d5b4bea40affd9efde2a2932,
         type: 3}
@@ -78,5 +78,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0083f191990ec4367ba7be96af15c132,
         type: 3}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: en
+      value: Attack Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: ru
+      value: "\u0414\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u044C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817886200468480052, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: tr
+      value: "Sald\u0131r\u0131 Menzili"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295731719642658160, guid: 05a99093d5b4bea40affd9efde2a2932,
+        type: 3}
+      propertyPath: m_text
+      value: Range
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a99093d5b4bea40affd9efde2a2932, type: 3}
