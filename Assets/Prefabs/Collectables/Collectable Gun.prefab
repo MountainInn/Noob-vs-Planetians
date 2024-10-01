@@ -99,6 +99,7 @@ MonoBehaviour:
   onOtherEnter:
     m_PersistentCalls:
       m_Calls: []
+  CurrencyEvents: []
 --- !u!114 &6839350380317472191
 MonoBehaviour:
   m_ObjectHideFlags: 0

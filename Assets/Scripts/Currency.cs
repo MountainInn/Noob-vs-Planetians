@@ -1,12 +1,14 @@
 using UnityEngine;
 using System;
 using UniRx;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Currency", menuName = "SO/Currency")]
 public class Currency : ScriptableObject
 {
     public Sprite sprite;
     public ReactiveProperty<int> react;
+    [SerializeField] public UnityEvent<PlayerCharacter> onPlayerEnter;
 
     public IObservable<int> ObserveAddition()
     {

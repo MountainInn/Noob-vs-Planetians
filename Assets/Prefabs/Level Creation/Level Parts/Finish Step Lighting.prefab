@@ -396,6 +396,7 @@ MonoBehaviour:
   onOtherEnter:
     m_PersistentCalls:
       m_Calls: []
+  CurrencyEvents: []
 --- !u!33 &8188077121169337059
 MeshFilter:
   m_ObjectHideFlags: 0

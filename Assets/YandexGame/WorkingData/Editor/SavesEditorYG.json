@@ -1,14 +1,14 @@
 {
-    "idSave": 95,
+    "idSave": 96,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
     "healthUpgradeLevel": 3,
-    "damageUpgradeLevel": 15,
+    "damageUpgradeLevel": 16,
     "attackRateUpgradeLevel": 13,
     "attackRangeUpgradeLevel": 8,
     "lastWeaponIndex": 3,
-    "weaponExpirience": 4,
+    "weaponExpirience": 5,
     "money": 16,
     "levelCount": 9,
     "currentLevelIndex": 4
